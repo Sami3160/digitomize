@@ -11,9 +11,8 @@ import HeroSection from './components/HeroSection'
 function App() {
    return (
     <>
-      <Navbar className={"top-4"}/>
         <HeroSection/>
-      <ThreeDCardDemo/>
+      {/* <ThreeDCardDemo/> */}
       {/* <BackgroundBeams/> */}
     </>
   )
