@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from "react";
 import { HoveredLink, Menu, MenuItem, MenuItemLogo, ProductItem } from "../components/ui/navbar-menu";
 import { cn } from "../utils/cn"; // Adjust the path if necessary
 import { Link, useNavigate } from "react-router-dom"; // Use react-router-dom for navigation
-import { motion } from "framer-motion"; // Assuming you're using framer-motion for animations
 import tcs from '../assets/company/TCS.jpg'
 import amazon from '../assets/company/amazon.jpg'
 import meta from '../assets/company/logo-Meta.jpg'
@@ -13,7 +12,7 @@ export default function Navbar({ className }) {
   const [active, setActive] = useState(null);
   const navigate = useNavigate()
   const { user, logout } = useContext(AuthContext)
-  useEffect
+  
   return (
     <div className={cn("fixed top-10 inset-x-0 max-w-2xl mx-auto z-50 shadow-teal-200 rounded-full shadow-lg", className)}>
       <Menu setActive={setActive}>
@@ -79,7 +78,7 @@ export default function Navbar({ className }) {
               }}
             >
               <span>
-                {localStorage.getItem("user") ? localStorage.getItem("token")?"Loading":"Login" : "Signin"}
+                {localStorage.getItem("user") ? "Login" : "Signin"}
               </span>
               <span className="absolute inset-x-0 w-1/2 mx-auto -bottom-px bg-gradient-to-r from-transparent via-blue-500 to-transparent  h-px" />
             </button>
