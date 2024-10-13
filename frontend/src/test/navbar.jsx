@@ -38,7 +38,7 @@ export default function Navbar({ className }) {
             />
             <ProductItem
               title="Meta"
-              href="/home?company=meta"
+              href="/problems?company=meta"
               src={meta}
               description="Production-ready Tailwind CSS components for your next project."
             />
@@ -56,7 +56,7 @@ export default function Navbar({ className }) {
             />
           </div>
         </MenuItem>
-        <HoveredLink to="/leaderboard">Leaderboard</HoveredLink>
+        <HoveredLink to="/contest">Contests</HoveredLink>
         <HoveredLink to="/blogs">Blogs</HoveredLink>
         {
           user && localStorage.getItem("user") ? (

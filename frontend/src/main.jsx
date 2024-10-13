@@ -12,7 +12,7 @@ createRoot(document.getElementById('root')).render(
     </BrowserRouter> */}
     <AuthProvider>
 
-    <GlobalRoute/>
+      <GlobalRoute />
     </AuthProvider>
   </StrictMode>,
 )

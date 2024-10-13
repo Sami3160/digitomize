@@ -6,6 +6,8 @@ import Navbar from './test/navbar'
 import { LoginFormDemo } from './test/login-form'
 // const Loader = React.lazy(() => import('./components/loader'))
 import Loader from './components/loader'
+import ProblemsPage from './views/problems'
+import CompanyProblems from './views/CompanyProblems'
 // const LoginFormDemo = React.lazy(() => import('./test/login-form'))
 // const SigninPage = React.lazy(() => import('./views/signin-page'))
 // const Navbar=React.lazy(()=>import('./test/navbar'))
@@ -23,6 +25,12 @@ export default function GlobalRoute() {
                 <Route path="/login" element={<LoginFormDemo />} />
                 <Route path="/signin" element={<SigninPage />} />
                 <Route path="/profile" component={<App />} />
+                <Route path="/problems" element={<ProblemsPage />} >
+                    <Route path=":company" element={<CompanyProblems />} />
+                </Route>
+                <Route path="/qn" element={<ProblemsPage />} />
+                <Route path="*" element={<h1>404 Not Found</h1>} />
+
             </Routes>
             </Suspense>
         </BrowserRouter>
