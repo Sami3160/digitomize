@@ -17,7 +17,6 @@ export default function GlobalRoute() {
         <BrowserRouter>
 
             <Suspense fallback={<Loader />}>
-                <div className="flex flex-col justify-between">
                     <Navbar className={"top-4"} />
 
                     <Routes>
@@ -35,8 +34,7 @@ export default function GlobalRoute() {
                         <Route path="*" element={<h1>404 Not Found</h1>} />
 
                     </Routes>
-                    <Footer/>
-                </div>
+                    {/* <Footer/> */}
             </Suspense>
         </BrowserRouter>
     )

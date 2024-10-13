@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import { Label } from "../components/ui/label"; // Adjust import path as per your folder structure
 import { Input } from "../components/ui/input"; // Adjust import path as per your folder structure
 import { cn } from "../utils/cn"; // Adjust import path accordingly
@@ -9,7 +9,7 @@ import {
 import signin from "../assets/signin.svg";
 import axios from "axios";
 import { ErrorMessage, SuccessMessages } from "../components/messages";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 export function LoginFormDemo() {
     const navigate = useNavigate()
     useEffect(() => {
@@ -117,7 +117,7 @@ export function LoginFormDemo() {
                         </button>
 
                         <p className="text-neutral-600 text-sm max-w-sm mt-2 dark:text-neutral-300">
-                            Don't have an account? <a href="/signin" className="text-cyan-600 dark:text-cyan-400">Signin</a>
+                            Don't have an account? <Link to="/signin" className="text-cyan-600 dark:text-cyan-400">Signin</Link>
                         </p>
                         <div className="bg-gradient-to-r from-transparent via-neutral-300 dark:via-neutral-700 to-transparent my-8 h-[1px] w-full" />
 

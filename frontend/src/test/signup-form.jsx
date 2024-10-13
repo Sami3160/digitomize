@@ -9,7 +9,7 @@ import {
 import signin from "../assets/signin.svg";
 import axios from "axios";
 import { ErrorMessage, SuccessMessages } from "../components/messages";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 export function SignupFormDemo() {
     useEffect(()=>{
     document.title = "First time? Signup here"
@@ -142,7 +142,7 @@ export function SignupFormDemo() {
                     </button>
 
                     <p className="text-neutral-600 text-sm max-w-sm mt-2 dark:text-neutral-300">
-                        Already have an account? <a href="/login" className="text-cyan-600 dark:text-cyan-400">Login</a>
+                        Already have an account? <Link to="/login" className="text-cyan-600 dark:text-cyan-400">Login</Link>
                     </p>
                     <div className="bg-gradient-to-r from-transparent via-neutral-300 dark:via-neutral-700 to-transparent my-8 h-[1px] w-full" />
 
