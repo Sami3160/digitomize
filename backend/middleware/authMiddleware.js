@@ -6,16 +6,11 @@ const protect = async (req, res, next) => {
 
     if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
         try {
-            // Get token from the header
             token = req.headers.authorization.split(' ')[1];
-
-            // Verify token
             const decoded = jwt.verify(token, 'secret');
-
-            // Get user from the token
             req.user = await User.findById(decoded.userId).select('-password');
 
-            next(); // Move to the next middleware/controller
+            next();
         } catch (error) {
             return res.status(401).json({ message: 'Not authorized, token failed' });
         }

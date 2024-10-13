@@ -3,23 +3,32 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 
 exports.registerUser = async (req, res) => {
-  const { username, email, password } = req.body;
+  const {  email, password, confirmpassword, firstname, lastname } = req.body;
   try {
     const userExists = await User.findOne({ email });
     if (userExists) {
       return res.status(400).json({ message: "User already exists" });
     }
+    if(password != confirmpassword){
+      return res.status(400).json({ message: "Passwords do not match" });
+    }
+    const username = `${firstname} ${lastname}`;
 
     const hashedPassword = await bcrypt.hash(password, 10);
     const newUser = new User({
       username,
       email,
+      firstname,
+      lastname,
       password: hashedPassword,
     });
 
     const savedUser = await newUser.save();
-    res.status(201).json({ message: "User registered successfully", user: savedUser });
+    console.log(savedUser);
+    const token = jwt.sign({ userId: savedUser._id }, "secret", { expiresIn: '1h' });
+    res.status(201).json({ token, savedUser, message: "User created successfully" });
   } catch (error) {
+    console.log(error);
     res.status(500).json({ message: error.message });
   }
 };
@@ -27,6 +36,7 @@ exports.registerUser = async (req, res) => {
 exports.loginUser = async (req, res) => {
   const { email, password } = req.body;
   try {
+    console.log(email, password);
     const user = await User.findOne({ email });
     if (!user) {
       return res.status(404).json({ message: "User not found" });

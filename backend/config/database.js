@@ -4,7 +4,7 @@ require("dotenv").config();
 async function dbConnect(){
     await mongoose.connect('mongodb+srv://sami:root@digitomize.lpqpv.mongodb.net/', {
         useNewUrlParser: true,
-        useUnifiedTopology: true
+        // useUnifiedTopology: true
     })
     .then(()=> console.log("Now you are connected to toggl servers!!"))
     .catch((error)=>{

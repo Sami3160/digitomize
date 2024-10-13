@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
@@ -9,6 +9,9 @@ import Navbar from './test/navbar'
 import HeroSection from './components/HeroSection'
 // import BackgroundBeams from './components/ui/background'
 function App() {
+  useEffect(()=>{
+    document.title = "Digitomize, Home"
+  },[])
    return (
     <>
         <HeroSection/>

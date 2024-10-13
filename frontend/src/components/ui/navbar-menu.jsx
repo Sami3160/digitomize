@@ -88,3 +88,36 @@ export const HoveredLink = ({ children, ...rest }) => {
     </Link>
   );
 };
+
+
+export const MenuItemLogo = ({ setActive, active, item, children }) => {
+  return (
+    <div onMouseEnter={() => setActive(item)} className="relative hover:shadow-lg hover:shadow-teal-600 transition-shadow duration-300 p-0  rounded-3xl">
+      <motion.img src={item}
+        className="cursor-pointer h-10 text-black hover:opacity-[0.9] dark:text-white"
+
+        alt="Profile" />
+      {active !== null && (
+        <motion.div
+          initial={{ opacity: 0, scale: 0.85, y: 10 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={transition}
+        >
+          {active === item && (
+            <div className="absolute top-[calc(100%_+_1.2rem)] left-1/2 transform -translate-x-1/2 pt-4">
+              <motion.div
+                transition={transition}
+                layoutId="active"
+                className="bg-white dark:bg-black backdrop-blur-sm rounded-2xl overflow-hidden border border-black/[0.2] dark:border-white/[0.2] shadow-xl"
+              >
+                <motion.div layout className="w-max h-full p-4">
+                  {children}
+                </motion.div>
+              </motion.div>
+            </div>
+          )}
+        </motion.div>
+      )}
+    </div>
+  );
+};

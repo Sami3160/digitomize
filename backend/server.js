@@ -1,17 +1,23 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
-// Import routes
 const contestRoutes = require('./routes/contestRoutes');
 const userRoutes = require('./routes/userRoutes');
 const portfolioRoutes = require('./routes/portfolioRoutes');
+const bodyParser = require('body-parser');
+const multer=require('multer');
+const dbConnect = require('./config/database');
 
-// Middleware
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+// app.use(express.json());
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended:true}));
+// app.use(express.urlencoded());
+const upload=multer();
+app.use(upload.none());
 app.use(cors());
 
-// Use routes
+dbConnect().then(() => console.log("Connected to MongoDB"));
+
 app.use('/api/contests', contestRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/portfolio', portfolioRoutes);
