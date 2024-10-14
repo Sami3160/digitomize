@@ -1,8 +1,27 @@
-import { useState } from 'react';
-import ContestCard, { BentoGrid, Skeleton } from './ContestCard';
-
+import { useEffect, useState } from 'react';
+import ContestCard, { BentoGrid } from './ContestCard';
+import axios from 'axios'
 const Contests = () => {
    const [duration, setDuration] = useState(50);
+   const [codeforcesContests, setCodeforcesContests] = useState();
+   useEffect(() => {
+      fetchUpcomingCodeforcesContests()
+   }, [])
+   async function fetchUpcomingCodeforcesContests() {
+      try {
+         const response = await axios.get('https://codeforces.com/api/contest.list?gym=false');
+         const contests = response.data.result.filter(contest => contest.phase === 'BEFORE'); // Filter upcoming contests
+         setCodeforcesContests(contests)
+         contests.forEach(contest => {
+            console.log(`Contest Name: ${contest.name}`);
+            console.log(`Start Time: ${new Date(contest.startTimeSeconds * 1000).toLocaleString()}`);
+            console.log(`Duration: ${contest.durationSeconds / 3600} hours`);
+            console.log('---');
+         });
+      } catch (error) {
+         console.error('Error fetching contests:', error.message);
+      }
+   }
 
    return (
       <div className="flex flex-col justify-center items-center gap-8">
@@ -32,8 +51,12 @@ const Contests = () => {
          <p className='text-white text-xl'>Have a favorite contest platform we&apos;re missing? Join our <span className='text-blue-600 cursor-pointer'>Discord</span> or <span className='text-blue-600 cursor-pointer'>click here</span> and let us know!</p>
          <div className='flex pb-20 flex-col gap-2'>
             <BentoGrid className="">
-               <ContestCard className={""} key={1} header={<Skeleton />} icon={""} title={"demo title sjsh shgsfsjhsh shgsgs sfsfs dfdf sgfsfs "} description={"demo sec sgfsfs sghgs shggss sgsgs sgsg"} />
-               <ContestCard className={""} key={2} header={<Skeleton />} icon={""} title={"demo title sjsh shgsfsjhsh shgsgs sfsfs dfdf sgfsfs "} description={"demo sec sgfsfs sghgs shggss sgsgs sgsg"} />
+               {
+                  codeforcesContests ?
+                     codeforcesContests.map((element) =>
+                        <ContestCard header={""} duration={element.durationSeconds / 3600} startTime={element.startTimeSeconds} icon={<svg className='w-8' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="code-forces"><path fill="#F44336" d="M24 19.5V12a1.5 1.5 0 0 0-1.5-1.5h-3A1.5 1.5 0 0 0 18 12v7.5a1.5 1.5 0 0 0 1.5 1.5h3a1.5 1.5 0 0 0 1.5-1.5z"></path><path fill="#2196F3" d="M13.5 21a1.5 1.5 0 0 0 1.5-1.5v-15A1.5 1.5 0 0 0 13.5 3h-3C9.673 3 9 3.672 9 4.5v15c0 .828.673 1.5 1.5 1.5h3z"></path><path fill="#FFC107" d="M0 19.5c0 .828.673 1.5 1.5 1.5h3A1.5 1.5 0 0 0 6 19.5V9a1.5 1.5 0 0 0-1.5-1.5h-3C.673 7.5 0 8.172 0 9v10.5z"></path></svg>} title={element.name} key={element.id} />
+                     ) : null
+               }
             </BentoGrid>
          </div>
       </div>

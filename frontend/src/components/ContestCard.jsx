@@ -1,7 +1,8 @@
 import { cn } from "../utils/cn";
+import { Redirect } from 'react-router-dom';
 
+const ContestCard = ({ key, title, description, header, icon, className, startTime, duration }) => {
 
-const ContestCard = ({ key, title, description, header, icon, className }) => {
    return (
       <BentoGridItem
          key={key}
@@ -10,6 +11,8 @@ const ContestCard = ({ key, title, description, header, icon, className }) => {
          header={header}
          icon={icon}
          className={className}
+         startTime={startTime}
+         duration={duration}
       />
    )
 }
@@ -35,12 +38,26 @@ export const BentoGrid = ({
 };
 
 export const BentoGridItem = ({
+   key,
    className,
    title,
-   description,
    header,
    icon,
+   startTime,
+   duration
 }) => {
+
+   const [selectedContestId, setSelectedContestId] = useState(null);
+
+   const handleContestClick = (contestId) => {
+      setSelectedContestId(contestId);
+   };
+
+   // Redirect to the selected contest page if a contest is selected
+   if (selectedContestId) {
+      // https://codeforces.com/contests/2030
+      return <Redirect to={`/contest/${selectedContestId}`} />;
+   }
    return (
       <div
          className={cn(
@@ -49,13 +66,19 @@ export const BentoGridItem = ({
          )}
       >
          {header}
-         <div className="group-hover/bento:translate-x-2 transition duration-200">
-            {icon}
-            <div className="font-sans font-bold text-neutral-600 dark:text-neutral-200 mb-2 mt-2">
+         <div className="group-hover/bento:translate-x-2 transition duration-200 h-full flex flex-col items-center justify-center relative">
+            <div className="text-white w-full absolute top-2 left-0">Start Time:{new Date(startTime * 1000).toLocaleString()}</div>
+            <div className="absolute top-2 right-2">
+               {icon}
+            </div>
+            <div className="font-sans font-bold text-neutral-600 dark:text-neutral-200 mb-2 mt-2 text-2xl">
                {title}
             </div>
-            <div className="font-sans font-normal text-neutral-600 text-xs dark:text-neutral-300">
-               {description}
+            <div className="text-white absolute bottom-0 left-2">
+               Duration: {duration} Hours
+            </div>
+            <div className="absolute bottom-0 right-2 cursor-pointer">
+               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-move-right md:w-10 md:h-10" style={{ color: "white" }}><path d="M18 8L22 12L18 16"></path><path d="M2 12H22"></path></svg>
             </div>
          </div>
       </div>
