@@ -13,10 +13,10 @@ const transition = {
 
 export const MenuItem = ({ setActive, active, item, children }) => {
   return (
-    <div onMouseEnter={() => setActive(item)} className="relative hover:shadow-lg hover:shadow-teal-600 transition-shadow duration-300 p-2 px-3 rounded-3xl">
+    <div onMouseEnter={() => setActive(item)} className="relative hover:shadow-lg hover:bg-white transition-shadow duration-300 px-3 rounded-3xl flex justify-center items-center ">
       <motion.p
         transition={{ duration: 0.3 }}
-        className="cursor-pointer text-black hover:opacity-[0.9] dark:text-white"
+        className="cursor-pointerhover:opacity-[0.9] dark:text-[#1b1a1a] font-medium "
       >
         {item}
       </motion.p>
@@ -49,7 +49,7 @@ export const Menu = ({ setActive, children }) => {
   return (
     <nav
       onMouseLeave={() => setActive(null)}
-      className="relative rounded-full border border-transparent dark:bg-black dark:border-white/[0.2] bg-white shadow-input flex justify-center space-x-4 px-8 py-6"
+      className="relative rounded-full border-4 dark:bg-teal-300 border-teal-800 bg-black shadow-input flex justify-evenly space-x-4 px-2 py-3 "
     >
       {children}
     </nav>
@@ -82,7 +82,7 @@ export const HoveredLink = ({ children, ...rest }) => {
   return (
     <Link
       {...rest}
-      className="text-neutral-700 transition-shadow duration-300 dark:text-neutral-200 hover:text-white hover:shadow-teal-600 hover:shadow-lg p-2 px-3 rounded-3xl"
+      className="text-neutral-700 font-medium transition-shadow duration-300 dark:text-[#1b1a1a]  hover:bg-white hover:shadow-lg px-3 rounded-3xl flex justify-center items-center "
     >
       {children}
     </Link>

@@ -14,7 +14,7 @@ export default function Navbar({ className }) {
   const { user, logout } = useContext(AuthContext)
   
   return (
-    <div className={cn("fixed top-10 inset-x-0 max-w-2xl mx-auto z-50 shadow-teal-200 rounded-full shadow-lg", className)}>
+    <div className={cn("fixed top-10 inset-x-0 max-w-xl mx-auto z-50 rounded-full shadow-lg")}>
       <Menu setActive={setActive}>
         <HoveredLink to="/">Home</HoveredLink>
 
@@ -67,7 +67,7 @@ export default function Navbar({ className }) {
               </div>
             </MenuItemLogo>
           ) : (
-            <button className="border  self-start text-sm font-medium relative border-neutral-200 dark:border-white/[0.2] text-black dark:text-white px-4 py-2 rounded-full"
+            <button className=" text-sm font-medium relative text-[#1b1a1a] px-3 py-2 border-2 border-[#1b1a1a] hover:bg-[#1b1a1a] hover:text-white rounded-full flex justify-center items-center transition-all ease-in-out"
               onClick={() => {
                 if (localStorage.getItem("user")) {
                   // localStorage.removeItem("userid")
@@ -78,7 +78,7 @@ export default function Navbar({ className }) {
               }}
             >
               <span>
-                {localStorage.getItem("user") ? "Login" : "Signin"}
+                {localStorage.getItem("user") ? "Login" : "Sign in"}
               </span>
               <span className="absolute inset-x-0 w-1/2 mx-auto -bottom-px bg-gradient-to-r from-transparent via-blue-500 to-transparent  h-px" />
             </button>

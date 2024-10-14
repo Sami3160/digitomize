@@ -10,7 +10,7 @@ import HeroSection from './components/HeroSection'
 // import BackgroundBeams from './components/ui/background'
 function App() {
   useEffect(()=>{
-    document.title = "Digitomize, Home"
+    document.title = "Digitomize | Home"
   },[])
    return (
     <>

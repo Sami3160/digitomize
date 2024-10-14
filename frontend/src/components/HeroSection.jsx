@@ -5,13 +5,13 @@ export default function HeroSection() {
     return (
         <div className='mt-40 w-full h-full'>
 
-            <div className="w-full h-full flex flex-row px-20 justify-start items-start gap-10">
+            <div className="w-full h-full flex flex-row px-20 justify-start items-center gap-10">
 
                 <div className='flex flex-col'>
-                    <h1 className='text-7xl text-white  font-extrabold leading-tight'>
+                    <h1 className='text-6xl text-white  font-extrabold leading-tight'>
                         Find Coding Contests, Practice Problems, and Build Your Developer Portfolio
                     </h1>
-                    <h4 className='text-2xl text-white '>
+                    <h4 className='text-2xl mt-3 text-white '>
                         Discover events, track your progress, and level up your skills with real-time insights and personalized portfolios.
                         {/* Find Coding Contests, Practice Problems, and Build Your Developer Portfolio. */}
                     </h4>
