@@ -67,7 +67,7 @@ export default function Navbar({ className }) {
               </div>
             </MenuItemLogo>
           ) : (
-            <button className=" text-sm font-medium relative text-[#1b1a1a] px-3 py-2 border-2 border-[#1b1a1a] hover:bg-[#1b1a1a] hover:text-white rounded-full flex justify-center items-center transition-all ease-in-out"
+            <button className=" text-sm font-medium relative text-white px-3 py-2 border-2 border-[#1b1a1a] bg-[#1b1a1a] hover:bg-[#242323]  rounded-full flex justify-center items-center transition-all ease-in-out active:scale-95"
               onClick={() => {
                 if (localStorage.getItem("user")) {
                   // localStorage.removeItem("userid")
