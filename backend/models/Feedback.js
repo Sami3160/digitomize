@@ -2,22 +2,29 @@
 const mongoose = require('mongoose');
 
 // Define Feedback Schema
-const feedbackSchema = new mongoose.Schema({
-  rating: {
-    type: Number,
-    required: true,
+const blogSchema = new mongoose.Schema({
+  user: {
+    type: mongoose.Schema.Types.ObjectId, ref: 'User'
   },
-  improvement: {
+  views: {
+    type: Number,
+    default: 0,
+  },
+  title: {
     type: String,
     required: true,
   },
-  bugs: {
+  description: {
     type: String,
     required: false,
   },
+  bannerUrl: {
+    type: String,
+    required: false,
+  }
 });
 
 // Create Feedback Model
-const Feedback = mongoose.model('Feedback', feedbackSchema);
+const Blog = mongoose.model('Blogs', blogSchema);
 
-module.exports = Feedback;
+module.exports = Blog;

@@ -1,27 +1,44 @@
 import { useEffect, useState } from 'react';
 import ContestCard, { BentoGrid } from './ContestCard';
 import axios from 'axios'
+import { useAsyncError } from 'react-router-dom';
 const Contests = () => {
    const [duration, setDuration] = useState(50);
-   const [  codeforcesContests, setCodeforcesContests] = useState();
+   const [codeforcesContests, setCodeforcesContests] = useState();
+   const [codechefContests, setCodechefContests] = useState();
+   const [leetcodeContests, setLeetcodeContests] = useState();
+   const [selectedPlatform, setSelectedPlatform] = useState('all')
    useEffect(() => {
       fetchUpcomingCodeforcesContests()
    }, [])
    async function fetchUpcomingCodeforcesContests() {
       try {
+         //get codeforces contests
          const response = await axios.get('https://codeforces.com/api/contest.list?gym=false');
          const contests = response.data.result.filter(contest => contest.phase === 'BEFORE'); // Filter upcoming contests
          setCodeforcesContests(contests)
-// console.log(contests)
-         // contests.forEach(contest => {
-         //    console.log(`Contest Name: ${contest.name}`);
-         //    console.log(`Start Time: ${new Date(contest.startTimeSeconds * 1000).toLocaleString()}`);
-         //    console.log(`Duration: ${contest.durationSeconds / 3600} hours`);
-         //    console.log('---');
-         // });
       } catch (error) {
          console.error('Error fetching contests:', error.message);
       }
+
+      //get leetcode contest
+      try {
+         const response = await axios.get('http://localhost:5000/api/contests/leetcode-contests');
+         console.log(response.data.contests)
+         setLeetcodeContests(response.data.contests)
+      } catch (error) {
+         console.log(error);
+
+      }
+   }
+
+   const handleChange = (e) => {
+      if (!e.target.value) {
+         setSelectedPlatform('all')
+      } else {
+         setSelectedPlatform(e.target.value)
+      }
+      // alert(selectedPlatform)
    }
 
    return (
@@ -37,10 +54,14 @@ const Contests = () => {
             </div>
          </div>
          <div className="bg-[#171a1a] w-[80%] p-4 rounded-md flex justify-between">
-            <select name="" id="" className="rounded-md px-2 py-4 w-96 bg-slate-200">
+            <select name="" onChange={(e) => handleChange(e)} id="" className="rounded-md px-2 py-4 w-96 bg-slate-200">
                <option value="">Platform</option>
-               <option value="leetcode">leetcode</option>
-               <option value="codechef">codechef</option>
+               <option value="all">All</option>
+               <option value="leetcode">Leetcode</option>
+               <option value="codechef">Codechef</option>
+               <option value="codeforces">Codeforces</option>
+               <option value="codingnanjas">Coding Ninjas</option>
+               <option value="hackerrank">HackerRank</option>
             </select>
             <div className="flex items-center gap-4">
                <p className="text-white">Duration(min):</p>
@@ -50,15 +71,80 @@ const Contests = () => {
             </div>
          </div>
          <p className='text-white text-xl'>Have a favorite contest platform we&apos;re missing? Join our <span className='text-blue-600 cursor-pointer'>Discord</span> or <span className='text-blue-600 cursor-pointer'>click here</span> and let us know!</p>
-         <div className='flex pb-20 flex-col gap-2'>
-            <BentoGrid className="">
-               {
-                  codeforcesContests ?
-                     codeforcesContests.map((element) =>
-                        <ContestCard header={""} duration={element.durationSeconds / 3600} id={element.id} startTime={element.startTimeSeconds} icon={<svg className='w-8' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="code-forces"><path fill="#F44336" d="M24 19.5V12a1.5 1.5 0 0 0-1.5-1.5h-3A1.5 1.5 0 0 0 18 12v7.5a1.5 1.5 0 0 0 1.5 1.5h3a1.5 1.5 0 0 0 1.5-1.5z"></path><path fill="#2196F3" d="M13.5 21a1.5 1.5 0 0 0 1.5-1.5v-15A1.5 1.5 0 0 0 13.5 3h-3C9.673 3 9 3.672 9 4.5v15c0 .828.673 1.5 1.5 1.5h3z"></path><path fill="#FFC107" d="M0 19.5c0 .828.673 1.5 1.5 1.5h3A1.5 1.5 0 0 0 6 19.5V9a1.5 1.5 0 0 0-1.5-1.5h-3C.673 7.5 0 8.172 0 9v10.5z"></path></svg>} title={element.name} key={element.id} />
-                     ) : null
-               }
-            </BentoGrid>
+         <div className='flex pb-20 flex-col gap-2 w-full'>
+            {
+               (selectedPlatform === "all" || selectedPlatform === "codeforces") && (
+
+                  <BentoGrid className="">
+                     {
+                        codeforcesContests ?
+                           codeforcesContests.map((element) =>
+                              <ContestCard header={""} platform={"codeforces"} link={""} duration={element.durationSeconds / 3600} id={element.id} startTime={element.startTimeSeconds} icon={<svg className='w-8' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="code-forces"><path fill="#F44336" d="M24 19.5V12a1.5 1.5 0 0 0-1.5-1.5h-3A1.5 1.5 0 0 0 18 12v7.5a1.5 1.5 0 0 0 1.5 1.5h3a1.5 1.5 0 0 0 1.5-1.5z"></path><path fill="#2196F3" d="M13.5 21a1.5 1.5 0 0 0 1.5-1.5v-15A1.5 1.5 0 0 0 13.5 3h-3C9.673 3 9 3.672 9 4.5v15c0 .828.673 1.5 1.5 1.5h3z"></path><path fill="#FFC107" d="M0 19.5c0 .828.673 1.5 1.5 1.5h3A1.5 1.5 0 0 0 6 19.5V9a1.5 1.5 0 0 0-1.5-1.5h-3C.673 7.5 0 8.172 0 9v10.5z"></path></svg>} title={element.name} key={element.id} />
+                           ) : null
+                     }
+                  </BentoGrid>
+               )
+            }
+
+            {
+               (selectedPlatform === "all" || selectedPlatform === "leetcode") && (
+
+                  <BentoGrid className="grid-cols-1 md:grid-cols-2 lg:grid-cols-3  ">
+                     {
+                        leetcodeContests ?
+                           leetcodeContests.map((element, index) =>
+                              <ContestCard platform={"leetcode"} header={""} duration={element.duration} id={index} link={element.link} startTime={element.date} icon={<img width="24" height="24" src="https://img.icons8.com/external-tal-revivo-shadow-tal-revivo/24/external-level-up-your-coding-skills-and-quickly-land-a-job-logo-shadow-tal-revivo.png" alt="external-level-up-your-coding-skills-and-quickly-land-a-job-logo-shadow-tal-revivo" />}
+                                 className={""}
+                                 title={element.name} key={index} />
+                           ) : null
+                     }
+                  </BentoGrid>
+               )
+            }
+
+            {
+
+               (selectedPlatform === "all" || selectedPlatform === "codechef") && (
+
+                  <h1 className='my-5 text-6xl text-teal-500 font-semibold'>
+                     <i>
+                        !code chef contest are yet to implement!
+                     </i>
+                  </h1>
+               )
+            }
+
+            {
+
+               (selectedPlatform === "all" || selectedPlatform === "gfg") && (
+
+                  <h1 className='my-5 text-6xl text-teal-500 font-semibold'>
+                     <i>
+                        !geeks for geeks contest are yet to implement!
+                     </i>
+                  </h1>
+               )
+            }
+            {
+               (selectedPlatform === "all" || selectedPlatform === "hackerrank") && (
+
+                  <h1 className='my-5 text-6xl text-teal-500 font-semibold'>
+                     <i>
+                        !hackrank contest are yet to implement!
+                     </i>
+                  </h1>
+               )
+            }
+            {
+               (selectedPlatform === "all" || selectedPlatform === "codingnanjas") && (
+
+                  <h1 className='my-5 text-6xl text-teal-500 font-semibold'>
+                     <i>
+                        !codingninja contest are yet to implement!
+                     </i>
+                  </h1>
+               )
+            }
          </div>
       </div>
    )

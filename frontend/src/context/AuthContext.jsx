@@ -4,8 +4,10 @@ export const AuthContext = createContext()
 
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
+    const [token, setToken] = useState(localStorage.getItem('token'));
     useEffect(() => {
-        const token = localStorage.getItem('token')
+        // const token = localStorage.getItem('token')
+        let intervalId; 
         if (token) {
             const getUser = async () => {
                 try {
@@ -21,8 +23,13 @@ export const AuthProvider = ({ children }) => {
             }
             // setInterval(()=>getUser, 4000)
             getUser()
+            if(token){
+                intervalId=setInterval(()=>getUser, 4000)
+            }
+            return ()=>clearInterval(intervalId)
+
         }
-    }, [localStorage.getItem('token')])
+    }, [token])
     const logout = () => {
         localStorage.removeItem('token')
         localStorage.removeItem('user')

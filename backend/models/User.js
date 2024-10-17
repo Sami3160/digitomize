@@ -10,6 +10,10 @@ const userSchema = new mongoose.Schema({
     contestsParticipated: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Contest' }],
     achievements: [String],  
     bio: String,
+    profileUrl:{
+        type:String,
+        default:'https://res.cloudinary.com/dv0xm4c4v/image/upload/v1633199598/contest-portfolio/default-profile-image_fy3j9s.png'
+    }
 });
 
 module.exports = mongoose.model("User", userSchema);
