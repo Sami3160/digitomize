@@ -6,7 +6,7 @@ async function dbConnect(){
         useNewUrlParser: true,
         // useUnifiedTopology: true
     })
-    .then(()=> console.log("Now you are connected to toggl servers!!"))
+    .then(()=> console.log("Now you are connected to digitomize backend"))
     .catch((error)=>{
         console.log(error.message)
         process.exit(1);

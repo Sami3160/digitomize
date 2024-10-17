@@ -82,12 +82,25 @@ export const HoveredLink = ({ children, ...rest }) => {
   return (
     <Link
       {...rest}
-      className="text-neutral-700 font-medium transition-shadow duration-300 dark:text-[#1b1a1a]  hover:bg-white hover:shadow-lg px-3 rounded-3xl flex justify-center items-center "
+      className="text-neutral-700 font-medium transition-shadow duration-300 dark:text-[#1b1a1a]  hover:bg-white hover:shadow-lg px-3 py-2 rounded-3xl flex justify-center items-center "
     >
       {children}
     </Link>
   );
 };
+
+export const HoveredLink2 = ({ children, ...rest }) => {
+  return (
+    <Link
+      {...rest}
+      className="text-neutral-700 font-medium transition-shadow duration-300 dark:text-white hover:text-gray-800  hover:bg-white hover:shadow-lg px-3 py-2 rounded-3xl flex justify-center items-center "
+    >
+      {children}
+    </Link>
+  );
+};
+
+
 
 
 export const MenuItemLogo = ({ setActive, active, item, children }) => {
@@ -104,13 +117,13 @@ export const MenuItemLogo = ({ setActive, active, item, children }) => {
           transition={transition}
         >
           {active === item && (
-            <div className="absolute top-[calc(100%_+_1.2rem)] left-1/2 transform -translate-x-1/2 pt-4">
+            <div className="absolute top-[calc(100%_+_1.2rem)] left-1/2 transform -translate-x-1/2 pt-4 -translate-y-3">
               <motion.div
                 transition={transition}
                 layoutId="active"
                 className="bg-white dark:bg-black backdrop-blur-sm rounded-2xl overflow-hidden border border-black/[0.2] dark:border-white/[0.2] shadow-xl"
               >
-                <motion.div layout className="w-max h-full p-4">
+                <motion.div layout className="w-max h-full p-4 ">
                   {children}
                 </motion.div>
               </motion.div>

@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useLocation, useSearchParams } from 'react-router-dom';
+import { Link, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import josnData from '../json/companyProblems.json'
 export default function CompanyProblems() {
   const [selectedCompany, setSelectedCompany] = useState()
   const [searchParams] = useSearchParams()
   const [problemsData, setProblemsData] = useState({})
   const location = useLocation();
-
+  const navigate=useNavigate()
   useEffect(() => {
     const company = searchParams.get('company')
     if (company) {
       setSelectedCompany(company)
+    }else{
+      navigate('/problems?company=google')
     }
     setProblemsData(josnData[company])
     // console.log(problemsData)
@@ -75,13 +77,20 @@ function SmolCard({ name, amount }) {
 
 
 const Table = ({ name, data }) => {
+
   console.log(name, data)
   const diffMap = {
     "hard": "bg-red-500",
     "medium": "bg-yellow-500",
     "easy": "bg-green-500"
   }
-
+  const logoMap = {
+    "Leetcode": "https://img.icons8.com/external-tal-revivo-shadow-tal-revivo/24/external-level-up-your-coding-skills-and-quickly-land-a-job-logo-shadow-tal-revivo.png",
+    "Codeforces": "https://img.icons8.com/external-tal-revivo-filled-tal-revivo/24/external-codeforces-programming-competitions-and-contests-programming-community-logo-filled-tal-revivo.png",
+    "GfG": "https://digitomize.com/assets/geeksforgeeks-1a83bb08.svg",
+    "CodeChef": "https://digitomize.com/assets/codechef-f6a4f2da.svg",
+    "Coding Ninjas": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAaGVYSWZNTQAqAAAACAAEAQYAAwAAAAEAAgAAARIAAwAAAAEAAQAAASgAAwAAAAEAAgAAh2kABAAAAAEAAAA+AAAAAAADoAEAAwAAAAEAAQAAoAIABAAAAAEAAABfoAMABAAAAAEAAABfAAAAAPfNbXAAAAP5SURBVHicvZZPaFxVFMa/79z73mTG2Fg0pLUmbWyTagJKERFDNYILbVpQDK0uBK1pElLcuNCFS8GNIKhV1CiKoCCNrQspKP6BqMWNEanFP4lJkyxKxGqNTSYz8969x0WccTKZxHTy5ywevPfuvd/vnXfuPR+xghjubWiRmLfR4GZV7BDySq9qSehK5pcLBRBSnrLLDOB4z/b7lOxV1TYbyCYhoAVJVqoNAvAAcuqvKQswfGTXdeMSvyDCTkMg8kDsK/7YpQDUAH4RwLm+7TfCxR8kLFsysSJeM9nyIcU3P/Y0bFXHgdCyZS7Wyn9wJQAKMFB5PmnZmok3QroEYKy74e7Q4NDcBooDQL4GqODjVmiWKzYCMEJI5RugsI4H6LyKBYDRnuvrAXdXzi0tHhoicorI+wkAUwSiVQKogH/MZ4DxHQkxNdklAEJDxE4/VeVzgfVDDa9O/kWsTY1aAFBFG5dIa8IQGafv+YTtaj72a3YtRBcAHD8IQ7C13K+3QmSdn/BR9onm/qk1FwcA217bkpyJ0tvKAQQCxA7vN7899TsA3PnA/iYNoswWX3N+YGDAXY7QLQcOpBLJqD4LNzU08Nl0AWA6l7tKiM1eFxIQQM4pFBjMP3PUI0YT3ed1dnxvZ8dPSj1rlL945fdfnzw1lh/X/kh7VTRTfauh360euyFsBX0TVFIphnsB/AfgJao2iqC0uZCAU42s6ET+mVG+6b3rCsJgD4A9AOCi+Izz2gdgrHi+QPcp5ckgGVhVBUDEUe7FrwY+Olc8zoZkQkuO5HwoGHnD2fz9lydPjdx+6N59jKI+gBbA54KZE9+cGJwpnjf4zmAGwNNtBzuOR7noQYI7Vd235or0S6UaHO1rvAmxnhZBdXEdCAGvSAu1tfH1ifFygGsRAkEG1EUFpQBUNfSxbFovcQCQbOQuQZFddAwoEBixavyudQWoQe20kn+y5CRSzG9DKO5ZV4Br+4fmAJ0s12ByTiFk58jRneuWBSGgBM6UA3AKhIZXS+zeGO1qrFsPAALASM/2+xMiH0ZLtOLQEDmvP8PzFSPui5j2QhjlVu3W6k3dJQLA8OEttRIkfrDCOufLDw7+9QHZ2GcVvEhqrlLhgiklHi0kfrR7x1vJgIf/zxEJ5xcoLdoKAKDOdxRcsad/ORPLQ0Ikl3PghXdauR0oyoAWjuCm/snvFHqsyq7Sb11mLOgBqXTmmXTkP0kFGwexAGDru7/NViHxcDqnH6csYTaAY1EX3NY/fOEis51zsT4L1b+TlrBCrKLmlo1llx3ubWgJIY95oEMVjVZYRWLVdjS/C7z6/Sv6rrNHW6pTcbrVAzcI0OCBzVS1lXJw/qLi8No/YzuoX35Hj9UAAAAASUVORK5CYII=",
+  }
   const nm = name[0].toUpperCase() + name.slice(1)
   return (
     <div className="w-full my-3">
@@ -100,13 +109,24 @@ const Table = ({ name, data }) => {
             {
               data.map((val, index) => {
                 let difficulty;
+                let platform = "Leetcode"
+                if (val.link.includes("codeforces")) platform = "Codeforces"
+                if (val.link.includes("leetcode")) platform = "Leetcode"
+                if (val.link.includes("geeksforgeeks")) platform = "GfG"
+                if (val.link.includes("codingninjas")) platform = "Coding Ninjas"
+                if (val.link.includes("codechef")) platform = "CodeChef"
                 if (val.title.length % 2 == 0) difficulty = "easy"
                 else if (val.title.length % 3 == 0) difficulty = "medium"
                 else difficulty = "hard"
                 return (
                   <tr key={index} className='text-white'>
                     <td className="py-2 px-6 border-b border-gray-700">{val.title}</td>
-                    <td className="py-2 px-6 border-b border-gray-700">Leetcode</td>
+                    <td className="py-2 px-6 border-b border-gray-700 ">
+                      <span className='flex gap-3'>
+                        <img src={logoMap[platform]} alt="logo" className="w-6 h-6  rounded-full" />
+                      {platform}
+                      </span>
+                    </td>
                     <td className="py-2 px-6 border-b border-gray-700 truncate">
                       <span className={`${diffMap[difficulty]} text-white py-1 px-2 rounded-full text-xs`}>{difficulty}</span>
                     </td>

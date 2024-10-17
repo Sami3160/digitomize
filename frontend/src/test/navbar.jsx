@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { HoveredLink, Menu, MenuItem, MenuItemLogo, ProductItem } from "../components/ui/navbar-menu";
+import { HoveredLink, HoveredLink2, Menu, MenuItem, MenuItemLogo, ProductItem } from "../components/ui/navbar-menu";
 import { cn } from "../utils/cn"; // Adjust the path if necessary
 import { Link, useNavigate } from "react-router-dom"; // Use react-router-dom for navigation
 import tcs from '../assets/company/TCS.jpg'
@@ -60,10 +60,10 @@ export default function Navbar({ className }) {
         {
           user && localStorage.getItem("user") ? (
             <MenuItemLogo setActive={setActive} active={active} item="https://img.icons8.com/officel/80/test-account.png">
-              <div className="flex flex-col space-y-4 text-sm">
-                <HoveredLink to="/profile">Your Profile</HoveredLink>
-                <HoveredLink to="/contest">Your Contests</HoveredLink>
-                <HoveredLink onClick={() => logout()}>Logout</HoveredLink>
+              <div className="felx- flex-col space-y-3  text-sm">
+                <HoveredLink2 to="/profile">Your Profile</HoveredLink2>
+                <HoveredLink2 to="/contest">Your Contests</HoveredLink2>
+                <HoveredLink2 onClick={() => logout()}>Logout</HoveredLink2>
               </div>
             </MenuItemLogo>
           ) : (

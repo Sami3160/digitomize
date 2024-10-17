@@ -1,7 +1,7 @@
 import { cn } from "../utils/cn";
-import { Redirect } from 'react-router-dom';
-
-const ContestCard = ({ key, title, description, header, icon, className, startTime, duration }) => {
+import { Link, Navigate } from 'react-router-dom';
+import { useState } from "react";
+const ContestCard = ({id, key, title, description, header, icon, className, startTime, duration }) => {
 
    return (
       <BentoGridItem
@@ -13,6 +13,7 @@ const ContestCard = ({ key, title, description, header, icon, className, startTi
          className={className}
          startTime={startTime}
          duration={duration}
+         id={id}
       />
    )
 }
@@ -44,20 +45,21 @@ export const BentoGridItem = ({
    header,
    icon,
    startTime,
-   duration
-}) => {
+   duration,
+   id,
+   }) => {
 
-   const [selectedContestId, setSelectedContestId] = useState(null);
+   // const [selectedContestId, setSelectedContestId] = useState(null);
 
-   const handleContestClick = (contestId) => {
-      setSelectedContestId(contestId);
-   };
+   // const handleContestClick = (contestId) => {
+   //    setSelectedContestId(contestId);
+   // };
 
-   // Redirect to the selected contest page if a contest is selected
-   if (selectedContestId) {
-      // https://codeforces.com/contests/2030
-      return <Redirect to={`/contest/${selectedContestId}`} />;
-   }
+   // Navigate to the selected contest page if a contest is selected
+   // if (selectedContestId) {
+   //    // https://codeforces.com/contests/2030
+   //    return <Navigate to={`/contest/${selectedContestId}`} />;
+   // }
    return (
       <div
          className={cn(
@@ -77,9 +79,9 @@ export const BentoGridItem = ({
             <div className="text-white absolute bottom-0 left-2">
                Duration: {duration} Hours
             </div>
-            <div className="absolute bottom-0 right-2 cursor-pointer">
+            <Link to={`https://codeforces.com/contests/${id}`} target="blank" className="absolute bottom-0 right-2 cursor-pointer">
                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-move-right md:w-10 md:h-10" style={{ color: "white" }}><path d="M18 8L22 12L18 16"></path><path d="M2 12H22"></path></svg>
-            </div>
+            </Link>
          </div>
       </div>
    );
