@@ -1,7 +1,7 @@
 import { cn } from "../utils/cn";
 import { Link, Navigate } from 'react-router-dom';
 import { useState } from "react";
-const ContestCard = ({ id, key, title, description, header, icon, className, startTime, duration, platform,link }) => {
+const ContestCard = ({ id, key, title, description, header, icon, className, startTime, duration, platform, link }) => {
 
    return (
       <BentoGridItem
@@ -59,16 +59,16 @@ export const BentoGridItem = ({
    let linkRef = ""
    switch (platform) {
       case "codeforces":
-         linkRef="https://codeforces.com/contests/"+id
+         linkRef = "https://codeforces.com/contests/" + id
          break;
       case "leetcode":
          linkRef = link
          break;
       case "codechef":
-         linkRef = "https://www.codechef.com/"+id
+         linkRef = "https://www.codechef.com/" + id
          break;
       case "hackerrank":
-         linkRef = "https://www.hackerrank.com/contests/"+id
+         linkRef = "https://www.hackerrank.com/contests/" + id
          break;
    }
    // if()

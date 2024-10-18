@@ -7,21 +7,21 @@
             },
             {
                 "title": "Trapping Rain Water",
-                "link": "https://leetcode.com/problems/trapping-rain-water/"
+                "link": "https://www.geeksforgeeks.org/trapping-rain-water/"
             },
             {
                 "title": "Find the Median of a Data Stream",
-                "link": "https://leetcode.com/problems/find-the-median-of-a-data-stream/"
+                "link": "https://www.codechef.com/problems/MEDIANSTREAM"
             },
             {
                 "title": "Top K Frequent Elements",
-                "link": "https://leetcode.com/problems/top-k-frequent-elements/"
+                "link": "https://www.codeforces.com/problemset/problem/602/B"
             }
         ],
         "string": [
             {
                 "title": "Longest Palindromic Subsequence",
-                "link": "https://leetcode.com/problems/longest-palindromic-subsequence/"
+                "link": "https://www.geeksforgeeks.org/longest-palindromic-subsequence-dp-12/"
             },
             {
                 "title": "Minimum Window Substring",
@@ -29,11 +29,11 @@
             },
             {
                 "title": "Word Search",
-                "link": "https://leetcode.com/problems/word-search/"
+                "link": "https://www.codeforces.com/contest/822/problem/B"
             },
             {
                 "title": "Longest Repeating Substring",
-                "link": "https://leetcode.com/problems/longest-repeating-substring/"
+                "link": "https://www.hackerrank.com/challenges/repeated-string/problem"
             },
             {
                 "title": "Valid Sudoku",
@@ -43,7 +43,7 @@
         "dynamic programming": [
             {
                 "title": "Edit Distance",
-                "link": "https://leetcode.com/problems/edit-distance/"
+                "link": "https://www.hackerrank.com/challenges/string-transformation/problem"
             },
             {
                 "title": "Longest Increasing Subsequence II",
@@ -51,7 +51,7 @@
             },
             {
                 "title": "Wildcard Matching",
-                "link": "https://leetcode.com/problems/wildcard-matching/"
+                "link": "https://www.codeforces.com/problemset/problem/333/B"
             },
             {
                 "title": "Dungeon Game",
@@ -65,11 +65,11 @@
         "divide and conquer": [
             {
                 "title": "Count Complete Tree Nodes",
-                "link": "https://leetcode.com/problems/count-complete-tree-nodes/"
+                "link": "https://www.geeksforgeeks.org/count-complete-tree-nodes-in-a-binary-tree/"
             },
             {
                 "title": "Find Minimum in Rotated Sorted Array",
-                "link": "https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/"
+                "link": "https://www.codechef.com/problems/ROTATEARRAY"
             },
             {
                 "title": "Max Sum of Rectangle No Larger Than K",
@@ -79,7 +79,7 @@
         "stack": [
             {
                 "title": "Next Greater Element II",
-                "link": "https://leetcode.com/problems/next-greater-element-ii/"
+                "link": "https://www.geeksforgeeks.org/next-greater-element/"
             },
             {
                 "title": "132 Pattern",
@@ -87,7 +87,7 @@
             },
             {
                 "title": "Remove K Digits",
-                "link": "https://leetcode.com/problems/remove-k-digits/"
+                "link": "https://www.codeforces.com/problemset/problem/313/B"
             },
             {
                 "title": "Basic Calculator",
@@ -96,20 +96,16 @@
             {
                 "title": "Design a Stack with Increment Operation",
                 "link": "https://leetcode.com/problems/design-a-stack-with-increment-operation/"
-            },
-            {
-                "title": "132 Pattern",
-                "link": "https://leetcode.com/problems/132-pattern/"
             }
         ],
         "graph": [
             {
                 "title": "Alien Dictionary",
-                "link": "https://leetcode.com/problems/alien-dictionary/"
+                "link": "https://www.geeksforgeeks.org/alien-dictionary/"
             },
             {
                 "title": "Find a Connected Component in a Graph",
-                "link": "https://leetcode.com/problems/find-a-connected-component-in-a-graph/"
+                "link": "https://www.codeforces.com/problemset/problem/587/B"
             },
             {
                 "title": "Minimum Cost to Connect All Points",
@@ -117,7 +113,7 @@
             },
             {
                 "title": "Network Delay Time",
-                "link": "https://leetcode.com/problems/network-delay-time/"
+                "link": "https://www.hackerrank.com/challenges/journey-to-the-moon/problem"
             },
             {
                 "title": "Find the Town Judge",
@@ -127,11 +123,11 @@
         "tree": [
             {
                 "title": "Find the Duplicate Subtrees",
-                "link": "https://leetcode.com/problems/find-the-duplicate-subtrees/"
+                "link": "https://www.geeksforgeeks.org/find-duplicate-subtrees/"
             },
             {
                 "title": "Construct Binary Tree from Preorder and Postorder Traversal",
-                "link": "https://leetcode.com/problems/construct-binary-tree-from-preorder-and-postorder-traversal/"
+                "link": "https://www.geeksforgeeks.org/construct-a-binary-tree-from-parent-array-representation/"
             }
         ]
     },
@@ -147,7 +143,7 @@
             },
             {
                 "title": "Subarray Sum Equals K",
-                "link": "https://leetcode.com/problems/subarray-sum-equals-k/"
+                "link": "https://codeforces.com/problemset/problem/628/B"
             }
         ],
         "string": [
@@ -157,21 +153,17 @@
             },
             {
                 "title": "Valid Palindrome",
-                "link": "https://leetcode.com/problems/valid-palindrome/"
+                "link": "https://www.geeksforgeeks.org/check-if-a-given-string-is-a-valid-palindrome/"
             },
             {
                 "title": "Roman to Integer",
-                "link": "https://leetcode.com/problems/roman-to-integer/"
-            },
-            {
-                "title": "Minimum Window Substring",
-                "link": "https://leetcode.com/problems/minimum-window-substring/"
+                "link": "https://www.hackerrank.com/challenges/roman-to-integer/problem"
             }
         ],
         "dynamic programming": [
             {
                 "title": "Fibonacci Number",
-                "link": "https://leetcode.com/problems/fibonacci-number/"
+                "link": "https://www.codingninjas.com/codestudio/problems/nth-fibonacci-number_74156"
             },
             {
                 "title": "Unique Paths",
@@ -179,11 +171,7 @@
             },
             {
                 "title": "Partition Equal Subset Sum",
-                "link": "https://leetcode.com/problems/partition-equal-subset-sum/"
-            },
-            {
-                "title": "Edit Distance",
-                "link": "https://leetcode.com/problems/edit-distance/"
+                "link": "https://www.codechef.com/problems/EQSUB"
             }
         ],
         "divide and conquer": [
@@ -193,7 +181,7 @@
             },
             {
                 "title": "Find Peak Element",
-                "link": "https://leetcode.com/problems/find-peak-element/"
+                "link": "https://codeforces.com/problemset/problem/1520/E"
             }
         ],
         "stack": [
@@ -203,15 +191,11 @@
             },
             {
                 "title": "Basic Calculator II",
-                "link": "https://leetcode.com/problems/basic-calculator-ii/"
+                "link": "https://www.hackerrank.com/challenges/basic-calculator/problem"
             },
             {
                 "title": "Next Greater Element I",
-                "link": "https://leetcode.com/problems/next-greater-element-i/"
-            },
-            {
-                "title": "Asteroid Collision",
-                "link": "https://leetcode.com/problems/asteroid-collision/"
+                "link": "https://www.geeksforgeeks.org/next-greater-element/"
             }
         ],
         "tree": [
@@ -221,7 +205,7 @@
             },
             {
                 "title": "Lowest Common Ancestor of a Binary Search Tree",
-                "link": "https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/"
+                "link": "https://www.codechef.com/problems/BSTLCA"
             }
         ],
         "graph": [
@@ -231,15 +215,15 @@
             },
             {
                 "title": "Number of Islands",
-                "link": "https://leetcode.com/problems/number-of-islands/"
+                "link": "https://codeforces.com/problemset/problem/1030/C"
             },
             {
                 "title": "Clone Graph",
-                "link": "https://leetcode.com/problems/clone-graph/"
+                "link": "https://www.hackerrank.com/challenges/clone-graph/problem"
             },
             {
                 "title": "Network Delay Time",
-                "link": "https://leetcode.com/problems/network-delay-time/"
+                "link": "https://www.geeksforgeeks.org/network-delay-time/"
             }
         ]
     },
@@ -251,15 +235,15 @@
             },
             {
                 "title": "Maximum Product Subarray",
-                "link": "https://leetcode.com/problems/maximum-product-subarray/"
+                "link": "https://www.hackerrank.com/challenges/maximum-product-subarray/problem"
             },
             {
                 "title": "Merge Intervals",
-                "link": "https://leetcode.com/problems/merge-intervals/"
+                "link": "https://www.geeksforgeeks.org/merge-intervals/"
             },
             {
                 "title": "Majority Element",
-                "link": "https://leetcode.com/problems/majority-element/"
+                "link": "https://www.codechef.com/problems/MAJELEMENT"
             }
         ],
         "string": [
@@ -279,19 +263,19 @@
             },
             {
                 "title": "Triangle",
-                "link": "https://leetcode.com/problems/triangle/"
+                "link": "https://www.hackerrank.com/challenges/triangle/problem"
             },
             {
                 "title": "Palindrome Partitioning",
-                "link": "https://leetcode.com/problems/palindrome-partitioning/"
+                "link": "https://www.codechef.com/problems/PALINPART"
             },
             {
                 "title": "Best Time to Buy and Sell Stock with Cooldown",
-                "link": "https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/"
+                "link": "https://www.geeksforgeeks.org/best-time-to-buy-and-sell-stock-with-cooldown/"
             },
             {
                 "title": "Paint House",
-                "link": "https://leetcode.com/problems/paint-house/"
+                "link": "https://www.codeforces.com/problemset/problem/1444/A"
             }
         ],
         "divide and conquer": [
@@ -301,11 +285,11 @@
             },
             {
                 "title": "Count of Smaller Numbers After Self",
-                "link": "https://leetcode.com/problems/count-of-smaller-numbers-after-self/"
+                "link": "https://www.hackerrank.com/challenges/count-of-smaller-numbers-after-self/problem"
             },
             {
                 "title": "Find K Closest Elements",
-                "link": "https://leetcode.com/problems/find-k-closest-elements/"
+                "link": "https://www.geeksforgeeks.org/find-k-closest-elements/"
             }
         ],
         "stack": [
@@ -315,11 +299,11 @@
             },
             {
                 "title": "Score of Parentheses",
-                "link": "https://leetcode.com/problems/score-of-parentheses/"
+                "link": "https://www.hackerrank.com/challenges/score-of-parentheses/problem"
             },
             {
                 "title": "Largest Rectangle in Histogram",
-                "link": "https://leetcode.com/problems/largest-rectangle-in-histogram/"
+                "link": "https://www.geeksforgeeks.org/largest-rectangle-in-histogram/"
             }
         ],
         "tree": [
@@ -329,15 +313,15 @@
             },
             {
                 "title": "Balanced Binary Tree",
-                "link": "https://leetcode.com/problems/balanced-binary-tree/"
+                "link": "https://www.hackerrank.com/challenges/balanced-binary-tree/problem"
             },
             {
                 "title": "Invert Binary Tree",
-                "link": "https://leetcode.com/problems/invert-binary-tree/"
+                "link": "https://www.geeksforgeeks.org/invert-binary-tree/"
             },
             {
                 "title": "Recover Binary Search Tree",
-                "link": "https://leetcode.com/problems/recover-binary-search-tree/"
+                "link": "https://www.codeforces.com/problemset/problem/35/B"
             }
         ],
         "graph": [
@@ -347,7 +331,7 @@
             },
             {
                 "title": "Alien Dictionary",
-                "link": "https://leetcode.com/problems/alien-dictionary/"
+                "link": "https://www.hackerrank.com/challenges/alien-dictionary/problem"
             }
         ],
         "greedy": [
@@ -357,19 +341,19 @@
             },
             {
                 "title": "Gas Station",
-                "link": "https://leetcode.com/problems/gas-station/"
+                "link": "https://www.geeksforgeeks.org/gas-station/"
             },
             {
                 "title": "Candy",
-                "link": "https://leetcode.com/problems/candy/"
+                "link": "https://www.codechef.com/problems/CANDY"
             },
             {
                 "title": "Queue Reconstruction by Height",
-                "link": "https://leetcode.com/problems/queue-reconstruction-by-height/"
+                "link": "https://www.hackerrank.com/challenges/queue-reconstruction-by-height/problem"
             }
         ]
     },
-    "adobe": {
+   "adobe": {
         "array": [
             {
                 "title": "Find All Duplicates in an Array",
@@ -377,15 +361,15 @@
             },
             {
                 "title": "Max Consecutive Ones",
-                "link": "https://leetcode.com/problems/max-consecutive-ones/"
+                "link": "https://www.codechef.com/problems/MAXCONSEC"
             },
             {
                 "title": "Trapping Rain Water",
-                "link": "https://leetcode.com/problems/trapping-rain-water/"
+                "link": "https://www.hackerrank.com/challenges/trapping-rain-water/problem"
             },
             {
                 "title": "Missing Number",
-                "link": "https://leetcode.com/problems/missing-number/"
+                "link": "https://www.geeksforgeeks.org/missing-number/"
             },
             {
                 "title": "Subsets",
@@ -403,11 +387,11 @@
             },
             {
                 "title": "Repeated Substring Pattern",
-                "link": "https://leetcode.com/problems/repeated-substring-pattern/"
+                "link": "https://www.geeksforgeeks.org/repeated-substring-pattern/"
             },
             {
                 "title": "Scramble String",
-                "link": "https://leetcode.com/problems/scramble-string/"
+                "link": "https://www.codechef.com/problems/SCRAMBLE"
             }
         ],
         "dynamic programming": [
@@ -417,7 +401,7 @@
             },
             {
                 "title": "Interleaving String",
-                "link": "https://leetcode.com/problems/interleaving-string/"
+                "link": "https://www.geeksforgeeks.org/interleaving-string/"
             },
             {
                 "title": "Longest Palindromic Subsequence",
@@ -433,7 +417,7 @@
             },
             {
                 "title": "Wildcard Matching",
-                "link": "https://leetcode.com/problems/wildcard-matching/"
+                "link": "https://www.hackerrank.com/challenges/wildcard-matching/problem"
             }
         ],
         "divide and conquer": [
@@ -443,7 +427,7 @@
             },
             {
                 "title": "The Skyline Problem",
-                "link": "https://leetcode.com/problems/the-skyline-problem/"
+                "link": "https://www.geeksforgeeks.org/the-skyline-problem/"
             },
             {
                 "title": "Closest Binary Search Tree Value",
@@ -461,7 +445,7 @@
             },
             {
                 "title": "132 Pattern",
-                "link": "https://leetcode.com/problems/132-pattern/"
+                "link": "https://www.geeksforgeeks.org/132-pattern/"
             },
             {
                 "title": "Flatten Nested List Iterator",
@@ -519,7 +503,7 @@
             },
             {
                 "title": "Partition Labels",
-                "link": "https://leetcode.com/problems/partition-labels/"
+                "link": "https://www.codechef.com/problems/PARTITION"
             }
         ]
     },
@@ -531,7 +515,7 @@
             },
             {
                 "title": "Maximum Product Subarray",
-                "link": "https://leetcode.com/problems/maximum-product-subarray/"
+                "link": "https://www.geeksforgeeks.org/maximum-product-subarray/"
             },
             {
                 "title": "Move Zeroes",
@@ -539,11 +523,11 @@
             },
             {
                 "title": "Rotate Array",
-                "link": "https://leetcode.com/problems/rotate-array/"
+                "link": "https://www.codechef.com/problems/REVERSE"
             },
             {
                 "title": "Set Matrix Zeroes",
-                "link": "https://leetcode.com/problems/set-matrix-zeroes/"
+                "link": "https://www.geeksforgeeks.org/a-boolean-matrix-question/"
             }
         ],
         "string": [
@@ -557,11 +541,11 @@
             },
             {
                 "title": "Reverse Words in a String",
-                "link": "https://leetcode.com/problems/reverse-words-in-a-string/"
+                "link": "https://www.hackerrank.com/challenges/reverse-words/problem"
             },
             {
                 "title": "Valid Anagram",
-                "link": "https://leetcode.com/problems/valid-anagram/"
+                "link": "https://www.geeksforgeeks.org/check-whether-two-strings-are-anagram-of-each-other/"
             },
             {
                 "title": "Longest Substring Without Repeating Characters",
@@ -575,11 +559,11 @@
             },
             {
                 "title": "Longest Increasing Subsequence",
-                "link": "https://leetcode.com/problems/longest-increasing-subsequence/"
+                "link": "https://www.hackerrank.com/challenges/longest-increasing-subsequent/problem"
             },
             {
                 "title": "Partition Equal Subset Sum",
-                "link": "https://leetcode.com/problems/partition-equal-subset-sum/"
+                "link": "https://www.geeksforgeeks.org/partition-problem-dp-18/"
             },
             {
                 "title": "Coin Change",
@@ -587,11 +571,7 @@
             },
             {
                 "title": "Unique Binary Search Trees",
-                "link": "https://leetcode.com/problems/unique-binary-search-trees/"
-            },
-            {
-                "title": "Maximal Square",
-                "link": "https://leetcode.com/problems/maximal-square/"
+                "link": "https://www.hackerrank.com/challenges/unique-binary-search-trees/problem"
             }
         ],
         "divide and conquer": [
@@ -601,7 +581,7 @@
             },
             {
                 "title": "Quick Sort",
-                "link": "https://www.geeksforgeeks.org/quick-sort/"
+                "link": "https://www.codechef.com/problems/QUICKSORT"
             },
             {
                 "title": "Search in Rotated Sorted Array",
@@ -609,7 +589,7 @@
             },
             {
                 "title": "Kth Largest Element in an Array",
-                "link": "https://leetcode.com/problems/kth-largest-element-in-an-array/"
+                "link": "https://www.codeforces.com/problemset/problem/535/D"
             },
             {
                 "title": "Median of Two Sorted Arrays",
@@ -623,7 +603,7 @@
             },
             {
                 "title": "Simplify Path",
-                "link": "https://leetcode.com/problems/simplify-path/"
+                "link": "https://www.hackerrank.com/challenges/simplify-path/problem"
             },
             {
                 "title": "Largest Rectangle in Histogram",
@@ -635,7 +615,7 @@
             },
             {
                 "title": "Evaluate Reverse Polish Notation",
-                "link": "https://leetcode.com/problems/evaluate-reverse-polish-notation/"
+                "link": "https://www.hackerrank.com/challenges/reverse-polish-notation/problem"
             }
         ],
         "tree": [
@@ -645,7 +625,7 @@
             },
             {
                 "title": "Binary Tree Inorder Traversal",
-                "link": "https://leetcode.com/problems/binary-tree-inorder-traversal/"
+                "link": "https://www.hackerrank.com/challenges/tree-inorder-traversal/problem"
             },
             {
                 "title": "Construct Binary Tree from Preorder and Inorder Traversal",
@@ -653,7 +633,7 @@
             },
             {
                 "title": "Balanced Binary Tree",
-                "link": "https://leetcode.com/problems/balanced-binary-tree/"
+                "link": "https://www.geeksforgeeks.org/how-to-determine-if-a-binary-tree-is-balanced/"
             },
             {
                 "title": "Binary Tree Zigzag Level Order Traversal",
@@ -667,11 +647,11 @@
             },
             {
                 "title": "Number of Islands",
-                "link": "https://leetcode.com/problems/number-of-islands/"
+                "link": "https://www.hackerrank.com/challenges/number-of-islands/problem"
             },
             {
                 "title": "Word Ladder",
-                "link": "https://leetcode.com/problems/word-ladder/"
+                "link": "https://www.geeksforgeeks.org/word-ladder-length-of-shortest-chain-to-reach-a-target-word/"
             },
             {
                 "title": "Reconstruct Itinerary",
@@ -689,7 +669,7 @@
             },
             {
                 "title": "Candy",
-                "link": "https://leetcode.com/problems/candy/"
+                "link": "https://www.codeforces.com/problemset/problem/448/A"
             },
             {
                 "title": "Gas Station",
@@ -701,7 +681,7 @@
             },
             {
                 "title": "Partition Labels",
-                "link": "https://leetcode.com/problems/partition-labels/"
+                "link": "https://www.geeksforgeeks.org/partition-labels/"
             }
         ]
     },
@@ -713,11 +693,11 @@
             },
             {
                 "title": "Merge Sorted Array",
-                "link": "https://leetcode.com/problems/merge-sorted-array/"
+                "link": "https://www.hackerrank.com/challenges/merge-sorted-array/problem"
             },
             {
                 "title": "Find Pivot Index",
-                "link": "https://leetcode.com/problems/find-pivot-index/"
+                "link": "https://www.codechef.com/problems/PIVOTINDEX"
             }
         ],
         "string": [
@@ -731,7 +711,7 @@
             },
             {
                 "title": "Find the Difference",
-                "link": "https://leetcode.com/problems/find-the-difference/"
+                "link": "https://www.geeksforgeeks.org/find-difference-between-two-strings/"
             },
             {
                 "title": "Decode String",
@@ -745,11 +725,11 @@
             },
             {
                 "title": "Dungeon Game",
-                "link": "https://leetcode.com/problems/dungeon-game/"
+                "link": "https://www.hackerrank.com/challenges/dungeon-game/problem"
             },
             {
                 "title": "Maximum Subarray",
-                "link": "https://leetcode.com/problems/maximum-subarray/"
+                "link": "https://www.geeksforgeeks.org/largest-sum-contiguous-subarray/"
             },
             {
                 "title": "Perfect Squares",
@@ -757,13 +737,13 @@
             },
             {
                 "title": "Min Cost Climbing Stairs",
-                "link": "https://leetcode.com/problems/min-cost-climbing-stairs/"
+                "link": "https://www.codeforces.com/problemset/problem/765/C"
             }
         ],
         "divide and conquer": [
             {
                 "title": "Closest Pair of Points",
-                "link": "https://leetcode.com/problems/closest-pair-of-points/"
+                "link": "https://www.geeksforgeeks.org/closest-pair-of-points-using-divide-and-conquer-algorithm/"
             },
             {
                 "title": "Sort List",
@@ -771,7 +751,7 @@
             },
             {
                 "title": "Reverse Pairs",
-                "link": "https://leetcode.com/problems/reverse-pairs/"
+                "link": "https://www.hackerrank.com/challenges/reverse-pairs/problem"
             }
         ],
         "stack": [
@@ -843,67 +823,63 @@
         "array": [
             {
                 "title": "Two Sum",
-                "link": "https://leetcode.com/problems/two-sum/"
+                "link": "https://www.geeksforgeeks.org/two-sum-problem/"
             },
             {
                 "title": "Best Time to Buy and Sell Stock",
-                "link": "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/"
+                "link": "https://www.geeksforgeeks.org/best-time-to-buy-and-sell-stock/"
             },
             {
                 "title": "Product of Array Except Self",
-                "link": "https://leetcode.com/problems/product-of-array-except-self/"
+                "link": "https://www.hackerrank.com/challenges/product-of-array-except-self/problem"
             },
             {
                 "title": "Maximum Subarray",
-                "link": "https://leetcode.com/problems/maximum-subarray/"
+                "link": "https://www.hackerrank.com/challenges/maximum-subarray/problem"
             },
             {
                 "title": "Contains Duplicate",
-                "link": "https://leetcode.com/problems/contains-duplicate/"
-            },
-            {
-                "title": "Product of Array Except Self",
-                "link": "https://leetcode.com/problems/product-of-array-except-self/"
+                "link": "https://www.codechef.com/problems/DUPLICATE"
             }
         ],
         "string": [
             {
                 "title": "Valid Anagram",
-                "link": "https://leetcode.com/problems/valid-anagram/"
+                "link": "https://www.geeksforgeeks.org/check-whether-two-strings-are-anagram-of-each-other/"
             },
             {
                 "title": "Group Anagrams",
-                "link": "https://leetcode.com/problems/group-anagrams/"
+                "link": "https://www.geeksforgeeks.org/anagram-checking/"
             },
             {
                 "title": "Longest Palindromic Substring",
-                "link": "https://leetcode.com/problems/longest-palindromic-substring/"
+                "link": "https://www.hackerrank.com/challenges/longest-palindromic-substring/problem"
             },
             {
                 "title": "Palindrome Permutation",
-                "link": "https://leetcode.com/problems/palindrome-permutation/"
+                "link": "https://www.geeksforgeeks.org/check-whether-a-given-string-is-a-palindrome-or-not/"
             }
         ],
         "dynamic programming": [
             {
                 "title": "Climbing Stairs",
-                "link": "https://leetcode.com/problems/climbing-stairs/"
+                "link": "https://www.geeksforgeeks.org/climbing-stairs/"
             },
             {
                 "title": "Coin Change",
-                "link": "https://leetcode.com/problems/coin-change/"
+                "link": "https://www.hackerrank.com/challenges/coin-change/problem"
             },
             {
                 "title": "Longest Increasing Subsequence",
-                "link": "https://leetcode.com/problems/longest-increasing-subsequence/"
+                "link": "https://www.geeksforgeeks.org/longest-increasing-subsequence/"
             },
             {
                 "title": "House Robber",
-                "link": "https://leetcode.com/problems/house-robber/"
+                "link": "https://www.hackerrank.com/challenges/house-robber/problem"
             },
             {
                 "title": "Word Break",
-                "link": "https://leetcode.com/problems/word-break/"
+                "link": "https://www.geeksforgeeks.org/word-break-problem-dp-32/"
             }
         ],
         "divide and conquer": [
@@ -917,81 +893,81 @@
             },
             {
                 "title": "Median of Two Sorted Arrays",
-                "link": "https://leetcode.com/problems/median-of-two-sorted-arrays/"
+                "link": "https://www.hackerrank.com/challenges/median-of-two-sorted-arrays/problem"
             },
             {
                 "title": "Kth Largest Element in an Array",
-                "link": "https://leetcode.com/problems/kth-largest-element-in-an-array/"
+                "link": "https://www.codechef.com/problems/KLARG"
             },
             {
                 "title": "Search in Rotated Sorted Array",
-                "link": "https://leetcode.com/problems/search-in-rotated-sorted-array/"
+                "link": "https://www.geeksforgeeks.org/search-in-rotated-sorted-array/"
             }
         ],
         "stack": [
             {
                 "title": "Valid Parentheses",
-                "link": "https://leetcode.com/problems/valid-parentheses/"
+                "link": "https://www.geeksforgeeks.org/check-for-balanced-parentheses-in-an-expression/"
             },
             {
                 "title": "Min Stack",
-                "link": "https://leetcode.com/problems/min-stack/"
+                "link": "https://www.hackerrank.com/challenges/min-stack/problem"
             },
             {
                 "title": "Evaluate Reverse Polish Notation",
-                "link": "https://leetcode.com/problems/evaluate-reverse-polish-notation/"
+                "link": "https://www.codechef.com/problems/EVALPOLISH"
             },
             {
                 "title": "Largest Rectangle in Histogram",
-                "link": "https://leetcode.com/problems/largest-rectangle-in-histogram/"
+                "link": "https://www.hackerrank.com/challenges/largest-rectangle/problem"
             },
             {
                 "title": "Daily Temperatures",
-                "link": "https://leetcode.com/problems/daily-temperatures/"
+                "link": "https://www.geeksforgeeks.org/daily-temperatures/"
             }
         ],
         "graph": [
             {
                 "title": "Clone Graph",
-                "link": "https://leetcode.com/problems/clone-graph/"
+                "link": "https://www.geeksforgeeks.org/clone-graph/"
             },
             {
                 "title": "Course Schedule",
-                "link": "https://leetcode.com/problems/course-schedule/"
+                "link": "https://www.hackerrank.com/challenges/course-schedule/problem"
             },
             {
                 "title": "Number of Islands",
-                "link": "https://leetcode.com/problems/number-of-islands/"
+                "link": "https://www.hackerrank.com/challenges/number-of-islands/problem"
             },
             {
                 "title": "Graph Valid Tree",
-                "link": "https://leetcode.com/problems/graph-valid-tree/"
+                "link": "https://www.geeksforgeeks.org/check-if-a-given-graph-is-tree-or-not/"
             },
             {
                 "title": "Word Ladder",
-                "link": "https://leetcode.com/problems/word-ladder/"
+                "link": "https://www.hackerrank.com/challenges/word-ladder/problem"
             }
         ],
         "tree": [
             {
                 "title": "Maximum Depth of Binary Tree",
-                "link": "https://leetcode.com/problems/maximum-depth-of-binary-tree/"
+                "link": "https://www.geeksforgeeks.org/maximum-depth-of-binary-tree/"
             },
             {
                 "title": "Validate Binary Search Tree",
-                "link": "https://leetcode.com/problems/validate-binary-search-tree/"
+                "link": "https://www.hackerrank.com/challenges/validate-binary-search-tree/problem"
             },
             {
                 "title": "Binary Tree Inorder Traversal",
-                "link": "https://leetcode.com/problems/binary-tree-inorder-traversal/"
+                "link": "https://www.hackerrank.com/challenges/binary-tree-inorder-traversal/problem"
             },
             {
                 "title": "Binary Tree Level Order Traversal",
-                "link": "https://leetcode.com/problems/binary-tree-level-order-traversal/"
+                "link": "https://www.geeksforgeeks.org/binary-tree-level-order-traversal/"
             },
             {
                 "title": "Construct Binary Tree from Preorder and Inorder Traversal",
-                "link": "https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/"
+                "link": "https://www.geeksforgeeks.org/construct-binary-tree-from-preorder-and-inorder-traversal/"
             }
         ]
     },
@@ -999,67 +975,67 @@
         "array": [
             {
                 "title": "Two Sum",
-                "link": "https://leetcode.com/problems/two-sum/"
+                "link": "https://www.geeksforgeeks.org/two-sum-problem/"
             },
             {
                 "title": "Best Time to Buy and Sell Stock",
-                "link": "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/"
+                "link": "https://www.geeksforgeeks.org/best-time-to-buy-and-sell-stock/"
             },
             {
                 "title": "Product of Array Except Self",
-                "link": "https://leetcode.com/problems/product-of-array-except-self/"
+                "link": "https://www.hackerrank.com/challenges/product-of-array-except-self/problem"
             },
             {
                 "title": "Maximum Subarray",
-                "link": "https://leetcode.com/problems/maximum-subarray/"
+                "link": "https://www.hackerrank.com/challenges/maximum-subarray/problem"
             },
             {
                 "title": "Contains Duplicate",
-                "link": "https://leetcode.com/problems/contains-duplicate/"
+                "link": "https://www.codechef.com/problems/DUPLICATE"
             }
         ],
         "string": [
             {
                 "title": "Longest Substring Without Repeating Characters",
-                "link": "https://leetcode.com/problems/longest-substring-without-repeating-characters/"
+                "link": "https://www.geeksforgeeks.org/longest-substring-without-repeating-characters/"
             },
             {
                 "title": "Valid Anagram",
-                "link": "https://leetcode.com/problems/valid-anagram/"
+                "link": "https://www.geeksforgeeks.org/check-whether-two-strings-are-anagram-of-each-other/"
             },
             {
                 "title": "Group Anagrams",
-                "link": "https://leetcode.com/problems/group-anagrams/"
+                "link": "https://www.geeksforgeeks.org/anagram-checking/"
             },
             {
                 "title": "Longest Palindromic Substring",
-                "link": "https://leetcode.com/problems/longest-palindromic-substring/"
+                "link": "https://www.hackerrank.com/challenges/longest-palindromic-substring/problem"
             },
             {
                 "title": "Palindrome Permutation",
-                "link": "https://leetcode.com/problems/palindrome-permutation/"
+                "link": "https://www.geeksforgeeks.org/check-whether-a-given-string-is-a-palindrome-or-not/"
             }
         ],
         "dynamic programming": [
             {
                 "title": "Climbing Stairs",
-                "link": "https://leetcode.com/problems/climbing-stairs/"
+                "link": "https://www.geeksforgeeks.org/climbing-stairs/"
             },
             {
                 "title": "Coin Change",
-                "link": "https://leetcode.com/problems/coin-change/"
+                "link": "https://www.hackerrank.com/challenges/coin-change/problem"
             },
             {
                 "title": "Longest Increasing Subsequence",
-                "link": "https://leetcode.com/problems/longest-increasing-subsequence/"
+                "link": "https://www.geeksforgeeks.org/longest-increasing-subsequence/"
             },
             {
                 "title": "House Robber",
-                "link": "https://leetcode.com/problems/house-robber/"
+                "link": "https://www.hackerrank.com/challenges/house-robber/problem"
             },
             {
                 "title": "Word Break",
-                "link": "https://leetcode.com/problems/word-break/"
+                "link": "https://www.geeksforgeeks.org/word-break-problem-dp-32/"
             }
         ],
         "divide and conquer": [
@@ -1073,237 +1049,81 @@
             },
             {
                 "title": "Median of Two Sorted Arrays",
-                "link": "https://leetcode.com/problems/median-of-two-sorted-arrays/"
+                "link": "https://www.hackerrank.com/challenges/median-of-two-sorted-arrays/problem"
             },
             {
                 "title": "Kth Largest Element in an Array",
-                "link": "https://leetcode.com/problems/kth-largest-element-in-an-array/"
+                "link": "https://www.codechef.com/problems/KLARG"
             },
             {
                 "title": "Search in Rotated Sorted Array",
-                "link": "https://leetcode.com/problems/search-in-rotated-sorted-array/"
+                "link": "https://www.geeksforgeeks.org/search-in-rotated-sorted-array/"
             }
         ],
         "stack": [
             {
                 "title": "Valid Parentheses",
-                "link": "https://leetcode.com/problems/valid-parentheses/"
+                "link": "https://www.geeksforgeeks.org/check-for-balanced-parentheses-in-an-expression/"
             },
             {
                 "title": "Min Stack",
-                "link": "https://leetcode.com/problems/min-stack/"
+                "link": "https://www.codechef.com/problems/MINSTACK"
             },
             {
                 "title": "Evaluate Reverse Polish Notation",
-                "link": "https://leetcode.com/problems/evaluate-reverse-polish-notation/"
+                "link": "https://www.geeksforgeeks.org/evaluate-reverse-polish-notation/"
             },
             {
                 "title": "Largest Rectangle in Histogram",
-                "link": "https://leetcode.com/problems/largest-rectangle-in-histogram/"
+                "link": "https://www.hackerrank.com/challenges/largest-rectangle/problem"
             },
             {
                 "title": "Daily Temperatures",
-                "link": "https://leetcode.com/problems/daily-temperatures/"
+                "link": "https://www.codechef.com/problems/DAILYTEMP"
             }
         ],
         "graph": [
             {
                 "title": "Clone Graph",
-                "link": "https://leetcode.com/problems/clone-graph/"
+                "link": "https://www.geeksforgeeks.org/clone-graph/"
             },
             {
                 "title": "Course Schedule",
-                "link": "https://leetcode.com/problems/course-schedule/"
+                "link": "https://www.hackerrank.com/challenges/course-schedule/problem"
             },
             {
                 "title": "Number of Islands",
-                "link": "https://leetcode.com/problems/number-of-islands/"
+                "link": "https://www.geeksforgeeks.org/find-whether-path-exists/"
             },
             {
                 "title": "Graph Valid Tree",
-                "link": "https://leetcode.com/problems/graph-valid-tree/"
+                "link": "https://www.geeksforgeeks.org/graph-valid-tree/"
             },
             {
                 "title": "Word Ladder",
-                "link": "https://leetcode.com/problems/word-ladder/"
+                "link": "https://www.geeksforgeeks.org/word-ladder/"
             }
         ],
         "tree": [
             {
                 "title": "Maximum Depth of Binary Tree",
-                "link": "https://leetcode.com/problems/maximum-depth-of-binary-tree/"
+                "link": "https://www.hackerrank.com/challenges/maximum-depth-of-binary-tree/problem"
             },
             {
                 "title": "Validate Binary Search Tree",
-                "link": "https://leetcode.com/problems/validate-binary-search-tree/"
+                "link": "https://www.geeksforgeeks.org/validate-binary-search-tree/"
             },
             {
                 "title": "Binary Tree Inorder Traversal",
-                "link": "https://leetcode.com/problems/binary-tree-inorder-traversal/"
+                "link": "https://www.geeksforgeeks.org/binary-tree-inorder-traversal/"
             },
             {
                 "title": "Binary Tree Level Order Traversal",
-                "link": "https://leetcode.com/problems/binary-tree-level-order-traversal/"
+                "link": "https://www.geeksforgeeks.org/binary-tree-level-order-traversal/"
             },
             {
                 "title": "Construct Binary Tree from Preorder and Inorder Traversal",
-                "link": "https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/"
-            }
-        ]
-    },
-    "snap": {
-        "array": [
-            {
-                "title": "Two Sum",
-                "link": "https://leetcode.com/problems/two-sum/"
-            },
-            {
-                "title": "Best Time to Buy and Sell Stock",
-                "link": "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/"
-            },
-            {
-                "title": "Product of Array Except Self",
-                "link": "https://leetcode.com/problems/product-of-array-except-self/"
-            },
-            {
-                "title": "Maximum Subarray",
-                "link": "https://leetcode.com/problems/maximum-subarray/"
-            },
-            {
-                "title": "Contains Duplicate",
-                "link": "https://leetcode.com/problems/contains-duplicate/"
-            }
-        ],
-        "string": [
-            {
-                "title": "Longest Substring Without Repeating Characters",
-                "link": "https://leetcode.com/problems/longest-substring-without-repeating-characters/"
-            },
-            {
-                "title": "Valid Anagram",
-                "link": "https://leetcode.com/problems/valid-anagram/"
-            },
-            {
-                "title": "Group Anagrams",
-                "link": "https://leetcode.com/problems/group-anagrams/"
-            },
-            {
-                "title": "Longest Palindromic Substring",
-                "link": "https://leetcode.com/problems/longest-palindromic-substring/"
-            },
-            {
-                "title": "Palindrome Permutation",
-                "link": "https://leetcode.com/problems/palindrome-permutation/"
-            }
-        ],
-        "dynamic programming": [
-            {
-                "title": "Climbing Stairs",
-                "link": "https://leetcode.com/problems/climbing-stairs/"
-            },
-            {
-                "title": "Coin Change",
-                "link": "https://leetcode.com/problems/coin-change/"
-            },
-            {
-                "title": "Longest Increasing Subsequence",
-                "link": "https://leetcode.com/problems/longest-increasing-subsequence/"
-            },
-            {
-                "title": "House Robber",
-                "link": "https://leetcode.com/problems/house-robber/"
-            },
-            {
-                "title": "Word Break",
-                "link": "https://leetcode.com/problems/word-break/"
-            }
-        ],
-        "divide and conquer": [
-            {
-                "title": "Merge Sort",
-                "link": "https://www.geeksforgeeks.org/merge-sort/"
-            },
-            {
-                "title": "Quick Sort",
-                "link": "https://www.geeksforgeeks.org/quick-sort/"
-            },
-            {
-                "title": "Median of Two Sorted Arrays",
-                "link": "https://leetcode.com/problems/median-of-two-sorted-arrays/"
-            },
-            {
-                "title": "Kth Largest Element in an Array",
-                "link": "https://leetcode.com/problems/kth-largest-element-in-an-array/"
-            },
-            {
-                "title": "Search in Rotated Sorted Array",
-                "link": "https://leetcode.com/problems/search-in-rotated-sorted-array/"
-            }
-        ],
-        "stack": [
-            {
-                "title": "Valid Parentheses",
-                "link": "https://leetcode.com/problems/valid-parentheses/"
-            },
-            {
-                "title": "Min Stack",
-                "link": "https://leetcode.com/problems/min-stack/"
-            },
-            {
-                "title": "Evaluate Reverse Polish Notation",
-                "link": "https://leetcode.com/problems/evaluate-reverse-polish-notation/"
-            },
-            {
-                "title": "Largest Rectangle in Histogram",
-                "link": "https://leetcode.com/problems/largest-rectangle-in-histogram/"
-            },
-            {
-                "title": "Daily Temperatures",
-                "link": "https://leetcode.com/problems/daily-temperatures/"
-            }
-        ],
-        "graph": [
-            {
-                "title": "Clone Graph",
-                "link": "https://leetcode.com/problems/clone-graph/"
-            },
-            {
-                "title": "Course Schedule",
-                "link": "https://leetcode.com/problems/course-schedule/"
-            },
-            {
-                "title": "Number of Islands",
-                "link": "https://leetcode.com/problems/number-of-islands/"
-            },
-            {
-                "title": "Graph Valid Tree",
-                "link": "https://leetcode.com/problems/graph-valid-tree/"
-            },
-            {
-                "title": "Word Ladder",
-                "link": "https://leetcode.com/problems/word-ladder/"
-            }
-        ],
-        "tree": [
-            {
-                "title": "Maximum Depth of Binary Tree",
-                "link": "https://leetcode.com/problems/maximum-depth-of-binary-tree/"
-            },
-            {
-                "title": "Validate Binary Search Tree",
-                "link": "https://leetcode.com/problems/validate-binary-search-tree/"
-            },
-            {
-                "title": "Binary Tree Inorder Traversal",
-                "link": "https://leetcode.com/problems/binary-tree-inorder-traversal/"
-            },
-            {
-                "title": "Binary Tree Level Order Traversal",
-                "link": "https://leetcode.com/problems/binary-tree-level-order-traversal/"
-            },
-            {
-                "title": "Construct Binary Tree from Preorder and Inorder Traversal",
-                "link": "https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/"
+                "link": "https://www.geeksforgeeks.org/construct-binary-tree-from-preorder-and-inorder-traversal/"
             }
         ]
     },
@@ -1311,7 +1131,7 @@
         "array": [
             {
                 "title": "Best Time to Buy and Sell Stock",
-                "link": "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/"
+                "link": "https://www.geeksforgeeks.org/best-time-to-buy-and-sell-stock/"
             },
             {
                 "title": "Product of Array Except Self",
@@ -1319,7 +1139,7 @@
             },
             {
                 "title": "Maximum Subarray",
-                "link": "https://leetcode.com/problems/maximum-subarray/"
+                "link": "https://www.codechef.com/problems/MAXSUB"
             },
             {
                 "title": "Contains Duplicate",
@@ -1329,7 +1149,7 @@
         "string": [
             {
                 "title": "Valid Anagram",
-                "link": "https://leetcode.com/problems/valid-anagram/"
+                "link": "https://www.geeksforgeeks.org/check-if-two-strings-are-anagrams-of-each-other/"
             },
             {
                 "title": "Group Anagrams",
@@ -1337,17 +1157,17 @@
             },
             {
                 "title": "Longest Palindromic Substring",
-                "link": "https://leetcode.com/problems/longest-palindromic-substring/"
+                "link": "https://www.codechef.com/problems/LPS"
             },
             {
                 "title": "Palindrome Permutation",
-                "link": "https://leetcode.com/problems/palindrome-permutation/"
+                "link": "https://www.hackerrank.com/challenges/palindrome-permutation/problem"
             }
         ],
         "dynamic programming": [
             {
                 "title": "Longest Increasing Subsequence",
-                "link": "https://leetcode.com/problems/longest-increasing-subsequence/"
+                "link": "https://www.geeksforgeeks.org/longest-increasing-subsequence-dp-3/"
             },
             {
                 "title": "House Robber",
@@ -1355,7 +1175,7 @@
             },
             {
                 "title": "Word Break",
-                "link": "https://leetcode.com/problems/word-break/"
+                "link": "https://www.hackerrank.com/challenges/word-break/problem"
             }
         ],
         "divide and conquer": [
@@ -1365,10 +1185,6 @@
             },
             {
                 "title": "Quick Sort",
-                "link": "https://www.geeksforgeeks.org/quick-sort/"
-            },
-            {
-                "title": "Merge Sort",
                 "link": "https://www.geeksforgeeks.org/quick-sort/"
             },
             {
@@ -1382,16 +1198,12 @@
             {
                 "title": "Search in Rotated Sorted Array",
                 "link": "https://leetcode.com/problems/search-in-rotated-sorted-array/"
-            },
-            {
-                "title": "Merge Sort",
-                "link": "https://www.geeksforgeeks.org/merge-sort/"
             }
         ],
         "graph": [
             {
                 "title": "Clone Graph",
-                "link": "https://leetcode.com/problems/clone-graph/"
+                "link": "https://www.geeksforgeeks.org/clone-a-graph/"
             },
             {
                 "title": "Course Schedule",
@@ -1399,13 +1211,13 @@
             },
             {
                 "title": "Number of Islands",
-                "link": "https://leetcode.com/problems/number-of-islands/"
+                "link": "https://www.hackerrank.com/challenges/number-of-islands/problem"
             }
         ],
         "tree": [
             {
                 "title": "Maximum Depth of Binary Tree",
-                "link": "https://leetcode.com/problems/maximum-depth-of-binary-tree/"
+                "link": "https://www.geeksforgeeks.org/maximum-depth-of-binary-tree/"
             },
             {
                 "title": "Validate Binary Search Tree",
@@ -1413,19 +1225,7 @@
             },
             {
                 "title": "Binary Tree Inorder Traversal",
-                "link": "https://leetcode.com/problems/binary-tree-inorder-traversal/"
-            },
-            {
-                "title": "Binary Tree Level Order Traversal",
-                "link": "https://leetcode.com/problems/binary-tree-level-order-traversal/"
-            },
-            {
-                "title": "Validate Binary Search Tree",
-                "link": "https://leetcode.com/problems/validate-binary-search-tree/"
-            },
-            {
-                "title": "Binary Tree Inorder Traversal",
-                "link": "https://leetcode.com/problems/binary-tree-inorder-traversal/"
+                "link": "https://www.hackerrank.com/challenges/binary-tree-inorder-traversal/problem"
             },
             {
                 "title": "Binary Tree Level Order Traversal",
@@ -1433,7 +1233,117 @@
             },
             {
                 "title": "Construct Binary Tree from Preorder and Inorder Traversal",
-                "link": "https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/"
+                "link": "https://www.geeksforgeeks.org/construct-binary-tree-from-preorder-and-inorder-traversal/"
+            }
+        ]
+    },
+    "uber": {
+        "array": [
+            {
+                "title": "Best Time to Buy and Sell Stock",
+                "link": "https://www.geeksforgeeks.org/best-time-to-buy-and-sell-stock/"
+            },
+            {
+                "title": "Product of Array Except Self",
+                "link": "https://leetcode.com/problems/product-of-array-except-self/"
+            },
+            {
+                "title": "Maximum Subarray",
+                "link": "https://www.codechef.com/problems/MAXSUB"
+            },
+            {
+                "title": "Contains Duplicate",
+                "link": "https://leetcode.com/problems/contains-duplicate/"
+            }
+        ],
+        "string": [
+            {
+                "title": "Valid Anagram",
+                "link": "https://www.geeksforgeeks.org/check-if-two-strings-are-anagrams-of-each-other/"
+            },
+            {
+                "title": "Group Anagrams",
+                "link": "https://leetcode.com/problems/group-anagrams/"
+            },
+            {
+                "title": "Longest Palindromic Substring",
+                "link": "https://www.codechef.com/problems/LPS"
+            },
+            {
+                "title": "Palindrome Permutation",
+                "link": "https://www.hackerrank.com/challenges/palindrome-permutation/problem"
+            }
+        ],
+        "dynamic programming": [
+            {
+                "title": "Longest Increasing Subsequence",
+                "link": "https://www.geeksforgeeks.org/longest-increasing-subsequence-dp-3/"
+            },
+            {
+                "title": "House Robber",
+                "link": "https://leetcode.com/problems/house-robber/"
+            },
+            {
+                "title": "Word Break",
+                "link": "https://www.hackerrank.com/challenges/word-break/problem"
+            }
+        ],
+        "divide and conquer": [
+            {
+                "title": "Merge Sort",
+                "link": "https://www.geeksforgeeks.org/merge-sort/"
+            },
+            {
+                "title": "Quick Sort",
+                "link": "https://www.geeksforgeeks.org/quick-sort/"
+            },
+            {
+                "title": "Median of Two Sorted Arrays",
+                "link": "https://leetcode.com/problems/median-of-two-sorted-arrays/"
+            },
+            {
+                "title": "Kth Largest Element in an Array",
+                "link": "https://leetcode.com/problems/kth-largest-element-in-an-array/"
+            },
+            {
+                "title": "Search in Rotated Sorted Array",
+                "link": "https://leetcode.com/problems/search-in-rotated-sorted-array/"
+            }
+        ],
+        "graph": [
+            {
+                "title": "Clone Graph",
+                "link": "https://www.geeksforgeeks.org/clone-a-graph/"
+            },
+            {
+                "title": "Course Schedule",
+                "link": "https://leetcode.com/problems/course-schedule/"
+            },
+            {
+                "title": "Number of Islands",
+                "link": "https://www.hackerrank.com/challenges/number-of-islands/problem"
+            }
+        ],
+        "tree": [
+            {
+                "title": "Maximum Depth of Binary Tree",
+                "link": "https://www.geeksforgeeks.org/maximum-depth-of-binary-tree/"
+            },
+            {
+                "title": "Validate Binary Search Tree",
+                "link": "https://leetcode.com/problems/validate-binary-search-tree/"
+            },
+            {
+                "title": "Binary Tree Inorder Traversal",
+                "link": "https://www.hackerrank.com/challenges/binary-tree-inorder-traversal/problem"
+            },
+            {
+                "title": "Binary Tree Level Order Traversal",
+                "link": "https://leetcode.com/problems/binary-tree-level-order-traversal/"
+            },
+            {
+                "title": "Construct Binary Tree from Preorder and Inorder Traversal",
+                "link": "https://www.geeksforgeeks.org/construct-binary-tree-from-preorder-and-inorder-traversal/"
             }
         ]
     },
@@ -1445,15 +1355,15 @@
             },
             {
                 "title": "Missing Number",
-                "link": "https://leetcode.com/problems/missing-number/"
+                "link": "https://www.geeksforgeeks.org/find-the-missing-number/"
             },
             {
                 "title": "Pascals Triangle",
-                "link": "https://leetcode.com/problems/pascals-triangle/"
+                "link": "https://codeforces.com/problemset/problem/376/B"
             },
             {
                 "title": "Rotate Array",
-                "link": "https://leetcode.com/problems/rotate-array/"
+                "link": "https://www.codechef.com/problems/COOKARRAY"
             },
             {
                 "title": "Move Zeroes",
@@ -1463,11 +1373,11 @@
         "string": [
             {
                 "title": "Reverse String",
-                "link": "https://leetcode.com/problems/reverse-string/"
+                "link": "https://www.hackerrank.com/challenges/reverse-string/problem"
             },
             {
                 "title": "Valid Palindrome",
-                "link": "https://leetcode.com/problems/valid-palindrome/"
+                "link": "https://www.codechef.com/problems/PALIN"
             },
             {
                 "title": "Integer to Roman",
@@ -1475,7 +1385,7 @@
             },
             {
                 "title": "Longest Common Prefix",
-                "link": "https://leetcode.com/problems/longest-common-prefix/"
+                "link": "https://cses.fi/problemset/task/2103"
             },
             {
                 "title": "Find and Replace Pattern",
@@ -1485,7 +1395,7 @@
         "dynamic programming": [
             {
                 "title": "Longest Common Subsequence",
-                "link": "https://leetcode.com/problems/longest-common-subsequence/"
+                "link": "https://www.geeksforgeeks.org/longest-common-subsequence-dp-4/"
             },
             {
                 "title": "House Robber II",
@@ -1497,11 +1407,11 @@
             },
             {
                 "title": "Coin Change II",
-                "link": "https://leetcode.com/problems/coin-change-ii/"
+                "link": "https://atcoder.jp/contests/dp/tasks/dp_i"
             },
             {
                 "title": "Can Jump",
-                "link": "https://leetcode.com/problems/jump-game/"
+                "link": "https://cses.fi/problemset/task/1092"
             }
         ],
         "divide and conquer": [
@@ -1515,11 +1425,11 @@
             },
             {
                 "title": "Pow(x, n)",
-                "link": "https://leetcode.com/problems/powx-n/"
+                "link": "https://www.hackerrank.com/challenges/pow/problem"
             },
             {
                 "title": "Sqrt(x)",
-                "link": "https://leetcode.com/problems/sqrtx/"
+                "link": "https://www.codechef.com/problems/INVSQRT"
             },
             {
                 "title": "Count of Smaller Numbers After Self",
@@ -1529,7 +1439,7 @@
         "stack": [
             {
                 "title": "Next Greater Element I",
-                "link": "https://leetcode.com/problems/next-greater-element-i/"
+                "link": "https://codeforces.com/problemset/problem/779/D"
             },
             {
                 "title": "Daily Temperatures II",
@@ -1537,7 +1447,7 @@
             },
             {
                 "title": "Valid Parentheses (Alternative)",
-                "link": "https://leetcode.com/problems/valid-parentheses/"
+                "link": "https://www.hackerrank.com/challenges/balanced-brackets/problem"
             },
             {
                 "title": "Implement Queue using Stacks",
@@ -1551,7 +1461,7 @@
         "graph": [
             {
                 "title": "Number of Connected Components in an Undirected Graph",
-                "link": "https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/"
+                "link": "https://www.geeksforgeeks.org/connected-components-in-an-undirected-graph/"
             },
             {
                 "title": "Topological Sort (Kahn's Algorithm)",
@@ -1559,15 +1469,15 @@
             },
             {
                 "title": "Shortest Path in Binary Matrix",
-                "link": "https://leetcode.com/problems/shortest-path-in-binary-matrix/"
+                "link": "https://www.hackerrank.com/challenges/shortest-path/problem"
             },
             {
                 "title": "Is Graph Bipartite?",
-                "link": "https://leetcode.com/problems/is-graph-bipartite/"
+                "link": "https://www.codeforces.com/problemset/problem/862/B"
             },
             {
                 "title": "Minimum Spanning Tree (Prim's Algorithm)",
-                "link": "https://leetcode.com/problems/minimum-spanning-tree/"
+                "link": "https://www.geeksforgeeks.org/prims-minimum-spanning-tree-mst-greedy-algo-5/"
             }
         ],
         "tree": [
@@ -1577,19 +1487,175 @@
             },
             {
                 "title": "Lowest Common Ancestor of a Binary Search Tree",
-                "link": "https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/"
+                "link": "https://www.hackerrank.com/challenges/binary-search-tree-lowest-common-ancestor/problem"
             },
             {
                 "title": "Serialize and Deserialize Binary Tree",
-                "link": "https://leetcode.com/problems/serialize-and-deserialize-binary-tree/"
+                "link": "https://www.geeksforgeeks.org/serialize-deserialize-binary-tree/"
             },
             {
                 "title": "Binary Tree Paths",
-                "link": "https://leetcode.com/problems/binary-tree-paths/"
+                "link": "https://www.hackerrank.com/challenges/binary-search-tree-insertion/problem"
             },
             {
                 "title": "Maximum Depth of N-ary Tree",
                 "link": "https://leetcode.com/problems/maximum-depth-of-n-ary-tree/"
+            }
+        ]
+    },
+    "snap": {
+        "array": [
+            {
+                "title": "Find the Duplicate Number",
+                "link": "https://www.geeksforgeeks.org/find-duplicate-number/"
+            },
+            {
+                "title": "Missing Number",
+                "link": "https://www.geeksforgeeks.org/find-the-missing-number/"
+            },
+            {
+                "title": "Pascals Triangle",
+                "link": "https://codeforces.com/problemset/problem/376/B"
+            },
+            {
+                "title": "Rotate Array",
+                "link": "https://www.codechef.com/problems/COOKARRAY"
+            },
+            {
+                "title": "Move Zeroes",
+                "link": "https://www.geeksforgeeks.org/move-zeroes/"
+            }
+        ],
+        "string": [
+            {
+                "title": "Reverse String",
+                "link": "https://www.hackerrank.com/challenges/reverse-string/problem"
+            },
+            {
+                "title": "Valid Palindrome",
+                "link": "https://www.codechef.com/problems/PALIN"
+            },
+            {
+                "title": "Integer to Roman",
+                "link": "https://www.geeksforgeeks.org/integer-to-roman/"
+            },
+            {
+                "title": "Longest Common Prefix",
+                "link": "https://www.geeksforgeeks.org/longest-common-prefix/"
+            },
+            {
+                "title": "Find and Replace Pattern",
+                "link": "https://www.geeksforgeeks.org/find-and-replace-pattern/"
+            }
+        ],
+        "dynamic programming": [
+            {
+                "title": "Longest Common Subsequence",
+                "link": "https://www.geeksforgeeks.org/longest-common-subsequence-dp-4/"
+            },
+            {
+                "title": "House Robber II",
+                "link": "https://www.geeksforgeeks.org/house-robber-ii/"
+            },
+            {
+                "title": "Minimum Path Sum",
+                "link": "https://www.geeksforgeeks.org/minimum-path-sum/"
+            },
+            {
+                "title": "Coin Change II",
+                "link": "https://www.geeksforgeeks.org/coin-change-problem/"
+            },
+            {
+                "title": "Can Jump",
+                "link": "https://www.geeksforgeeks.org/can-jump/"
+            }
+        ],
+        "divide and conquer": [
+            {
+                "title": "Search a Sorted Array (Iterative)",
+                "link": "https://www.geeksforgeeks.org/search-in-rotated-sorted-array/"
+            },
+            {
+                "title": "First Bad Version",
+                "link": "https://www.geeksforgeeks.org/first-bad-version/"
+            },
+            {
+                "title": "Pow(x, n)",
+                "link": "https://www.hackerrank.com/challenges/pow/problem"
+            },
+            {
+                "title": "Sqrt(x)",
+                "link": "https://www.codechef.com/problems/INVSQRT"
+            },
+            {
+                "title": "Count of Smaller Numbers After Self",
+                "link": "https://www.geeksforgeeks.org/count-of-smaller-numbers-after-self/"
+            }
+        ],
+        "stack": [
+            {
+                "title": "Next Greater Element I",
+                "link": "https://codeforces.com/problemset/problem/779/D"
+            },
+            {
+                "title": "Daily Temperatures II",
+                "link": "https://www.geeksforgeeks.org/daily-temperatures/"
+            },
+            {
+                "title": "Valid Parentheses (Alternative)",
+                "link": "https://www.hackerrank.com/challenges/balanced-brackets/problem"
+            },
+            {
+                "title": "Implement Queue using Stacks",
+                "link": "https://www.geeksforgeeks.org/implement-queue-using-stacks/"
+            },
+            {
+                "title": "Decode String",
+                "link": "https://www.geeksforgeeks.org/decode-string/"
+            }
+        ],
+        "graph": [
+            {
+                "title": "Number of Connected Components in an Undirected Graph",
+                "link": "https://www.geeksforgeeks.org/connected-components-in-an-undirected-graph/"
+            },
+            {
+                "title": "Topological Sort (Kahn's Algorithm)",
+                "link": "https://www.geeksforgeeks.org/topological-sorting/"
+            },
+            {
+                "title": "Shortest Path in Binary Matrix",
+                "link": "https://www.hackerrank.com/challenges/shortest-path/problem"
+            },
+            {
+                "title": "Is Graph Bipartite?",
+                "link": "https://www.codeforces.com/problemset/problem/862/B"
+            },
+            {
+                "title": "Minimum Spanning Tree (Prim's Algorithm)",
+                "link": "https://www.geeksforgeeks.org/prims-minimum-spanning-tree-mst-greedy-algo-5/"
+            }
+        ],
+        "tree": [
+            {
+                "title": "Symmetric Tree",
+                "link": "https://www.geeksforgeeks.org/symmetric-tree/"
+            },
+            {
+                "title": "Lowest Common Ancestor of a Binary Search Tree",
+                "link": "https://www.hackerrank.com/challenges/binary-search-tree-lowest-common-ancestor/problem"
+            },
+            {
+                "title": "Serialize and Deserialize Binary Tree",
+                "link": "https://www.geeksforgeeks.org/serialize-deserialize-binary-tree/"
+            },
+            {
+                "title": "Binary Tree Paths",
+                "link": "https://www.hackerrank.com/challenges/binary-search-tree-insertion/problem"
+            },
+            {
+                "title": "Maximum Depth of N-ary Tree",
+                "link": "https://www.geeksforgeeks.org/maximum-depth-of-n-ary-tree/"
             }
         ]
     }
