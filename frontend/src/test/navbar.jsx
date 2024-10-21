@@ -1,7 +1,7 @@
-import React, { useContext, useEffect, useState } from "react";
+import  { useContext,  useState } from "react";
 import { HoveredLink, HoveredLink2, Menu, MenuItem, MenuItemLogo, ProductItem } from "../components/ui/navbar-menu";
 import { cn } from "../utils/cn"; // Adjust the path if necessary
-import { Link, useNavigate } from "react-router-dom"; // Use react-router-dom for navigation
+import {  useNavigate } from "react-router-dom"; // Use react-router-dom for navigation
 import tcs from '../assets/company/TCS.jpg'
 import amazon from '../assets/company/amazon.jpg'
 import meta from '../assets/company/logo-Meta.jpg'
@@ -61,8 +61,8 @@ export default function Navbar({ className }) {
           user && localStorage.getItem("user") ? (
             <MenuItemLogo setActive={setActive} active={active} item="https://img.icons8.com/officel/80/test-account.png">
               <div className="felx- flex-col space-y-3  text-sm">
-                <HoveredLink2 to="/profile">Your Profile</HoveredLink2>
-                <HoveredLink2 to="/contest">Your Contests</HoveredLink2>
+                <HoveredLink2 to={"/profile"}>Your Profile</HoveredLink2>
+                <HoveredLink2 to={"/contest"}>Your Contests</HoveredLink2>
                 <HoveredLink2 onClick={() => logout()}>Logout</HoveredLink2>
               </div>
             </MenuItemLogo>

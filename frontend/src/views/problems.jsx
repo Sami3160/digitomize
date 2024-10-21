@@ -6,6 +6,9 @@ export default function ProblemsPage() {
     const [selectedCompany, setSelectedCompany] = useState()
     const [searchParams] = useSearchParams()
     const location = useLocation();
+    useEffect(()=>{
+        document.title = "Digitomize | Problems"
+    },[])
     useEffect(() => {
         const company = searchParams.get('company')
         if (company) {

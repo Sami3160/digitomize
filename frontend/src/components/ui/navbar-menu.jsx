@@ -13,10 +13,10 @@ const transition = {
 
 export const MenuItem = ({ setActive, active, item, children }) => {
   return (
-    <div onMouseEnter={() => setActive(item)} className="relative hover:shadow-lg hover:bg-white transition-shadow duration-300 px-3 rounded-3xl flex justify-center items-center ">
+    <div onMouseEnter={() => setActive(item)} className="relative hover:shadow-lg hover:bg-white transition-all duration-300 px-3 rounded-3xl flex justify-center items-center ">
       <motion.p
         transition={{ duration: 0.3 }}
-        className="cursor-pointer hover:opacity-[0.9] dark:text-[#1b1a1a] font-medium "
+        className="cursor-pointer hover:opacity-[0.9] text-[#1b1a1a] font-medium "
       >
         {item}
       </motion.p>
@@ -31,7 +31,7 @@ export const MenuItem = ({ setActive, active, item, children }) => {
               <motion.div
                 transition={transition}
                 layoutId="active"
-                className="bg-white dark:bg-black backdrop-blur-sm rounded-2xl overflow-hidden border border-black/[0.2] dark:border-white/[0.2] shadow-xl"
+                className="bg-black backdrop-blur-sm rounded-2xl overflow-hidden border border-white/[0.2] shadow-xl"
               >
                 <motion.div layout className="w-max h-full p-4">
                   {children}
@@ -49,7 +49,7 @@ export const Menu = ({ setActive, children }) => {
   return (
     <nav
       onMouseLeave={() => setActive(null)}
-      className="relative rounded-full border-2 dark:bg-teal-300 border-teal-800 bg-black shadow-input flex justify-evenly space-x-4 px-1 py-2 "
+      className="relative rounded-full border-2 bg-teal-300 border-teal-800  shadow-input flex justify-evenly space-x-4 px-1 py-2 "
     >
       {children}
     </nav>
@@ -67,10 +67,10 @@ export const ProductItem = ({ title, description, href, src }) => {
         className="flex-shrink-0 rounded-md shadow-2xl"
       />
       <div>
-        <h4 className="text-xl font-bold mb-1 text-black dark:text-white">
+        <h4 className="text-xl font-bold mb-1 text-white">
           {title}
         </h4>
-        <p className="text-neutral-700 text-sm max-w-[10rem] dark:text-neutral-300">
+        <p className=" text-sm max-w-[10rem] text-neutral-300">
           {description}
         </p>
       </div>
@@ -82,7 +82,7 @@ export const HoveredLink = ({ children, ...rest }) => {
   return (
     <Link
       {...rest}
-      className="text-neutral-700 font-medium transition-shadow duration-300 dark:text-[#1b1a1a]  hover:bg-white hover:shadow-lg px-3 py-2 rounded-3xl flex justify-center items-center "
+      className=" font-medium  duration-300 text-[#1b1a1a]  hover:bg-white transition-all  hover:shadow-lg px-3 py-2 rounded-3xl flex justify-center items-center "
     >
       {children}
     </Link>
@@ -93,7 +93,7 @@ export const HoveredLink2 = ({ children, ...rest }) => {
   return (
     <Link
       {...rest}
-      className="text-neutral-700 font-medium transition-shadow duration-300 dark:text-white hover:text-gray-800  hover:bg-white hover:shadow-lg px-3 py-2 rounded-3xl flex justify-center items-center "
+      className="font-medium transition-shadow duration-300 text-white hover:text-gray-800  hover:bg-white hover:shadow-lg px-3 py-2 rounded-3xl flex justify-center items-center "
     >
       {children}
     </Link>
@@ -107,7 +107,7 @@ export const MenuItemLogo = ({ setActive, active, item, children }) => {
   return (
     <div onMouseEnter={() => setActive(item)} className="relative hover:shadow-lg hover:shadow-teal-600 transition-shadow duration-300 p-0  rounded-3xl">
       <motion.img src={item}
-        className="cursor-pointer h-10 text-black hover:opacity-[0.9] dark:text-white"
+        className="cursor-pointer h-10   hover:opacity-[0.9] text-white"
 
         alt="Profile" />
       {active !== null && (
@@ -121,7 +121,7 @@ export const MenuItemLogo = ({ setActive, active, item, children }) => {
               <motion.div
                 transition={transition}
                 layoutId="active"
-                className="bg-white dark:bg-black backdrop-blur-sm rounded-2xl overflow-hidden border border-black/[0.2] dark:border-white/[0.2] shadow-xl"
+                className="bg-black backdrop-blur-sm rounded-2xl overflow-hidden border border-white/[0.2] shadow-xl"
               >
                 <motion.div layout className="w-max h-full p-4 ">
                   {children}

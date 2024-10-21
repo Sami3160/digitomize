@@ -4,32 +4,30 @@ export const AuthContext = createContext()
 
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
-    const [token, setToken] = useState(localStorage.getItem('token'));
-    useEffect(() => {
-        // const token = localStorage.getItem('token')
-        let intervalId; 
+    const [token1, setToken] = useState(localStorage.getItem('token'));
+    const initApp = async () => {
+        const token = localStorage.getItem('token')
         if (token) {
-            const getUser = async () => {
-                try {
-                    const res = await axios.get('http://localhost:5000/api/users/profile', {
-                        headers: {
-                            Authorization: `Bearer ${token}`
-                        }
-                    })
-                    setUser(res.data)
-                } catch (error) {
-                    console.log(error)
-                }
+            try {
+                const res = await axios.get('http://localhost:5000/api/users/profile', {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                })
+                setUser((user) => res.data)
+            } catch (error) {
+                console.log(error.message)
             }
-            // setInterval(()=>getUser, 4000)
-            getUser()
-            if(token){
-                intervalId=setInterval(()=>getUser, 4000)
-            }
-            return ()=>clearInterval(intervalId)
 
         }
-    }, [token])
+    }
+    useEffect(() => {
+        // const token = localStorage.getItem('token')
+        // initApp()
+        const intervalId = setInterval(() => initApp(), 4000);
+        // console.log(user );
+        return () => clearInterval(intervalId);
+    }, [token1, user])
     const logout = () => {
         localStorage.removeItem('token')
         localStorage.removeItem('user')

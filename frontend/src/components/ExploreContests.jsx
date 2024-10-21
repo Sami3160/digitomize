@@ -47,7 +47,7 @@ export default function ExploreContests() {
         <path d="M35.6781 14.878C34.6291 18.129 33.3781 21.307 32.1091 24.522C32.1421 20.265 34.4261 15.142 35.6781 14.878Z" fill="url(#paint6_linear_10_92)" />
         <path d="M31.5092 25.956C32.0103 25.2266 32.2373 24.3436 32.1502 23.463C32.1391 22.4091 32.3288 21.3628 32.7092 20.38C32.7212 20.342 32.7402 20.274 32.7662 20.18C33.0732 19.104 34.3092 14.78 35.7522 14.86V14.893C34.6212 14.85 33.1842 19.127 32.8432 20.193C32.8172 20.283 32.8111 20.339 32.7971 20.381C32.4884 21.3815 32.2995 22.415 32.2342 23.46C32.3075 24.3546 32.0593 25.246 31.5342 25.974L31.5092 25.952" fill="#9C8461" />
         <defs>
-          <filter id="filter0_d_10_92" x="1" y="1" width="50" height="50" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+          <filter id="filter0_d_10_92" x="1" y="1" width="50" height="50" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
             <feFlood floodOpacity="0" result="BackgroundImageFix" />
             <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
             <feOffset dy="1" />

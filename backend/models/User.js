@@ -12,7 +12,7 @@ const userSchema = new mongoose.Schema({
     bio: String,
     profileUrl:{
         type:String,
-        default:'https://res.cloudinary.com/dv0xm4c4v/image/upload/v1633199598/contest-portfolio/default-profile-image_fy3j9s.png'
+        default:'https://www.llt.at/wp-content/uploads/2021/11/blank-profile-picture-g77b5d6651-1280-705x705.png'
     }
 });
 

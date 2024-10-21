@@ -21,6 +21,7 @@ exports.registerUser = async (req, res) => {
       firstname,
       lastname,
       password: hashedPassword,
+      bio: "",
     });
 
     const savedUser = await newUser.save();
@@ -57,6 +58,8 @@ exports.loginUser = async (req, res) => {
 exports.getUserProfile = async (req, res) => {
   try {
     const user = await User.findById(req.user.id).select('-password');
+    // console.log(user);
+    
     res.status(200).json(user);
   } catch (error) {
     res.status(500).json({ message: error.message });

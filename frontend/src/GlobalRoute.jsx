@@ -10,6 +10,7 @@ import ProblemsPage from './views/problems'
 import CompanyProblems from './views/CompanyProblems'
 import Footer from './components/footer'
 import Contests from './components/Contests'
+import Dashboard from './views/Dashboard'
 // const LoginFormDemo = React.lazy(() => import('./test/login-form'))
 // const SigninPage = React.lazy(() => import('./views/signin-page'))
 // const Navbar=React.lazy(()=>import('./test/navbar'))
@@ -17,26 +18,23 @@ export default function GlobalRoute() {
     return (
         <BrowserRouter>
 
-            <Suspense fallback={<Loader />}>
-                    <Navbar className={"top-4"} />
+            <Navbar className={"top-4"} />
 
-                    <Routes>
-                        <Route path="/" element={<App />} />
-                        <Route path="/home" element={<App />} />
-                        <Route path="/contest" element={<Contests />} />
-                        <Route path="/profile" element={<App />} />
-                        <Route path="/login" element={<LoginFormDemo />} />
-                        <Route path="/signin" element={<SigninPage />} />
-                        <Route path="/profile" component={<App />} />
-                        <Route path="/problems" element={<ProblemsPage />} >
-                            <Route path="company" element={<CompanyProblems />} />
-                        </Route>
-                        <Route path="/qn" element={<ProblemsPage />} />
-                        <Route path="*" element={<h1>404 Not Found</h1>} />
+            <Routes>
+                <Route path="/" element={<App />} />
+                <Route path="/home" element={<App />} />
+                <Route path="/profile" element={<Dashboard />} />
+                <Route path="/contest" element={<Contests />} />
+                <Route path="/login" element={<LoginFormDemo />} />
+                <Route path="/signin" element={<SigninPage />} />
+                <Route path="/problems" element={<ProblemsPage />} >
+                    <Route path="company" element={<CompanyProblems />} />
+                </Route>
+                <Route path="/qn" element={<ProblemsPage />} />
+                <Route path="*" element={<h1 className='text-white'>404 Not Found</h1>} />
 
-                    </Routes>
-                    {/* <Footer/> */}
-            </Suspense>
+            </Routes>
+            {/* <Footer/> */}
         </BrowserRouter>
     )
 }

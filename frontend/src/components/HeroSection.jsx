@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import { useContext } from 'react'
 import { HeroCard } from '../test/HeroCard'
 import { AuthContext } from '../context/AuthContext'
 import { Link } from 'react-router-dom'
