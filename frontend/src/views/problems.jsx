@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import { Outlet, useLocation, useSearchParams } from 'react-router-dom'
+import  { useEffect, useState } from 'react'
+import {  useLocation, useSearchParams } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import CompanyProblems from './CompanyProblems'
 export default function ProblemsPage() {

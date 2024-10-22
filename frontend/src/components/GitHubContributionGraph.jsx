@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import  { useEffect, useState } from 'react';
 import './GitHubContributionGraph.css'; // Assuming you have a CSS file for styles
 
 const GitHubContributionGraph = ({ data }) => {
