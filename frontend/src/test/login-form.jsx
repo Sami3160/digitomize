@@ -12,10 +12,6 @@ import { ErrorMessage, SuccessMessages } from "../components/messages";
 import { Link, useNavigate } from "react-router-dom";
 export function LoginFormDemo() {
     const navigate = useNavigate()
-    useEffect(() => {
-        document.title = "First time? Signup here"
-    }, [])
-
     const [isError, setError] = useState(false);
     const [isSuccess, setSuccess] = useState(false);
     const [error, setErrorMsg] = useState("");
@@ -24,6 +20,10 @@ export function LoginFormDemo() {
         email: "",
         password: "",
     });
+    useEffect(() => {
+        document.title = "First time? Signup here"
+    }, [])
+
     const handleChange = (e) => {
         const { id, value } = e.target;
         setFormData((prevData) => ({
@@ -31,6 +31,20 @@ export function LoginFormDemo() {
             [id]: value,
         }));
     };
+
+    const handleGoogleAuth=()=>{
+        setLoading(true);
+        try {
+            window.location.href="http://localhost:5000/auth/google/callback"
+        } catch (err) {
+            console.log(err);
+            setError(true);
+            setErrorMsg(err.response.data.message);
+            setTimeout(() => setError(false), 3000)
+            setError(false)
+            setLoading(false);
+        }
+    }
     const handleSubmit = (e) => {
         e.preventDefault();
         for (let key in formData) {
@@ -135,6 +149,7 @@ export function LoginFormDemo() {
                             <button
                                 className="relative group/btn flex space-x-2 items-center justify-start px-4 w-full text-black rounded-md h-10 font-medium  bg-zinc-900 shadow-[0px_0px_1px_1px_var(--neutral-800)]"
                                 type="button"
+                                onClick={()=>handleGoogleAuth()}
                             >
                                 <IconBrandGoogle className="h-4 w-4 text-neutral-300" />
                                 <span className="text-neutral-300 text-sm">

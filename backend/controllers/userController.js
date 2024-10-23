@@ -26,7 +26,7 @@ exports.registerUser = async (req, res) => {
 
     const savedUser = await newUser.save();
     console.log(savedUser);
-    const token = jwt.sign({ userId: savedUser._id }, "secret", { expiresIn: '1h' });
+    const token = jwt.sign({ userId: savedUser._id }, "secret", { expiresIn: '4h' });
     res.status(201).json({ token, savedUser, message: "User created successfully" });
   } catch (error) {
     console.log(error);
@@ -48,7 +48,7 @@ exports.loginUser = async (req, res) => {
       return res.status(400).json({ message: "Invalid credentials" });
     }
 
-    const token = jwt.sign({ userId: user._id }, "secret", { expiresIn: '1h' });
+    const token = jwt.sign({ userId: user._id }, "secret", { expiresIn: '4h' });
     res.status(200).json({ token, user });
   } catch (error) {
     res.status(500).json({ message: error.message });

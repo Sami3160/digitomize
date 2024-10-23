@@ -107,7 +107,7 @@ export const MenuItemLogo = ({ setActive, active, item, children }) => {
   return (
     <div onMouseEnter={() => setActive(item)} className="relative hover:shadow-lg hover:shadow-teal-600 transition-shadow duration-300 p-0  rounded-3xl">
       <motion.img src={item}
-        className="cursor-pointer h-10   hover:opacity-[0.9] text-white"
+        className="cursor-pointer h-10 rounded-full  hover:opacity-[0.9] text-white"
 
         alt="Profile" />
       {active !== null && (

@@ -59,7 +59,7 @@ export default function Navbar({ className }) {
         <HoveredLink to="/blogs">Blogs</HoveredLink>
         {
           user && localStorage.getItem("user") ? (
-            <MenuItemLogo setActive={setActive} active={active} item="https://img.icons8.com/officel/80/test-account.png">
+            <MenuItemLogo setActive={setActive}  active={active} item={user.profileUrl}>
               <div className="felx- flex-col space-y-3  text-sm">
                 <HoveredLink2 to={"/profile"}>Your Profile</HoveredLink2>
                 <HoveredLink2 to={"/contest"}>Your Contests</HoveredLink2>

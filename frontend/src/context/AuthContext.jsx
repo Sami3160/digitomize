@@ -22,10 +22,7 @@ export const AuthProvider = ({ children }) => {
         }
     }
     useEffect(() => {
-        // const token = localStorage.getItem('token')
-        // initApp()
         const intervalId = setInterval(() => initApp(), 4000);
-        // console.log(user );
         return () => clearInterval(intervalId);
     }, [token1, user])
     const logout = () => {

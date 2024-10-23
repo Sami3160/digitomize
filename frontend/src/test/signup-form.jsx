@@ -34,6 +34,19 @@ export function SignupFormDemo() {
             [id]: value,
         }));
     };
+    const handleGoogleAuth=()=>{
+        setLoading(true);
+        try {
+            window.location.href="http://localhost:5000/auth/google/callback"
+        } catch (err) {
+            console.log(err);
+            setError(true);
+            setErrorMsg(err.response.data.message);
+            setTimeout(() => setError(false), 3000)
+            setError(false)
+            setLoading(false);
+        }
+    }
     const handleSubmit = (e) => {
         e.preventDefault();
         for (let key in formData) {
@@ -43,9 +56,6 @@ export function SignupFormDemo() {
             }
         }
         console.log(formData);
-        // if(formData || !formData){
-        //     return;
-        // }
         axios.post("http://localhost:5000/api/users/register", formData).then((res) => {
 
             console.log(res);
@@ -160,6 +170,7 @@ export function SignupFormDemo() {
                         <button
                             className="relative group/btn flex space-x-2 items-center justify-start px-4 w-full text-black rounded-md h-10 font-medium  bg-zinc-900 shadow-[0px_0px_1px_1px_var(--neutral-800)]"
                             type="button"
+                            onClick={()=>handleGoogleAuth()}
                         >
                             <IconBrandGoogle className="h-4 w-4 text-neutral-300" />
                             <span className="text-neutral-300 text-sm">

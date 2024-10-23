@@ -8,13 +8,13 @@ import LinkModal from '../components/Dashboard/LinkAccounts';
 export default function Dashboard() {
     const { user, logout } = useContext(AuthContext)
     const navigate = useNavigate()
-    useEffect(() => {
-        console.log(user);
-        if (!user) {
-            logout()
-            navigate('/login')
-        }
-    }, [user])
+    // useEffect(() => {
+    //     console.log(user);
+    //     if (!user) {
+    //         logout()
+    //         navigate('/login')
+    //     }
+    // }, [user])
     const data = Array.from({ length: 365 }, () => Math.floor(Math.random() * 4));
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isLinkModalOpen, setIsLinkModalOpen] = useState(false);
@@ -24,28 +24,18 @@ export default function Dashboard() {
     const closeLinkModal = () => {    
         setIsLinkModalOpen(false)
     }
-    return (
+    if(user)return (
         <div className='w-full h-full'>
 
-            <div className="flex flex-row pt-24 px-10 pb-4 mt-10">
-            <SettingsModal isOpen={isModalOpen} onRequestClose={closeModal} />
-            <LinkModal  isOpen={isLinkModalOpen} onRequestClose={closeLinkModal}/>
-                <div className="w-2/12 mr-6">
-                    <div className="bg-white rounded-xl gap-3 shadow-lg mb-6 px-6 py-4 flex flex-col items-center">
-                        <img src={user?.profileUrl} className='rounded-md' alt="" srcSet="" />
-                        <p className='text-sm'>{user?.username}</p>
-                        <p className='text-md text-gray-400 shadow-sm cursor-pointer w-full text-center bg-teal-100 p-1 px-4 rounded-lg'
-                            onClick={() => { setIsModalOpen(true) }}
-                        >
-                            Edit Profile</p>
-                        <button className='text-md text-gray-400 shadow-sm cursor-pointer w-full text-center bg-blue-100 p-1 px-4 rounded-lg'
-                        onClick={()=>setIsLinkModalOpen(true)}
-                        >
-                            Link Account</button>
-                        <button className='text-md text-gray-400 shadow-sm cursor-pointer w-full text-center bg-red-100 p-1 px-4 rounded-lg'
-                            onClick={() => logout()}
-                        >Logout</button>
-                    </div>
+        <div className="flex flex-row pt-24 px-10 pb-4 mt-10">
+            <div className="w-2/12 mr-6">
+                <div className="bg-white rounded-xl gap-3 shadow-lg mb-6 px-6 py-4 flex flex-col items-center">
+                    <img src={user?.profileUrl} className='rounded-md' alt="" srcSet="" />
+                    <p className='text-sm'>{user?.username}</p>
+                    <p className='text-md text-gray-400 shadow-sm cursor-pointer w-full text-center bg-teal-100 p-1 px-4 rounded-lg'>Edit Profile</p>
+                    <p className='text-md text-gray-400 shadow-sm cursor-pointer w-full text-center bg-blue-100 p-1 px-4 rounded-lg'>Link Account</p>
+                    <p className='text-md text-gray-400 shadow-sm cursor-pointer w-full text-center bg-red-100 p-1 px-4 rounded-lg'>Logout</p>
+                </div>
 
                     <div className="bg-white rounded-xl shadow-lg mb-6 px-6 py-4">
                         <p className="inline-block text-gray-600 hover:text-black my-2 w-full">

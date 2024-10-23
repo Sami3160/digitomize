@@ -1,9 +1,28 @@
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { HeroCard } from '../test/HeroCard'
 import { AuthContext } from '../context/AuthContext'
 import { Link } from 'react-router-dom'
-
+import axios from 'axios'
+import Cookies from 'js-cookie'
 export default function HeroSection() {
+    useEffect(()=>{
+        try {
+            const res=axios.post("http://localhost:5000/auth/login/success",{
+                withCredentials:true
+            })
+            console.log(res.data);
+            
+        } catch (error) {
+            console.log(error);
+            
+        }
+    },[])
+    useEffect(() => {
+        const token = Cookies.get('token');
+        if (token) {
+            localStorage.setItem('token', token);
+        }
+    }, []);
     return (
         <div className='mt-40 w-full h-full'>
 
