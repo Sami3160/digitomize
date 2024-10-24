@@ -13,7 +13,7 @@ const { passportConfig } = require('./auth/passsport');
 // app.use(express.json());
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:true}));
-passportConfig(app);
+// passportConfig(app);
 // app.use(express.urlencoded());
 const upload=multer();
 app.use(upload.none());
@@ -24,7 +24,7 @@ app.use(cors({
 dbConnect().then(() => console.log("Connected to MongoDB"));
 
 
-app.use('/auth', authRoutes);
+// app.use('/auth', authRoutes);
 app.use('/api/contests', contestRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/portfolio', portfolioRoutes);
