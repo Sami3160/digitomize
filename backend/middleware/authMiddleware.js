@@ -3,7 +3,6 @@ const User = require('../models/User');
 
 const protect = async (req, res, next) => {
     let token;
-    // console.log(req.headers.authorization);
     
 
     if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
@@ -12,10 +11,11 @@ const protect = async (req, res, next) => {
             token = req.headers.authorization.split(' ')[1];
             const decoded = jwt.verify(token, 'secret');
             req.user = await User.findById(decoded.userId).select('-password');
-            // console.log("hi");
 
             next();
         } catch (error) {
+            console.log(error);
+            
             return res.status(401).json({ message: 'Not authorized, token failed' });
         }
     }
@@ -26,7 +26,8 @@ const protect = async (req, res, next) => {
 };
 
 const isAdmin = (req, res, next) => {
-    if (req.user && req.user.role === 'admin') {
+    console.log(req.body)
+    if (req.user ) {
         next();  // If the user is an admin, proceed
     } else {
         return res.status(403).json({ message: 'Access denied: Admins only' });

@@ -10,6 +10,8 @@ const userSchema = new mongoose.Schema({
     contestsParticipated: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Contest' }],
     achievements: [String],  
     bio: String,
+    institute: String,
+    address: String,
     profileUrl:{
         type:String,
         default:'https://www.llt.at/wp-content/uploads/2021/11/blank-profile-picture-g77b5d6651-1280-705x705.png'

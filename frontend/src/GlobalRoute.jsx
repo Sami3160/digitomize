@@ -4,16 +4,12 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import SigninPage from './views/signin-page'
 import Navbar from './test/navbar'
 import { LoginFormDemo } from './test/login-form'
-// const Loader = React.lazy(() => import('./components/loader'))
 import Loader from './components/loader'
 import ProblemsPage from './views/problems'
 import CompanyProblems from './views/CompanyProblems'
 import Footer from './components/footer'
 import Contests from './components/Contests'
 import Dashboard from './views/Dashboard'
-// const LoginFormDemo = React.lazy(() => import('./test/login-form'))
-// const SigninPage = React.lazy(() => import('./views/signin-page'))
-// const Navbar=React.lazy(()=>import('./test/navbar'))
 export default function GlobalRoute() {
     return (
         <BrowserRouter>

@@ -4,19 +4,18 @@ const app = express();
 const cors = require('cors');
 const contestRoutes = require('./routes/contestRoutes');
 const userRoutes = require('./routes/userRoutes');
-const authRoutes =require('./routes/authRoutes');
+const authRoutes = require('./routes/authRoutes');
 const portfolioRoutes = require('./routes/portfolioRoutes');
 const bodyParser = require('body-parser');
-const multer=require('multer');
 const dbConnect = require('./config/database');
-const { passportConfig } = require('./auth/passsport');
-// app.use(express.json());
+const { uploadOnCloudinary } = require('./controllers/cloudnary');
+const FileUpload = require('./config/multer-config');
+
+
 app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({extended:true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 // passportConfig(app);
 // app.use(express.urlencoded());
-const upload=multer();
-app.use(upload.none());
 app.use(cors({
     credentials: true,
 }));
@@ -25,8 +24,21 @@ dbConnect().then(() => console.log("Connected to MongoDB"));
 
 
 // app.use('/auth', authRoutes);
+// app.post('/stats', FileUpload, async function (req, res) {
+//     // console.table(req.file)
+//     try {
+//         const result = await uploadOnCloudinary(req.file.path, 'profile')
+//         console.log(result)
+//         return res.status(200).json({ message: "Image uploaded successfully 1", result })
+//     } catch (error) {
+//         console.log("huihiu")
+//         return res.status(400).json({ message: "Error in uploading image", error })
+        
+//     }
+// });
 app.use('/api/contests', contestRoutes);
 app.use('/api/users', userRoutes);
+// app.use('/api/cloudnary', cloudnaryRouter)
 app.use('/api/portfolio', portfolioRoutes);
 
 

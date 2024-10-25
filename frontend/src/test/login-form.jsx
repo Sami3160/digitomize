@@ -1,4 +1,4 @@
-import  { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Label } from "../components/ui/label"; // Adjust import path as per your folder structure
 import { Input } from "../components/ui/input"; // Adjust import path as per your folder structure
 import { cn } from "../utils/cn"; // Adjust import path accordingly
@@ -6,11 +6,15 @@ import {
     IconBrandGithub,
     IconBrandGoogle,
 } from "@tabler/icons-react";
+
 import signin from "../assets/signin.svg";
 import axios from "axios";
+import { jwtDecode } from "jwt-decode"
 import { ErrorMessage, SuccessMessages } from "../components/messages";
 import { Link, useNavigate } from "react-router-dom";
+import { GoogleLogin, useGoogleLogin, useGoogleOneTapLogin } from "@react-oauth/google";
 export function LoginFormDemo() {
+
     const navigate = useNavigate()
     const [isError, setError] = useState(false);
     const [isSuccess, setSuccess] = useState(false);
@@ -23,6 +27,25 @@ export function LoginFormDemo() {
     useEffect(() => {
         document.title = "First time? Signup here"
     }, [])
+    const login = useGoogleLogin({
+        onSuccess: async tokenResponse => {
+            console.log(tokenResponse);
+            // fetching userinfo can be done on the client or the server
+            const userInfo = await axios
+                .get('https://www.googleapis.com/oauth2/v3/userinfo', {
+                    headers: { Authorization: `Bearer ${tokenResponse.access_token}` },
+                })
+                .then(res => res.data);
+
+            console.log(userInfo);
+
+        },
+        onError: (error) => {
+            console.log(error);
+            alert("Error occurred")
+        },
+        flow: "auth-code",
+    })
 
     const handleChange = (e) => {
         const { id, value } = e.target;
@@ -32,10 +55,10 @@ export function LoginFormDemo() {
         }));
     };
 
-    const handleGoogleAuth=()=>{
+    const handleGoogleAuth = () => {
         setLoading(true);
         try {
-            window.location.href="http://localhost:5000/auth/google/callback"
+            window.location.href = "http://localhost:5000/auth/google/callback"
         } catch (err) {
             console.log(err);
             setError(true);
@@ -149,7 +172,7 @@ export function LoginFormDemo() {
                             <button
                                 className="relative group/btn flex space-x-2 items-center justify-start px-4 w-full text-black rounded-md h-10 font-medium  bg-zinc-900 shadow-[0px_0px_1px_1px_var(--neutral-800)]"
                                 type="button"
-                                onClick={()=>handleGoogleAuth()}
+                                onClick={() => login()}
                             >
                                 <IconBrandGoogle className="h-4 w-4 text-neutral-300" />
                                 <span className="text-neutral-300 text-sm">
@@ -157,6 +180,7 @@ export function LoginFormDemo() {
                                 </span>
                                 <BottomGradient />
                             </button>
+
 
                         </div>
                     </form>

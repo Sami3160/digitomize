@@ -10,6 +10,7 @@ import signin from "../assets/signin.svg";
 import axios from "axios";
 import { ErrorMessage, SuccessMessages } from "../components/messages";
 import { Link, useNavigate } from "react-router-dom";
+import { useGoogleLogin } from "@react-oauth/google";
 export function SignupFormDemo() {
     useEffect(()=>{
     document.title = "First time? Signup here"
@@ -34,19 +35,16 @@ export function SignupFormDemo() {
             [id]: value,
         }));
     };
-    const handleGoogleAuth=()=>{
-        setLoading(true);
-        try {
-            window.location.href="http://localhost:5000/auth/google/callback"
-        } catch (err) {
-            console.log(err);
-            setError(true);
-            setErrorMsg(err.response.data.message);
-            setTimeout(() => setError(false), 3000)
-            setError(false)
-            setLoading(false);
-        }
+   const login=useGoogleLogin({
+    onSuccess: async tokenResponse => {
+        console.log(tokenResponse);
+    },
+    onError: (error) => {
+        console.log(error);
+        alert("Error occurred")
+        
     }
+   })
     const handleSubmit = (e) => {
         e.preventDefault();
         for (let key in formData) {
@@ -170,7 +168,7 @@ export function SignupFormDemo() {
                         <button
                             className="relative group/btn flex space-x-2 items-center justify-start px-4 w-full text-black rounded-md h-10 font-medium  bg-zinc-900 shadow-[0px_0px_1px_1px_var(--neutral-800)]"
                             type="button"
-                            onClick={()=>handleGoogleAuth()}
+                            onClick={()=>login()}
                         >
                             <IconBrandGoogle className="h-4 w-4 text-neutral-300" />
                             <span className="text-neutral-300 text-sm">

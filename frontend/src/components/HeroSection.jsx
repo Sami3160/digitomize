@@ -5,18 +5,7 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 import Cookies from 'js-cookie'
 export default function HeroSection() {
-    useEffect(()=>{
-        try {
-            const res=axios.post("http://localhost:5000/auth/login/success",{
-                withCredentials:true
-            })
-            console.log(res.data);
-            
-        } catch (error) {
-            console.log(error);
-            
-        }
-    },[])
+    
     useEffect(() => {
         const token = Cookies.get('token');
         if (token) {

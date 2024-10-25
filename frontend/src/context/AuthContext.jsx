@@ -16,6 +16,11 @@ export const AuthProvider = ({ children }) => {
                 })
                 setUser((user) => res.data)
             } catch (error) {
+                if(error.response.status===401){
+                    localStorage.removeItem('token')
+                    localStorage.removeItem('user')
+                    setUser(null)
+                }
                 console.log(error.message)
             }
 
