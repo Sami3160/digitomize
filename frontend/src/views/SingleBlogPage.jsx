@@ -1,12 +1,14 @@
 import React from 'react'
 
 function SingleBlogPage() {
-
+    console.log("kjdahiudh");
+    
     return (
         <div className='pt-16'>
             <div className="max-w-screen-xl mx-auto p-5 sm:p-10 md:p-16 relative">
                 <div className="bg-cover bg-center text-center overflow-hidden"
-                    style="min-height: 500px; background-image: url('https://api.time.com/wp-content/uploads/2020/07/never-trumpers-2020-election-01.jpg?quality=85&amp;w=1201&amp;h=676&amp;crop=1')"
+                    // style="min-height: 500px; background-image: url('https://api.time.com/wp-content/uploads/2020/07/never-trumpers-2020-election-01.jpg?quality=85&amp;w=1201&amp;h=676&amp;crop=1')"
+                    style={{minHeight:"500px", backgroundImage:"url('https://api.time.com/wp-content/uploads/2020/07/never-trumpers-2020-election-01.jpg?quality=85&amp;w=1201&amp;h=676&amp;crop=1')"}}
                     title="Woman holding a mug">
                 </div>
                 <div className="max-w-3xl mx-auto">

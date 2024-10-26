@@ -1,6 +1,10 @@
-import { NavLink, useNavigate } from "react-router-dom"
+import { NavLink, Outlet, useNavigate, useSearchParams } from "react-router-dom"
+import SingleBlogPage from "./SingleBlogPage"
 function BlogsPage() {
     const navigate=useNavigate()
+    // const id=
+    const [searchParams]=useSearchParams()
+    if(searchParams.get('id'))return <SingleBlogPage/>
     return (
         <div className="pt-10">
             <h1 className="text-7xl text-white  mx-32 mt-16">Daily Blogs</h1>
@@ -11,14 +15,15 @@ function BlogsPage() {
 
                 <div className="sm:grid lg:grid-cols-3 sm:grid-cols-2 gap-10">
 
-                    {[1, 2, 3, 4, 5, 6,].map((ind, index) => (
+                    {[1, 2, 3, 4, 5, 6,7,8].map((ind, index) => (
                         <div key={ind}
+                            onClick={()=>navigate(`/blogs?id=${index}`)}
                             className="bg-[#020617]  cursor-pointer hover:bg-[#101423] hover:text-white transition duration-300 max-w-sm rounded overflow-hidden shadow-lg">
                             <div className="py-4 px-8">
                                 <div className="flex items-center  gap-4 text-white">
 
                                     <img src="https://tailwindcss.com/img/jonathan.jpg" className="rounded-full h-12 w-12 mb-4" />
-                                    <p className="text-xl">Ajay Patil</p>
+                                    <p className="text-xl">Ajay Patil {index} </p >
                                 </div><NavLink href="#">
                                     <h4 className="text-lg mb-3 text-white font-semibold">How to be effective at working remotely?</h4>
                                 </NavLink>
@@ -33,11 +38,6 @@ function BlogsPage() {
                             </div>
                         </div>
                     ))}
-
-
-
-
-
                 </div>
                 <div className="w-full flex justify-center">
 

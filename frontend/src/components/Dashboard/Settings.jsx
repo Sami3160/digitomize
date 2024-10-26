@@ -54,6 +54,8 @@ const SettingsModal = ({ isOpen, onRequestClose }) => {
                 form.append(key, userData[key])
             }
             form.append("_id", user._id)
+            console.log(form);
+            
             await axios.post("http://localhost:5000/api/users/updateUser", form, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`

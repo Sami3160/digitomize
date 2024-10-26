@@ -10,7 +10,9 @@ import DOMPurify from 'dompurify';
 const NewBlogModal = ({ isOpen, onRequestClose }) => {
     const { user, logout } = useContext(AuthContext)
     const [loading, setLoading] = useState(false);
-    const [blogData, setBlogData] = useState({})
+    const [blogData, setBlogData] = useState({
+        tags:[]
+    })
     const [imageChanged, setImageChanged] = useState(false)
     const navigate = useNavigate()
     const handleChange = (e) => {
@@ -23,7 +25,7 @@ const NewBlogModal = ({ isOpen, onRequestClose }) => {
         }
     }, [user])
 
-    const handleContentChange=(content)=>{
+    const handleContentChange = (content) => {
         const sanitizedContent = DOMPurify.sanitize(content);
         setBlogData((prevData) => ({
             ...prevData,
@@ -50,10 +52,8 @@ const NewBlogModal = ({ isOpen, onRequestClose }) => {
             if (blogData.thumbnailUrl) form.append('image', blogData.thumbnailUrl)
             form.append("_id", user._id)
             console.log(form)
-            setLoading(false)
 
-            if (blogData) return;
-            await axios.post("http://localhost:5000/api/users/newblog", form, {
+            await axios.post("http://localhost:5000/api/blog/create", form, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                     Authorization: `Bearer ${localStorage.getItem("token")}`
@@ -91,7 +91,7 @@ const NewBlogModal = ({ isOpen, onRequestClose }) => {
                             <p className="text-lg text-gray-500">{user?.firstname} {user?.lastname}</p>
                         </div>
                     </div>
-                    <BlogTitleInput head={"Blog Title"} onTitleChange={(T) => setBlogData({ ...blogData, title: T })} />
+                    <BlogTitleInput head={"Blog Title*"} onTitleChange={(T) => setBlogData({ ...blogData, title: T })} />
                     <label htmlFor="title" className="mb-2 text-lg font-bold text-gray-300">
                         Blog Thumbnail
                     </label>
@@ -129,13 +129,79 @@ const NewBlogModal = ({ isOpen, onRequestClose }) => {
                                     </div>
                                 )
                             }
-
-
                         </div>
 
 
                     </div>
-                    <BlogContentInput head={"Blog Content"} onTitleChange={handleContentChange}/>
+                    <BlogContentInput head={"Blog Content*"} onTitleChange={handleContentChange} />
+                    <div className="grid grid-cols-2 gap-4">
+
+                         {/* tags */}
+
+                         <div className="gap-2">
+                            <label htmlFor="tags" className="mb-2 text-lg font-bold text-gray-300">
+                                Enter Tags <span className="text-xs font-thin">(eg: java, binary search, machine learning)</span>
+                            </label>
+                            <input type="text" id="tags" className="w-full mt-2 text-md bg-black/30 focus:outline-none text-white p-3 border border-gray-700 rounded-md" name=""
+                                onKeyDown={(e) => {
+                                    if(e.key === "Enter"){
+                                        const tag=e.target.value.trim()
+                                        
+                                        if(!(blogData.tags.includes(tag))){
+                                            setBlogData((bData)=> {
+                                                bData.tags.push(tag)
+                                                return bData;
+                                            })
+                                        }
+                                    e.target.value=""
+                                    }
+                                }}
+                            />
+                            <div className="bg-[#0D1117] p-2 w-[90%] mx-auto border border-gray-700 border-t-0 flex gap-3 flex-wrap">
+                                {
+                                    blogData.tags.map((tag,index)=>{                                        
+                                        return (
+                                            <div key={index} className="flex items-center bg-slate-500/20 p-1 px-2 rounded-xl w-auto">
+                                                <span className="text-xs text-gray-400 ">{tag}</span>
+                                                <FaWindowClose className="text-red-500 ml-2 cursor-pointer"
+                                                    onClick={()=>{                                                      
+                                                        setBlogData((bData)=>{
+                                                            const arr=bData.tags.filter((t)=>t!=tag)
+                                                            bData.tags=arr
+                                                            return bData;
+                                                        })
+                                                    }}
+                                                />
+                                            </div>
+                                        )
+                                    })
+                                }
+                            </div>
+                        </div>
+
+
+                            {/* category */}
+                        <div>
+                            <label htmlFor="category" className="mb-2 text-lg font-bold text-gray-300">
+                                Blog Category*
+                            </label>
+                            <select
+                                name="category"
+                                id="category"
+                                onChange={handleChange}
+                                className="w-full mt-2 p-3 text-gray-100 bg-black/30 border border-gray-700 rounded-md outline-none"
+                            >
+                                <option value="Article">Article</option>
+                                <option value="Project">Project</option>
+                                <option value="Tutorial">Tutorial</option>
+                                <option value="Challenge">Challenge</option>
+                            </select>
+                        </div>
+
+
+                       
+                    </div>
+
                     <div className="mt-5 sm:mt-6 flex gap-5">
                         <button
                             onClick={() => handleSave()}
@@ -144,6 +210,7 @@ const NewBlogModal = ({ isOpen, onRequestClose }) => {
                             {loading ? 'Posting new blog...' : 'Post'}
                         </button>
                     </div>
+
                 </div>
             </div>
         </div>

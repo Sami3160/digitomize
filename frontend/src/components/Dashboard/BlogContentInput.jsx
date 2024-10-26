@@ -23,7 +23,7 @@ const BlogContentInput = ({ head, onContentChange }) => {
                 onChange={handleChange}
                 modules={BlogContentInput.modules}
                 formats={BlogContentInput.formats}
-                className="bg-black/30 text-gray-100 min-h-24"
+                className="bg-black/30 text-gray-100 "
                 placeholder="Write your blog content here..."
             />
         </div>
