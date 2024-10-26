@@ -71,7 +71,7 @@ exports.getUserProfile = async (req, res) => {
 exports.updateUser = async (req, res) => {
   try {
     const { firstname, lastname, username, password, institute, address, bio, _id } = req.body
-    console.log(firstname, lastname, username, password, institute, address, bio, _id);
+    console.log(req.body);
     let data = {}
     if (firstname) data.firstname = firstname
     if (lastname) data.lastname = lastname

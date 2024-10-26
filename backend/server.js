@@ -4,6 +4,7 @@ const app = express();
 const cors = require('cors');
 const contestRoutes = require('./routes/contestRoutes');
 const userRoutes = require('./routes/userRoutes');
+const blogRouts=require('./routes/blogRoutes')
 const authRoutes = require('./routes/authRoutes');
 const portfolioRoutes = require('./routes/portfolioRoutes');
 const bodyParser = require('body-parser');
@@ -25,7 +26,7 @@ dbConnect().then(() => console.log("Connected to MongoDB"));
 
 app.use('/api/contests', contestRoutes);
 app.use('/api/users', userRoutes);
-app.use('/api/blogs', userRoutes);
+app.use('/api/blogs', blogRouts);
 // app.use('/api/cloudnary', cloudnaryRouter)
 app.use('/api/portfolio', portfolioRoutes);
 

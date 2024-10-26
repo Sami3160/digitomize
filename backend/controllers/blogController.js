@@ -6,23 +6,28 @@ const { uploadOnCloudinary, deleteOnCloudinary } = require('./cloudnary')
 exports.createBlog = async (req, res) => {
     const { _id, title, content, category, tags } = req.body
     const doc = req.file
-    if (!title || !content || !category || !tags || !_id) {
+    if (!title || !content || !category || !_id) {
         return res.status(400).json({ message: "Please fill the form" })
     }
+    let data = {}
+    if (title) data.title = title
+    if (content) data.content = content
+    if (category) data.category = category
+    if (tags) data.tags = tags
+
 
     try {
         let result;
         if (doc) {
             result = await uploadOnCloudinary(doc, 'thumbnail')
+            if (result) {
+                data.thumbnailUrl = result.url
+                data.public_id = result.public_id
+            }
         }
         const newBlog = new Blog({
-            title,
-            content,
-            category,
-            tags,
+            ...data,
             owner: _id,
-            thumbnailUrl: result?.url,
-            public_id: result?.public_id
         })
 
         const updateUser = await User.findByIdAndUpdate(_id,

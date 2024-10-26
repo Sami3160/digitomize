@@ -6,4 +6,7 @@ const router=express.Router();
 
 
 router.post('/create', protect, FileUpload,createBlog);
+router.delete('/delete', protect, deleteBlog);
+
+module.exports=router;
 
