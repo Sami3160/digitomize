@@ -10,6 +10,8 @@ import CompanyProblems from './views/CompanyProblems'
 import Footer from './components/footer'
 import Contests from './components/Contests'
 import Dashboard from './views/Dashboard'
+import BlogsPage from './views/BlogsPage'
+import SingleBlogPage from './views/SingleBlogPage'
 export default function GlobalRoute() {
     return (
         <BrowserRouter>
@@ -23,6 +25,9 @@ export default function GlobalRoute() {
                 <Route path="/contest" element={<Contests />} />
                 <Route path="/login" element={<LoginFormDemo />} />
                 <Route path="/signin" element={<SigninPage />} />
+                <Route path="/blogs" element={<BlogsPage />} >
+                    <Route path=":id" element={<SingleBlogPage />} />
+                </Route>
                 <Route path="/problems" element={<ProblemsPage />} >
                     <Route path="company" element={<CompanyProblems />} />
                 </Route>

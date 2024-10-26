@@ -23,21 +23,9 @@ app.use(cors({
 dbConnect().then(() => console.log("Connected to MongoDB"));
 
 
-// app.use('/auth', authRoutes);
-// app.post('/stats', FileUpload, async function (req, res) {
-//     // console.table(req.file)
-//     try {
-//         const result = await uploadOnCloudinary(req.file.path, 'profile')
-//         console.log(result)
-//         return res.status(200).json({ message: "Image uploaded successfully 1", result })
-//     } catch (error) {
-//         console.log("huihiu")
-//         return res.status(400).json({ message: "Error in uploading image", error })
-        
-//     }
-// });
 app.use('/api/contests', contestRoutes);
 app.use('/api/users', userRoutes);
+app.use('/api/blogs', userRoutes);
 // app.use('/api/cloudnary', cloudnaryRouter)
 app.use('/api/portfolio', portfolioRoutes);
 

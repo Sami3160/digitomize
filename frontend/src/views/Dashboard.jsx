@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import GitHubContributionGraph from '../components/GitHubContributionGraph';
 import SettingsModal from '../components/Dashboard/Settings';
 import LinkModal from '../components/Dashboard/LinkAccounts';
+import NewBlogModal from '../components/Dashboard/NewBlogModal';
 
 export default function Dashboard() {
     const { user, logout } = useContext(AuthContext)
@@ -11,6 +12,7 @@ export default function Dashboard() {
     const data = Array.from({ length: 365 }, () => Math.floor(Math.random() * 4));
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isLinkModalOpen, setIsLinkModalOpen] = useState(false);
+    const [isBlogModalOpen, setIsBlogModalOpen] = useState(false);
     const closeModal = () => {
         setIsModalOpen(false)
     }
@@ -21,38 +23,51 @@ export default function Dashboard() {
         <div className='w-full h-full'>
             {isModalOpen && <SettingsModal isOpen={isModalOpen} onRequestClose={closeModal} />}
             {isLinkModalOpen && <LinkModal isOpen={isLinkModalOpen} onRequestClose={closeLinkModal} />}
+            {isBlogModalOpen && <NewBlogModal isOpen={isBlogModalOpen} onRequestClose={() => setIsBlogModalOpen(false)} />}
 
             <div className="flex flex-row pt-24 px-10 pb-4 mt-10">
                 <div className="w-2/12 mr-6">
-                    <div className="bg-white rounded-xl gap-3 shadow-lg mb-6 px-6 py-4 flex flex-col items-center">
+                    <div className="bg-[#0D1717] text-gray-500 rounded-xl gap-3 shadow-lg mb-6 px-6 py-4 flex flex-col items-center">
                         <img src={user?.profileUrl} className='rounded-md' alt="" srcSet="" />
-                        <p className='text-sm'>{user?.username}</p>
-                        <p className='text-md text-gray-400 shadow-sm cursor-pointer w-full text-center bg-teal-100 p-1 px-4 rounded-lg'
+                        <p className='text-sm text-gray-300 font-medium'>{user?.username}</p>
+                        <p className='text-xs font-light text-gray-400'>{user?.email}</p>
+                        <p className='text-md shadow-sm cursor-pointer w-full text-center bg-[#21302D] text-teal-100 p-1 px-4 rounded-lg'
                             onClick={() => setIsModalOpen(true)}
 
                         >Edit Profile</p>
-                        <p className='text-md text-gray-400 shadow-sm cursor-pointer w-full text-center bg-blue-100 p-1 px-4 rounded-lg'
+                        <p className='text-md shadow-sm cursor-pointer w-full text-center bg-[#21302D] text-blue-100 p-1 px-4 rounded-lg'
                             onClick={() => setIsLinkModalOpen(true)}
                         >Link Account</p>
-                        <p className='text-md text-gray-400 shadow-sm cursor-pointer w-full text-center bg-red-100 p-1 px-4 rounded-lg'
+                        <p className='text-md shadow-sm cursor-pointer w-full text-center bg-[#21302D] text-yellow-100 p-1 px-4 rounded-lg'
+                            onClick={() => setIsBlogModalOpen(true)}
+                        >
+                            New Blog
+                        </p>
+                        <p className='text-md shadow-sm cursor-pointer w-full text-center bg-[#21302D] text-red-100 p-1 px-4 rounded-lg'
+                            onClick={() => {
+                                logout()
+                                navigate('/')
+                            }}
+                        >Logout
+                        </p>
 
-                        >Logout</p>
                     </div>
 
-                    <div className="bg-white rounded-xl shadow-lg mb-6 px-6 py-4">
-                        <p className="inline-block text-gray-600 hover:text-black my-2 w-full">
+                    <div className="bg-[#0D1717] text-gray-500 rounded-xl shadow-lg mb-6 px-6 py-4">
+
+                        <p className="inline-block  hover:text-gray-600 my-2 w-full">
                             Streak 0
                         </p>
-                        <p className="inline-block text-gray-600 hover:text-black my-2 w-full">
+                        <p className="inline-block  hover:text-gray-600 my-2 w-full">
                             Active Days 0
                         </p>
-                        <p className="inline-block text-gray-600 hover:text-black my-2 w-full">
+                        <p className="inline-block  hover:text-gray-600 my-2 w-full">
                             Longest Streak 0
                         </p>
-                        <p className="inline-block text-gray-600 hover:text-black my-2 w-full">
+                        <p className="inline-block  hover:text-gray-600 my-2 w-full">
                             Total Blogs 0
                         </p>
-                        <p className="inline-block text-gray-600 hover:text-black my-2 w-full">
+                        <p className="inline-block  hover:text-gray-600 my-2 w-full">
                             Profile Views 0
                         </p>
                     </div>
