@@ -4,7 +4,6 @@ import 'react-quill/dist/quill.snow.css'; // Import the styles
 
 const BlogContentInput = ({ head, onContentChange }) => {
     const [content, setContent] = useState('');
-
     const handleChange = (value) => {
         setContent(value);
         if (onContentChange) {

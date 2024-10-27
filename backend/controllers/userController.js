@@ -71,7 +71,7 @@ exports.getUserProfile = async (req, res) => {
 exports.updateUser = async (req, res) => {
   try {
     const { firstname, lastname, username, password, institute, address, bio, _id } = req.body
-    console.log(req.body);
+    // console.log(req.body);
     let data = {}
     if (firstname) data.firstname = firstname
     if (lastname) data.lastname = lastname
@@ -79,6 +79,8 @@ exports.updateUser = async (req, res) => {
     if (institute) data.institute = institute
     if (address) data.address = address
     if (bio) data.bio = bio
+    console.log(req.body);
+    
     if (password) {
       const hashedPassword = await bcrypt.hash(password, 10);
       await User.updateOne({ _id }, {
@@ -87,8 +89,10 @@ exports.updateUser = async (req, res) => {
     }
     
     const user = await User.updateOne({ _id }, { ...data });
+    console.log(user);
     return res.status(200).json(user);
   } catch (error) {
+    console.log(error.message);
     console.log(error);
 
     return res.status(500).json({ message: error.message });
@@ -97,12 +101,12 @@ exports.updateUser = async (req, res) => {
 
 exports.updateProfile=async  (req, res) =>{
   // console.table(req.file)
-  const _id=req.body._id;
-  console.log(req.body)
+  const {_id}=req.body;
+  console.log("body : ",req.body)
   try {
       const result = await uploadOnCloudinary(req.file.path, 'profile')
-      console.log(result)
-      const public_id=await User.findById(_id).select('public_id')
+      // console.log("result: ",result)
+      const public_id=await User.findById({_id}).select('public_id')
       if(public_id){
         await deleteOnCloudinary(public_id);
       }

@@ -26,7 +26,7 @@ dbConnect().then(() => console.log("Connected to MongoDB"));
 
 app.use('/api/contests', contestRoutes);
 app.use('/api/users', userRoutes);
-app.use('/api/blogs', blogRouts);
+app.use('/api/blog', blogRouts);
 // app.use('/api/cloudnary', cloudnaryRouter)
 app.use('/api/portfolio', portfolioRoutes);
 

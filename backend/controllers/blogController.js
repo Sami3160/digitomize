@@ -6,6 +6,7 @@ const { uploadOnCloudinary, deleteOnCloudinary } = require('./cloudnary')
 exports.createBlog = async (req, res) => {
     const { _id, title, content, category, tags } = req.body
     const doc = req.file
+    console.log(req.body)
     if (!title || !content || !category || !_id) {
         return res.status(400).json({ message: "Please fill the form" })
     }

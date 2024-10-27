@@ -25,11 +25,11 @@ const NewBlogModal = ({ isOpen, onRequestClose }) => {
         }
     }, [user])
 
-    const handleContentChange = (content) => {
-        const sanitizedContent = DOMPurify.sanitize(content);
+    const handleContentChange = (value) => {
+        console.log(value)
         setBlogData((prevData) => ({
             ...prevData,
-            content: sanitizedContent,
+            content: value,
         }));
     }
 
@@ -40,33 +40,45 @@ const NewBlogModal = ({ isOpen, onRequestClose }) => {
             alert("Please fill the form")
             return
         }
-
-        try {
+        console.log(blogData)
+        try {   
 
             if (!blogData) return
-            const form = new FormData()
-            for (const key in blogData) {
-                if (key !== "thumbnailUrl") form.append(key, blogData[key])
-                // form.append(key, blogData[key])
-            }
-            if (blogData.thumbnailUrl) form.append('image', blogData.thumbnailUrl)
-            form.append("_id", user._id)
-            console.log(form)
+            // const form = new FormData()
+            // for (const key in blogData) {
+            //     if (key !== "thumbnailUrl") form.append(key, blogData[key])
+            //     // form.append(key, blogData[key])
+            // }
+            // if (blogData.thumbnailUrl) form.append('image', blogData.thumbnailUrl)
+            // form.append("_id", user._id)
+            const file=blogData.thumbnailUrl
+            setBlogData((bData)=>{
+                // bData.thumbnailUrl=null
+                delete bData.thumbnailUrl;
+                bData.image=file;
+                bData._id=user._id;
+                return bData;
+            })
+            // console.log(blogData)
 
-            await axios.post("http://localhost:5000/api/blog/create", form, {
+            await axios.post("http://localhost:5000/api/blog/create", blogData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                     Authorization: `Bearer ${localStorage.getItem("token")}`
                 }
             })
+            setBlogData({
+                tags:[]
+            })
             console.log(blogData)
             setLoading(false)
             alert("Data updated successfully")
-            onRequestClose()
+            // onRequestClose()
         } catch (error) {
+            console.log(error)
             setLoading(false)
             alert("Error in updating data")
-            onRequestClose()
+            // onRequestClose()
         }
     }
 
@@ -91,7 +103,7 @@ const NewBlogModal = ({ isOpen, onRequestClose }) => {
                             <p className="text-lg text-gray-500">{user?.firstname} {user?.lastname}</p>
                         </div>
                     </div>
-                    <BlogTitleInput head={"Blog Title*"} onTitleChange={(T) => setBlogData({ ...blogData, title: T })} />
+                    <BlogTitleInput head={"Blog Title*"} onTitleChange={(T) => setBlogData((bData)=>{ return {...bData, title: T} })} />
                     <label htmlFor="title" className="mb-2 text-lg font-bold text-gray-300">
                         Blog Thumbnail
                     </label>
@@ -133,7 +145,7 @@ const NewBlogModal = ({ isOpen, onRequestClose }) => {
 
 
                     </div>
-                    <BlogContentInput head={"Blog Content*"} onTitleChange={handleContentChange} />
+                    <BlogContentInput head={"Blog Content*"} onContentChange={handleContentChange} />
                     <div className="grid grid-cols-2 gap-4">
 
                          {/* tags */}

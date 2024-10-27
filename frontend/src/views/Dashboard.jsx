@@ -104,7 +104,9 @@ let initdata = {
                     <div className="bg-[#0D1717] text-gray-500 rounded-xl gap-3 shadow-lg mb-6 px-6 py-4 flex flex-col items-center">
                         <img src={user?.profileUrl} className='rounded-md' alt="" srcSet="" />
                         <p className='text-sm text-gray-300 font-medium'>{user?.username}</p>
-                        <p className='text-xs font-light text-gray-400'>{user?.email}</p>
+                        <p className='text-xs font-light -mt-3 text-gray-400'>{user?.email}</p>
+                        <p className='text-xs font-light text-gray-400 text-wrap'>{user?.bio}</p>
+                        {/* {console.log(user)} */}
                         <p className='text-md shadow-sm cursor-pointer w-full text-center bg-[#21302D] text-teal-100 p-1 px-4 rounded-lg'
                             onClick={() => setIsModalOpen(true)}
 
@@ -164,26 +166,26 @@ let initdata = {
                             Leetcode
                             <div>
                             <div className='flex gap-1'>
-                                        <img src={leetcodedata.profile.avatar} alt="profileImage" srcSet="" className='w-10 h-10 rounded' />
+                                        <img src={leetcodedata?.profile?.avatar} alt="profileImage" srcSet="" className='w-10 h-10 rounded' />
                                         <div>
-                                            <p>{leetcodedata.profile.username}</p>
-                                            <p>Rank: {leetcodedata.profile.ranking}</p>
+                                            <p>{leetcodedata?.profile?.username}</p>
+                                            <p>Rank: {leetcodedata?.profile?.ranking}</p>
                                         </div>
                                     </div>
                                     
                                 <div className='flex gap-2'>
-                                    <p className='flex flex-col'>Total Solved {leetcodedata.solved.totalsolved}</p>
+                                    <p className='flex flex-col'>Total Solved {leetcodedata?.solved?.totalsolved}</p>
                                     <div>
-                                    <p>Easy: {leetcodedata.solved.easy}</p>
-                                    <p>Medium: {leetcodedata.solved.medium}</p>
-                                    <p>Hard: {leetcodedata.solved.hard}</p>
+                                    <p>Easy: {leetcodedata?.solved?.easy}</p>
+                                    <p>Medium: {leetcodedata?.solved?.medium}</p>
+                                    <p>Hard: {leetcodedata?.solved?.hard}</p>
                                     </div>
                                 </div>
 
                                 <div>
                                 <p>Badges</p>
                                     <div className='flex gap-2 justify-center'>
-                                    {leetcodedata.badges.badges.map((badge, index) => {
+                                    {leetcodedata?.badges?.badges.map((badge, index) => {
                                         return <div key={index} className='group relative'>
                                                 <img src={badge.icon} alt={badge.name} className='w-10 h-10'/>
                                                 <p className='hidden group-hover:block transition-all ease-in-out text-xs absolute bg-black text-white px-2 py-1 rounded  mt-1 w-[140px] text-center'>{badge.displayName}</p>
@@ -192,9 +194,9 @@ let initdata = {
                                     </div>
                                     </div>
                                 <div>
-                                    <p>Total Contest Attended: {leetcodedata.contest.totalattended}</p>
-                                    <p>Contest Rating: {leetcodedata.contest.contestRating}</p>
-                                    <p>Contest Global Ranking: {leetcodedata.contest.contestGlobalRanking}</p>
+                                    <p>Total Contest Attended: {leetcodedata?.contest?.totalattended}</p>
+                                    <p>Contest Rating: {leetcodedata?.contest?.contestRating}</p>
+                                    <p>Contest Global Ranking: {leetcodedata?.contest?.contestGlobalRanking}</p>
                                 </div>
                              
                                

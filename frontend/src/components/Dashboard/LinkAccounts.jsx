@@ -19,49 +19,49 @@ const LinkModal = ({ isOpen, onRequestClose }) => {
                 ></div>
                 <span className="hidden sm:inline-block sm:align-middle sm:h-screen"></span>&#8203;
                 <div
-                    className="inline-block px-4 pt-5 pb-4 overflow-hidden text-left align-bottom transition-all transform bg-white rounded-lg shadow-xl sm:align-middle sm:max-w-lg sm:w-full sm:p-6"
+                    className="inline-block px-4 pt-5 pb-4 overflow-hidden text-left align-bottom transition-all transform bg-[#0D1517] rounded-lg shadow-xl sm:align-middle sm:max-w-lg sm:w-full sm:p-6"
                 >
                     <div>
-                        <h3 className="text-lg font-medium leading-6 text-gray-900">Link Other Accounts</h3>
+                        <h3 className="text-lg font-bold leading-6 text-white">Link Other Accounts</h3>
                         <div className="mt-2">
-                            <p className="text-sm text-gray-500">This is a simple modal example.</p>
+                            <p className="text-sm text-gray-300">Connect to other platforms to get up-to-date progress tracking.</p>
                         </div>
                     </div>
                     <div className="w-full flex flex-col gap-4 items-center mt-10">
-                        <div className=" w-[55%] text-lg gap-3 bg-gray-100 cursor-pointer justify-between items-center border rounded-lg p-1    px-6 flex">
-                            <img src={logoMap["Codeforces"]} className="h-7 w-7" />
+                        <div className=" w-[55%] text-lg gap-3 bg-black/30 text-slate-300 cursor-pointer justify-between items-center border border-gray-700 rounded-lg p-1    px-6 flex">
+                            <img src={logoMap["Codeforces"]} className="h-7 w-7 bg-slate-100 rounded-full p-[1px]" />
                             Codeforces
                             <Add />
                         </div>
 
-                        <div className=" w-[55%] text-lg gap-3 bg-gray-100 cursor-pointer justify-between items-center border rounded-lg p-1    px-6 flex">
-                            <img src={logoMap["GitHub"]} className="h-7 w-7" />
+                        <div className=" w-[55%] text-lg gap-3 bg-black/30 text-slate-300 cursor-pointer justify-between items-center border border-gray-700 rounded-lg p-1    px-6 flex">
+                            <img src={logoMap["GitHub"]} className="h-7 w-7 bg-slate-100 rounded-full p-[1px]" />
 
                             Github
                             <Add />
                         </div>
 
 
-                        <div className=" w-[55%] text-lg gap-3 bg-gray-100 cursor-pointer justify-between items-center border rounded-lg p-1    px-6 flex">
-                            <img src={logoMap["CodeChef"]} className="h-7 w-7" />
+                        <div className=" w-[55%] text-lg gap-3 bg-black/30 text-slate-300 cursor-pointer justify-between items-center border border-gray-700 rounded-lg p-1    px-6 flex">
+                            <img src={logoMap["CodeChef"]} className="h-7 w-7 bg-slate-100 rounded-full p-[1px]" />
 
                             CodeChef
                             <Add />
                         </div>
-                        <div className=" w-[55%] text-lg gap-3 bg-gray-100 cursor-pointer justify-between items-center border rounded-lg p-1    px-6 flex">
-                            <img src={logoMap["Leetcode"]} className="h-7 w-7" />
+                        <div className=" w-[55%] text-lg gap-3 bg-black/30 text-slate-300 cursor-pointer justify-between items-center border border-gray-700 rounded-lg p-1    px-6 flex">
+                            <img src={logoMap["Leetcode"]} className="h-7 w-7 bg-slate-100 rounded-full p-[1px]" />
 
                             Leetcode
                             <Add />
                         </div>
-                        <div className=" w-[55%] text-lg gap-3 bg-gray-100 cursor-pointer justify-between items-center border rounded-lg p-1    px-6 flex">
-                            <img src={logoMap["HackerRank"]} className="h-7 w-7" />
+                        <div className=" w-[55%] text-lg gap-3 bg-black/30 text-slate-300 cursor-pointer justify-between items-center border border-gray-700 rounded-lg p-1    px-6 flex">
+                            <img src={logoMap["HackerRank"]} className="h-7 w-7 bg-slate-100 rounded-full p-[1px]" />
 
                             HackerRank
                             <Add />
                         </div>
-                        <div className=" w-[55%] text-lg gap-3 bg-gray-100 cursor-pointer justify-between items-center border rounded-lg p-1    px-6 flex">
-                            <img src={logoMap["GfG"]} className="h-7 w-7" />
+                        <div className=" w-[55%] text-lg gap-3 bg-black/30 text-slate-300 cursor-pointer justify-between items-center border border-gray-700 rounded-lg p-1    px-6 flex">
+                            <img src={logoMap["GfG"]} className="h-7 w-7 bg-slate-100 rounded-full p-[1px]" />
 
                             GeeksForGeeks
                             <Add />
