@@ -170,6 +170,7 @@ let initdata = {
                                             <p>Rank: {leetcodedata.profile.ranking}</p>
                                         </div>
                                     </div>
+                                    
                                 <div className='flex gap-2'>
                                     <p className='flex flex-col'>Total Solved {leetcodedata.solved.totalsolved}</p>
                                     <div>
@@ -178,21 +179,25 @@ let initdata = {
                                     <p>Hard: {leetcodedata.solved.hard}</p>
                                     </div>
                                 </div>
+
+                                <div>
+                                <p>Badges</p>
+                                    <div className='flex gap-2 justify-center'>
+                                    {leetcodedata.badges.badges.map((badge, index) => {
+                                        return <div key={index} className='group relative'>
+                                                <img src={badge.icon} alt={badge.name} className='w-10 h-10'/>
+                                                <p className='hidden group-hover:block transition-all ease-in-out text-xs absolute bg-black text-white px-2 py-1 rounded  mt-1 w-[140px] text-center'>{badge.displayName}</p>
+                                        </div>
+                                    })}
+                                    </div>
+                                    </div>
                                 <div>
                                     <p>Total Contest Attended: {leetcodedata.contest.totalattended}</p>
                                     <p>Contest Rating: {leetcodedata.contest.contestRating}</p>
                                     <p>Contest Global Ranking: {leetcodedata.contest.contestGlobalRanking}</p>
                                 </div>
                              
-                                <div>
-                                <p>Badges</p>
-                                    {/* {leetcodedata.badges.map((badge, index) => {
-                                        return <div key={index}>
-                                            <p>{badge.name}</p>
-                                            <img src={badge.url} alt={badge.name} />
-                                        </div>
-                                    })} */}
-                                    </div>
+                               
                             </div>
                         </div>
                         <div className="bg-white rounded-xl shadow-lg  px-6 py-4 w-4/12">
