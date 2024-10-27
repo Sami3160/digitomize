@@ -3,6 +3,7 @@ import './App.css'
 // import { IconHome, IconMessage, IconUser } from "@tabler/icons-react";
 import HeroSection from './components/HeroSection'
 import ExploreContests from './components/ExploreContests'
+import Features from './components/Features'
 // import BackgroundBeams from './components/ui/background'
 function App() {
   useEffect(()=>{
@@ -12,7 +13,7 @@ function App() {
     <>
         <HeroSection/>
         <ExploreContests/>
-
+        <Features/>
       {/* <ThreeDCardDemo/> */}
       {/* <BackgroundBeams/> */}
     </>

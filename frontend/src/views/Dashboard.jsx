@@ -5,6 +5,8 @@ import GitHubContributionGraph from '../components/GitHubContributionGraph';
 import SettingsModal from '../components/Dashboard/Settings';
 import LinkModal from '../components/Dashboard/LinkAccounts';
 import NewBlogModal from '../components/Dashboard/NewBlogModal';
+import axios from 'axios';
+
 
 export default function Dashboard() {
     const { user, logout } = useContext(AuthContext)
@@ -19,6 +21,78 @@ export default function Dashboard() {
     const closeLinkModal = () => {
         setIsLinkModalOpen(false)
     }
+useEffect(()=>{
+    getLeetcodeProfile("sami3160");
+},[])
+let initdata = {
+    "profile" : { 
+        "name":"",
+        "username":"",
+        "avatar":"",
+        "ranking":0
+    },
+    "badges":{},
+    "solved":{
+        "totalsolved":0,
+        "easy":0,
+        "medium":0,
+        "hard":0,
+    },
+    "contest":{
+        "totalattended":0,
+        "contestRating":0.0,
+        "contestGlobalRanking":0
+    }
+}
+    const [leetcodedata, setLeetcodedata] = useState(initdata);
+   
+    
+    async function getLeetcodeProfile(username) {
+        try {
+            const response = await axios.get(`https://alfa-leetcode-api.onrender.com/${username}`);
+            const response2 = await axios.get(`https://alfa-leetcode-api.onrender.com/${username}/badges`);
+            const response3 = await axios.get(`https://alfa-leetcode-api.onrender.com/${username}/solved`);
+            const response4 = await axios.get(`https://alfa-leetcode-api.onrender.com/${username}/contest`);
+
+
+            console.log('User Profile:', response.data);
+            console.log('Badges:', response2.data);
+            console.log('Solved:', response3.data);
+            console.log('Contest:', response4.data);
+            const profileData = response.data;
+            const badgesData = response2.data;
+            const solvedData = response3.data;
+            const contestData = response4.data;
+            
+            const newleetcodedata = {
+                "profile" : { 
+                    "name":profileData.name,
+                    "username":profileData.username,
+                    "avatar":profileData.avatar,
+                    "ranking":profileData.ranking
+                },
+                "badges":badgesData,
+                "solved":{
+                    "totalsolved":solvedData.solvedProblem,
+                    "easy":solvedData.easySolved,
+                    "medium":solvedData.mediumSolved,
+                    "hard":solvedData.hardSolved,
+                },
+                "contest":{
+                    "totalattended":contestData.contestAttend,
+                    "contestRating":contestData.contestRating,
+                    "contestGlobalRanking":contestData.contestGlobalRanking
+                }
+                }
+            setLeetcodedata(newleetcodedata);
+            
+            
+        } catch (error) {
+            console.error('Error fetching user profile:', error);
+        }
+    }
+
+
     if (user) return (
         <div className='w-full h-full'>
             {isModalOpen && <SettingsModal isOpen={isModalOpen} onRequestClose={closeModal} />}
@@ -85,21 +159,53 @@ export default function Dashboard() {
                             <a href="" className="bg-orange-300 text-xl text-white underline hover:no-underline inline-block rounded-full mt-12 px-8 py-2"><strong>See messages</strong></a>
                         </div>
                     </div>
-                    <div className="flex flex-row h-64 mt-6">
-                        <div className="bg-white rounded-xl shadow-lg px-6 py-4 w-4/12">
+                    <div className="flex flex-row h-64 text-sm font-semibold  gap-4 mt-4 ">
+                        <div className="bg-white rounded-xl shadow-lg p-2    w-4/12 overflow-scroll">
                             Leetcode
+                            <div>
+                            <div className='flex gap-1'>
+                                        <img src={leetcodedata.profile.avatar} alt="profileImage" srcSet="" className='w-10 h-10 rounded' />
+                                        <div>
+                                            <p>{leetcodedata.profile.username}</p>
+                                            <p>Rank: {leetcodedata.profile.ranking}</p>
+                                        </div>
+                                    </div>
+                                <div className='flex gap-2'>
+                                    <p className='flex flex-col'>Total Solved {leetcodedata.solved.totalsolved}</p>
+                                    <div>
+                                    <p>Easy: {leetcodedata.solved.easy}</p>
+                                    <p>Medium: {leetcodedata.solved.medium}</p>
+                                    <p>Hard: {leetcodedata.solved.hard}</p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p>Total Contest Attended: {leetcodedata.contest.totalattended}</p>
+                                    <p>Contest Rating: {leetcodedata.contest.contestRating}</p>
+                                    <p>Contest Global Ranking: {leetcodedata.contest.contestGlobalRanking}</p>
+                                </div>
+                             
+                                <div>
+                                <p>Badges</p>
+                                    {/* {leetcodedata.badges.map((badge, index) => {
+                                        return <div key={index}>
+                                            <p>{badge.name}</p>
+                                            <img src={badge.url} alt={badge.name} />
+                                        </div>
+                                    })} */}
+                                    </div>
+                            </div>
                         </div>
-                        <div className="bg-white rounded-xl shadow-lg mx-6 px-6 py-4 w-4/12">
+                        <div className="bg-white rounded-xl shadow-lg  px-6 py-4 w-4/12">
                             Codeforces
                         </div>
                         <div className="bg-white rounded-xl shadow-lg px-6 py-4 w-4/12">
-                            HackerRank
+                            CodeChef
                         </div>
                     </div>
+                    <GitHubContributionGraph data={data} />
 
                 </div>
             </div>
-            <GitHubContributionGraph data={data} />
         </div>
 
     )
