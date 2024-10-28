@@ -15,9 +15,16 @@ function FileUpload(req, res, next) {
 
     uploadSingle(req, res, async function (err) {
         if (err) {
-            return res.status(400).json({ error: err.message });
+            cosnole.log("eror in image middleware :",err.message)
+            return res.status(500).json({ error: err, message: "Error in uploading file inside middleware" });
         }
-        next();
+        if(!req.file){            
+            next();
+            return;
+        }else{
+            next();
+        }
+
     });
 }
 

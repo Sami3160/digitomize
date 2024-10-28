@@ -185,7 +185,7 @@ let initdata = {
                                 <div>
                                 <p>Badges</p>
                                     <div className='flex gap-2 justify-center'>
-                                    {leetcodedata?.badges?.badges.map((badge, index) => {
+                                    {leetcodedata?.badges?.badges?.map((badge, index) => {
                                         return <div key={index} className='group relative'>
                                                 <img src={badge.icon} alt={badge.name} className='w-10 h-10'/>
                                                 <p className='hidden group-hover:block transition-all ease-in-out text-xs absolute bg-black text-white px-2 py-1 rounded  mt-1 w-[140px] text-center'>{badge.displayName}</p>

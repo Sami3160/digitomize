@@ -7,11 +7,14 @@ import axios from "axios";
 import BlogContentInput from "./BlogContentInput";
 import { useNavigate } from "react-router-dom";
 import DOMPurify from 'dompurify';
+import { IoMdCloseCircle } from "react-icons/io";
 const NewBlogModal = ({ isOpen, onRequestClose }) => {
     const { user, logout } = useContext(AuthContext)
     const [loading, setLoading] = useState(false);
     const [blogData, setBlogData] = useState({
-        tags:[]
+        tags: [],
+        category: "Article",
+        _id: user?._id
     })
     const [imageChanged, setImageChanged] = useState(false)
     const navigate = useNavigate()
@@ -40,26 +43,11 @@ const NewBlogModal = ({ isOpen, onRequestClose }) => {
             alert("Please fill the form")
             return
         }
-        console.log(blogData)
-        try {   
+        try {
 
             if (!blogData) return
-            // const form = new FormData()
-            // for (const key in blogData) {
-            //     if (key !== "thumbnailUrl") form.append(key, blogData[key])
-            //     // form.append(key, blogData[key])
-            // }
-            // if (blogData.thumbnailUrl) form.append('image', blogData.thumbnailUrl)
-            // form.append("_id", user._id)
-            const file=blogData.thumbnailUrl
-            setBlogData((bData)=>{
-                // bData.thumbnailUrl=null
-                delete bData.thumbnailUrl;
-                bData.image=file;
-                bData._id=user._id;
-                return bData;
-            })
-            // console.log(blogData)
+            setBlogData((bData) => { return { ...bData, _id: user._id } })
+            console.log(blogData)
 
             await axios.post("http://localhost:5000/api/blog/create", blogData, {
                 headers: {
@@ -68,16 +56,21 @@ const NewBlogModal = ({ isOpen, onRequestClose }) => {
                 }
             })
             setBlogData({
-                tags:[]
+                tags: [],
+                category: "Article"
             })
             console.log(blogData)
+            setTimeout(()=>onRequestClose(), 2000)
             setLoading(false)
-            alert("Data updated successfully")
+            alert("New blog posted successfully")
             // onRequestClose()
         } catch (error) {
             console.log(error)
+            console.log(error.message)
+            console.log(error.response)
             setLoading(false)
-            alert("Error in updating data")
+            // setTimeout(()=>onRequestClose(), 2000)
+            alert(error.message)
             // onRequestClose()
         }
     }
@@ -90,12 +83,15 @@ const NewBlogModal = ({ isOpen, onRequestClose }) => {
                 <div
                     className="fixed inset-0 transition-opacity bg-gray-500 bg-opacity-75"
                     onClick={() => onRequestClose()}
-                >X
+                >
                 </div>
 
                 <div
-                    className="inline-block px-4 pt-5 pb-4 overflow-hidden text-left align-bottom transition-all transform bg-[#0D1517]  rounded-lg shadow-xl sm:align-middle sm:max-w-5xl sm:w-full sm:p-6"
+                    className="inline-block relative px-4 pt-5 pb-4 overflow-hidden text-left align-bottom transition-all transform bg-[#0D1517]  rounded-lg shadow-xl sm:align-middle sm:max-w-5xl sm:w-full sm:p-6"
                 >
+                    <div className="absolute top-0">
+                        <IoMdCloseCircle className=""/>
+                    </div>
                     <div>
                         <h3 className="text-xl font-medium leading-6 text-gray-400">Create New Blog</h3>
                         <div className="mt-2 flex items-center gap-3">
@@ -103,7 +99,7 @@ const NewBlogModal = ({ isOpen, onRequestClose }) => {
                             <p className="text-lg text-gray-500">{user?.firstname} {user?.lastname}</p>
                         </div>
                     </div>
-                    <BlogTitleInput head={"Blog Title*"} onTitleChange={(T) => setBlogData((bData)=>{ return {...bData, title: T} })} />
+                    <BlogTitleInput head={"Blog Title*"} onTitleChange={(T) => setBlogData((bData) => { return { ...bData, title: T } })} />
                     <label htmlFor="title" className="mb-2 text-lg font-bold text-gray-300">
                         Blog Thumbnail
                     </label>
@@ -111,16 +107,16 @@ const NewBlogModal = ({ isOpen, onRequestClose }) => {
 
                         <div className="flex justify-between w-full">
                             {
-                                blogData.thumbnailUrl ? (
+                                blogData.image ? (
                                     <div className="w-full relative">
                                         <FaWindowClose className="absolute right-2 top-2 h-10 w-10 cursor-pointer shadow-lg text-red-600"
-                                            onClick={() => setBlogData({ ...blogData, thumbnailUrl: null })}
+                                            onClick={() => setBlogData((bData)=>{return{ ...bData, image: null }})}
                                         />
-                                        <img src={URL.createObjectURL(blogData.thumbnailUrl)} className="w-full object-cover max-h-[25rem] rounded-md" alt="" />
+                                        <img src={URL.createObjectURL(blogData.image)} className="w-full object-cover max-h-[25rem] rounded-md" alt="" />
                                     </div>
                                 ) : (
                                     <div className="w-full relative border-2 border-gray-300 border-dashed rounded-lg p-6" id="dropzone">
-                                        <input type="file" accept="image/png, image/gif, image/jpeg" className="absolute inset-0 w-full h-full opacity-0 z-50" name="thumbnailUrl" onChange={(e) => setBlogData({ ...blogData, thumbnailUrl: e.target.files[0] })} />
+                                        <input type="file" accept="image/png, image/gif, image/jpeg" className="absolute inset-0 w-full h-full opacity-0 z-50" name="thumbnailUrl" onChange={(e) => setBlogData((bData)=>{return { ...bData, image: e.target.files[0] }})} />
                                         <div className="text-center">
                                             <img className="mx-auto h-12 w-12" src="https://www.svgrepo.com/show/357902/image-upload.svg" alt="" />
 
@@ -148,38 +144,38 @@ const NewBlogModal = ({ isOpen, onRequestClose }) => {
                     <BlogContentInput head={"Blog Content*"} onContentChange={handleContentChange} />
                     <div className="grid grid-cols-2 gap-4">
 
-                         {/* tags */}
+                        {/* tags */}
 
-                         <div className="gap-2">
+                        <div className="gap-2">
                             <label htmlFor="tags" className="mb-2 text-lg font-bold text-gray-300">
                                 Enter Tags <span className="text-xs font-thin">(eg: java, binary search, machine learning)</span>
                             </label>
                             <input type="text" id="tags" className="w-full mt-2 text-md bg-black/30 focus:outline-none text-white p-3 border border-gray-700 rounded-md" name=""
                                 onKeyDown={(e) => {
-                                    if(e.key === "Enter"){
-                                        const tag=e.target.value.trim()
-                                        
-                                        if(!(blogData.tags.includes(tag))){
-                                            setBlogData((bData)=> {
+                                    if (e.key === "Enter") {
+                                        const tag = e.target.value.trim()
+
+                                        if (!(blogData.tags.includes(tag))) {
+                                            setBlogData((bData) => {
                                                 bData.tags.push(tag)
                                                 return bData;
                                             })
                                         }
-                                    e.target.value=""
+                                        e.target.value = ""
                                     }
                                 }}
                             />
                             <div className="bg-[#0D1117] p-2 w-[90%] mx-auto border border-gray-700 border-t-0 flex gap-3 flex-wrap">
                                 {
-                                    blogData.tags.map((tag,index)=>{                                        
+                                    blogData.tags.map((tag, index) => {
                                         return (
                                             <div key={index} className="flex items-center bg-slate-500/20 p-1 px-2 rounded-xl w-auto">
                                                 <span className="text-xs text-gray-400 ">{tag}</span>
                                                 <FaWindowClose className="text-red-500 ml-2 cursor-pointer"
-                                                    onClick={()=>{                                                      
-                                                        setBlogData((bData)=>{
-                                                            const arr=bData.tags.filter((t)=>t!=tag)
-                                                            bData.tags=arr
+                                                    onClick={() => {
+                                                        setBlogData((bData) => {
+                                                            const arr = bData.tags.filter((t) => t != tag)
+                                                            bData.tags = arr
                                                             return bData;
                                                         })
                                                     }}
@@ -192,7 +188,7 @@ const NewBlogModal = ({ isOpen, onRequestClose }) => {
                         </div>
 
 
-                            {/* category */}
+                        {/* category */}
                         <div>
                             <label htmlFor="category" className="mb-2 text-lg font-bold text-gray-300">
                                 Blog Category*
@@ -200,7 +196,7 @@ const NewBlogModal = ({ isOpen, onRequestClose }) => {
                             <select
                                 name="category"
                                 id="category"
-                                onChange={handleChange}
+                                onChange={(e)=>setBlogData((bData)=>{return {...bData,category:e.target.value}})}
                                 className="w-full mt-2 p-3 text-gray-100 bg-black/30 border border-gray-700 rounded-md outline-none"
                             >
                                 <option value="Article">Article</option>
@@ -211,16 +207,29 @@ const NewBlogModal = ({ isOpen, onRequestClose }) => {
                         </div>
 
 
-                       
+
                     </div>
 
-                    <div className="mt-5 sm:mt-6 flex gap-5">
-                        <button
-                            onClick={() => handleSave()}
-                            className="inline-flex justify-center w-full px-4 py-2 text-base font-medium text-white bg-blue-600 border border-transparent rounded-md shadow-sm close-modal hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:text-sm"
-                        >
-                            {loading ? 'Posting new blog...' : 'Post'}
-                        </button>
+                    <div className="grid grid-cols-2 gap-4">
+
+                        <div className="mt-5 sm:mt-6 flex gap-5">
+                            <button
+                                onClick={() => onRequestClose()}
+                                className="inline-flex justify-center w-full px-4 py-2 text-base font-medium text-white bg-blue-600 border border-transparent rounded-md shadow-sm close-modal hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:text-sm"
+                            >
+                                Close
+                            </button>
+                        </div>
+                        <div className="mt-5 sm:mt-6 flex gap-5">
+                            <button
+                                onClick={() => handleSave()}
+                                className="inline-flex justify-center w-full px-4 py-2 text-base font-medium text-white bg-blue-600 border border-transparent rounded-md shadow-sm close-modal hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:text-sm"
+                            >
+                                {loading ? 'Posting new blog...' : 'Post'}
+                            </button>
+                        </div>
+
+
                     </div>
 
                 </div>

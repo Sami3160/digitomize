@@ -7,8 +7,9 @@ exports.createBlog = async (req, res) => {
     const { _id, title, content, category, tags } = req.body
     const doc = req.file
     console.log(req.body)
+    console.log(req.file)
     if (!title || !content || !category || !_id) {
-        return res.status(400).json({ message: "Please fill the form" })
+        return res.status(403).json({ message: "Please fill the form" })
     }
     let data = {}
     if (title) data.title = title
@@ -17,29 +18,53 @@ exports.createBlog = async (req, res) => {
     if (tags) data.tags = tags
 
 
+    let result;
     try {
-        let result;
+
         if (doc) {
-            result = await uploadOnCloudinary(doc, 'thumbnail')
+            result = await uploadOnCloudinary(doc.path, 'thumbnail')
             if (result) {
                 data.thumbnailUrl = result.url
                 data.public_id = result.public_id
             }
         }
-        const newBlog = new Blog({
+        console.log("image result: ", result)
+
+
+    } catch (error) {
+        console.log("Error savinf image: ",error)
+        return res.status(500).json({ message: error.message })
+
+    }
+    let newBlog;
+    try {
+        newBlog = new Blog({
             ...data,
             owner: _id,
         })
+        await newBlog.save()
+        console.log("blog result: ", newBlog)
+    } catch (error) {
+        console.log("Error saving blog: ",error)
+        return res.status(500).json({ message: error.message })
+    }
+
+
+
+    try {
 
         const updateUser = await User.findByIdAndUpdate(_id,
             { $push: { blogs: newBlog._id }, },
             { new: true, useFindAndModify: false }
         )
 
+        console.log("updateUser result: ", updateUser)
+
         if (!updateUser) return res.status(400).json({ message: "User not found" })
         return res.status(200).json({ message: "Blog created successfully", newBlog })
+
     } catch (error) {
-        console.log(error)
+        console.log("error in updating profile ",error)
         return res.status(500).json({ message: error.message })
     }
 }
@@ -51,9 +76,9 @@ exports.deleteBlog = async (req, res) => {
         return res.status(400).json({ message: "Need user id and blog id" })
     }
 
+    let result;
     try {
         const blog = await Blog.findById(blog_id)
-        let result;
         if (doc) {
             result = await deleteOnCloudinary(blog.public_id)
         }
