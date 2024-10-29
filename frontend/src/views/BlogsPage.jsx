@@ -1,10 +1,49 @@
 import { NavLink, Outlet, useNavigate, useSearchParams } from "react-router-dom"
 import SingleBlogPage from "./SingleBlogPage"
+import { useEffect, useState } from "react"
+import DOMPurify from "dompurify"
+import axios from "axios"
 function BlogsPage() {
-    const navigate=useNavigate()
+    const [pageSize] = useState(4)
+    const [page, setPage] = useState(1)
+    const [blogs, setBlogs] = useState([])
+    const navigate = useNavigate()
+    const [blogData, setBlogData] = useState({})
+    const formatDateTime = (isoString) => {
+        const date = new Date(isoString);
+        return date.toLocaleString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            hour: 'numeric',
+            minute: 'numeric',
+            second: 'numeric',
+            hour12: true,
+        });
+    };
+    useEffect(() => {
+        const fetchBlogs = async () => {
+            try {
+                const response = await axios.get('http://localhost:5000/api/blog/getBlogs', {
+                    params: {
+                        page,
+                        pageSize
+                    }
+                })
+                // console.log(response.data.blogs)
+                setBlogs(response.data.blogs)
+            } catch (error) {
+                console.log("blogs fetching error :", error.message)
+                console.log(error)
+                return error
+            }
+        }
+        // setBlogs()
+        fetchBlogs()
+    }, [page, pageSize])
     // const id=
-    const [searchParams]=useSearchParams()
-    if(searchParams.get('id'))return <SingleBlogPage/>
+    const [searchParams] = useSearchParams()
+    if (searchParams.get('id')) return <SingleBlogPage blogData={blogData}/>
     return (
         <div className="pt-10">
             <h1 className="text-7xl text-white  mx-32 mt-16">Daily Blogs</h1>
@@ -12,28 +51,38 @@ function BlogsPage() {
                 Explore our blog: your coding corner with practical tips, breakthrough trends, and inspiring discussions. Grow your skills, share your voice, and design your tech future.
             </h1>
             <div className="max-w-screen-xl mx-auto p-16">
-
+                {console.log(blogs)}
                 <div className="sm:grid lg:grid-cols-3 sm:grid-cols-2 gap-10">
+                    {blogs?.map((object, index) => (
+                        <div key={index}
+                            onClick={() => {
+                                setBlogData(object)
 
-                    {[1, 2, 3, 4, 5, 6,7,8].map((ind, index) => (
-                        <div key={ind}
-                            onClick={()=>navigate(`/blogs?id=${index}`)}
+                                navigate(`/blogs?id=${object._id}`)
+                            }}
                             className="bg-[#020617]  cursor-pointer hover:bg-[#101423] hover:text-white transition duration-300 max-w-sm rounded overflow-hidden shadow-lg">
                             <div className="py-4 px-8">
                                 <div className="flex items-center  gap-4 text-white">
 
-                                    <img src="https://tailwindcss.com/img/jonathan.jpg" className="rounded-full h-12 w-12 mb-4" />
-                                    <p className="text-xl">Ajay Patil {index} </p >
-                                </div><NavLink href="#">
-                                    <h4 className="text-lg mb-3 text-white font-semibold">How to be effective at working remotely?</h4>
+                                    <img src={object.owner.profileUrl} className="rounded-full h-12 w-12 " />
+                                    <div className="flex- flex-col gep-2 justify-center">
+                                        <p className="text-xl font-medium">{object.owner.username}</p >
+                                        <p className="text-xs font-thin text-gray-300">{object.owner.firstname} {object.owner.lastname}</p >
+                                    </div>
+                                </div>
+                                <NavLink href="#">
+                                    <h4 className="text-lg mb-3 text-white font-semibold">{object.title}</h4>
                                 </NavLink>
-                                <p className="mb-2 text-sm text-gray-600">Lorem Ipsum is simply dummy text of the printing and typesetting
-                                    industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
+                                <p className="mb-2 text-sm text-gray-600">{DOMPurify.sanitize(object.content.substring(0, 150) + "...", {
+                                    USE_PROFILES: {
+                                        html: false
+                                    }
+                                })}</p>
 
-                                <img src="https://images.pexels.com/photos/461077/pexels-photo-461077.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=1&amp;w=500" className="w-100" />
+                                <img src={object.thumbnailUrl} className="h-32 object-fill w-full" />
 
                                 <hr className="mt-4" />
-                                <p className="text-xs text-gray-200">12/05/2024</p>
+                                <p className="text-xs text-gray-200">{formatDateTime(object.createdAt)}</p>
 
                             </div>
                         </div>

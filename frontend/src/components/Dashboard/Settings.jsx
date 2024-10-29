@@ -8,7 +8,11 @@ import { useNavigate } from "react-router-dom";
 const SettingsModal = ({ isOpen, onRequestClose }) => {
     const { user, logout } = useContext(AuthContext)
     const [loading, setLoading] = useState(false);
-    const [userData, setUserData] = useState({})
+    const [userData, setUserData] = useState({
+        _id: localStorage.getItem("user").replaceAll('"', ''),
+    })
+    // console.log(typeof user?._id, user?._id)
+    // console.log(typeof localStorage.getItem("user"), localStorage.getItem("user"))
     const [imageChanged, setImageChanged] = useState(false)
     const navigate = useNavigate()
     const handleChange = (e) => {
@@ -49,15 +53,10 @@ const SettingsModal = ({ isOpen, onRequestClose }) => {
             const form = new FormData()
             for (const key in userData) {
                 form.append(key, userData[key])
-                if(!userData[key] || userData[key]===""){
+                if (!userData[key] || userData[key] === "") {
                     delete userData[key]
                 }
             }
-            form.append('_id', user._id)
-            // console.log(userData._id=user._id);
-            setUserData((uData)=>{return {...uData,_id:user._id}})
-            console.log(formToJSON(form))
-            console.table(formToJSON(form))
 
             await axios.post("http://localhost:5000/api/users/updateUser", userData, {
                 headers: {
@@ -65,7 +64,7 @@ const SettingsModal = ({ isOpen, onRequestClose }) => {
                 }
             })
             for (const key in userData) {
-                setUserData((udata) => { return { ...udata, [key]: "" } })
+                if(key!=="_id")setUserData((udata) => { return { ...udata, [key]: "" } })
             }
             setLoading(false)
             alert("Data updated successfully")
@@ -78,7 +77,7 @@ const SettingsModal = ({ isOpen, onRequestClose }) => {
     const handleImageSave = async () => {
         const form = new FormData()
         form.append("image", userData.profileUrl)
-        form.append("_id", user._id)
+        form.append("_id", localStorage.getItem("user").replaceAll('"', ''))
 
         try {
             const result = await axios.post("http://localhost:5000/api/users/updateProfile", form, {

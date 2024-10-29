@@ -66,7 +66,7 @@ export function SignupFormDemo() {
             setTimeout(() => navigate("/home"), 3000);
             // navigate("/login");
         }).catch((err) => {
-            console.log(err);
+            console.log("error cane : ",err);
             setError(true);
             setErrorMsg(err.response.data.message);
             setTimeout(()=>setError(false),3000)

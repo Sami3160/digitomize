@@ -39,7 +39,7 @@ exports.loginUser = async (req, res) => {
   const { email, password } = req.body;
   try {
     console.log(email, password);
-    const user = await User.findOne({ email });
+    let user = await User.findOne({ email });
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
@@ -48,10 +48,12 @@ exports.loginUser = async (req, res) => {
     if (!isMatch) {
       return res.status(400).json({ message: "Invalid credentials" });
     }
+    user = await User.findOne({ email }).select('-password');
 
     const token = jwt.sign({ userId: user._id }, "secret", { expiresIn: '4h' });
     res.status(200).json({ token, user });
   } catch (error) {
+    console.log(error);
     res.status(500).json({ message: error.message });
   }
 };
@@ -80,6 +82,7 @@ exports.updateUser = async (req, res) => {
     if (address) data.address = address
     if (bio) data.bio = bio
     console.log(req.body);
+    console.log(_id);
     
     if (password) {
       const hashedPassword = await bcrypt.hash(password, 10);
