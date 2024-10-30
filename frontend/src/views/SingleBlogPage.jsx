@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { useContext, useEffect, useState } from 'react'
-import { FaComment, FaHeart } from 'react-icons/fa';
+import { useContext, useEffect, useRef, useState } from 'react'
+import { FaComment, FaDumpster, FaHeart } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import { IoMdClose } from 'react-icons/io';
@@ -31,6 +31,10 @@ function SingleBlogPage() {
                 params: {
                     user_id: user?._id,
                     blog_id: searchParams.get('id'),
+                },
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${localStorage.getItem("token")}`
                 }
             })
             setLiked((prev) => !prev)
@@ -40,38 +44,37 @@ function SingleBlogPage() {
             return error
         }
     }
-    useEffect(() => {
-        const fetchBlogs = async () => {
-            try {
-                const response = await axios.get('http://localhost:5000/api/blog/getOneBlog', {
-                    params: {
-                        _id: searchParams.get('id'),
-                    }
-                })
-                setBlogData(response?.data?.blogData)
-                if (response?.data?.blogData?.likes.includes(user?._id)) {
-                    setLiked(true)
+    const fetchBlogs = async () => {
+        try {
+            const response = await axios.get('http://localhost:5000/api/blog/getOneBlog', {
+                params: {
+                    _id: searchParams.get('id'),
                 }
-                // response.data?.blogData?.comments.map((comment)=>{
-                //     comment.author?._id===user._id
-                // })
-
-
-                // if(response.data.)
-            } catch (error) {
-                console.log("blogs fetching error :", error.message)
-                console.log(error)
-                return error
+            })
+            setBlogData(response?.data?.blogData)
+            if (response?.data?.blogData?.likes.includes(user?._id)) {
+                setLiked(true)
             }
+            // response.data?.blogData?.comments.map((comment)=>{
+            //     comment.author?._id===user._id
+            // })
+
+
+            // if(response.data.)
+        } catch (error) {
+            console.log("blogs fetching error :", error.message)
+            console.log(error)
+            return error
         }
-        // setBlogs()
+    }
+    useEffect(() => {
         fetchBlogs()
     }, [location.href, window.location.search, liked])
 
 
     return (
         <div className='pt-20 relative' >
-            {showComments && <CommentsModal setShowComments={setShowComments} comments={blogData?.comments} />}
+            {showComments && <CommentsModal fetch={fetchBlogs} setShowComments={setShowComments} comments={blogData?.comments} />}
             <main className="container mx-auto mt-8 bg-[#111111] p-4 ">
                 <div className="flex flex-wrap justify-between">
                     <div className="w-full md:w-8/12 p-4 mb-8 bg-[#212121]">
@@ -169,8 +172,11 @@ function SingleBlogPage() {
 
 
 
-const CommentsModal = ({ setShowComments, comments }) => {
-    const navigate=useNavigate()
+const CommentsModal = ({ setShowComments, comments, fetch }) => {
+    const navigate = useNavigate()
+    const { user } = useContext(AuthContext)
+    const content = useRef("")
+    const searchParams = new URLSearchParams(window.location.search)
     const formatDateTime = (isoString) => {
         const date = new Date(isoString);
         return date.toLocaleString('en-US', {
@@ -183,8 +189,70 @@ const CommentsModal = ({ setShowComments, comments }) => {
             hour12: true,
         });
     };
+    const handleCommentInput = async () => {
+        if (!user) {
+            alert('Please login to add a comment')
+            return
+        } else {
+            try {
+                const main_content = content.current.value.trim()
+                await axios.post('http://localhost:5000/api/blog/addComment', {
+                    blog_id: searchParams.get('id'),
+                    user_id: user._id,
+                    content: main_content
+                }, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${localStorage.getItem("token")}`
+                    }
+                })
+                content.current.value = ""
+                alert('Comment added successfully')
+                fetch()
+            } catch (error) {
+                console.log("comment adding error :", error.message)
+                console.log(error)
+                alert('Error adding comment', error.message)
+                return error
+            }
+        }
+    }
 
-    console.log(comments)
+
+    const handleDeleteComment = async (comment_id) => {
+        try {
+            // await axios.delete('http://localhost:5000/api/blog/deleteComment', {
+            //     comment_id,
+            //     blog_id: searchParams.get('id')
+            // }, {
+            //     headers: {
+            //         'Content-Type': 'application/json',
+            //         Authorization: `Bearer ${localStorage.getItem("token")}`
+            //     }
+            // }
+            // )
+            await axios.post('http://localhost:5000/api/blog/deleteComment', {
+                blog_id: searchParams.get('id'),
+                comment_id: comment_id,
+            }, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${localStorage.getItem("token")}`
+                }
+            })
+            alert('Comment deleted successfully')
+            fetch()
+        } catch (error) {
+            console.log(error)
+            if (error.status === 401) {
+                alert('Unauthorized user')
+            } else {
+                console.log(error)
+                alert("error deleting comment", error.message)
+            }
+        }
+    }
+    // console.log(comments)
     return (
         <div className="absolute shadow-xl z-10 top-1/4 bg-black/95 rounded-xl right-5 w-[90vw] md:w-[40vw] h-[60vh]">
             <div className="relative w-full h-full  p-4 ">
@@ -192,19 +260,32 @@ const CommentsModal = ({ setShowComments, comments }) => {
                     onClick={() => setShowComments(false)}
                 />
                 <h4 className='text-white text-xl'>Comments</h4>
-                <div className="comments ares flex flex-col w-full h-[75%] mt-3 overflow-y-auto">
+                <div className="comments ares flex flex-col w-full bg-gray-950/35 p-2 h-[75%] mt-3 overflow-y-auto">
                     {
                         comments?.length > 0 ? comments?.map((comment, index) => {
                             return (
                                 <div key={index} className="bg-[#212121] p-2 rounded-lg mb-2">
-                                    <div className="flex gap-2 items-center">
-                                        <img src={comment?.author?.profileUrl} className='h-10 w-10 rounded-full cursor-pointer hover:shadow-lg' 
-                                            onClick={()=>navigate(`/profile/${comment?.author?._id}`)}
-                                        />
-                                        <div className="flex flex-col gap-1">
-                                            <p className="text-white font-bold">{comment?.author?.username}</p>
-                                            <p className="text-gray-300 text-xs">{formatDateTime(comment?.createdAt)}</p>
+                                    <div className="flex gap-2 items-center justify-between">
+                                        <div className='flex gap-2'>
+
+                                            <img src={comment?.author?.profileUrl} className='h-10 w-10 rounded-full cursor-pointer hover:shadow-lg'
+                                                onClick={() => navigate(`/profile/${comment?.author?._id}`)}
+                                            />
+                                            <div className="flex flex-col gap-1">
+                                                <p className="text-white font-bold">{comment?.author?.username}</p>
+                                                <p className="text-gray-300 text-xs">{formatDateTime(comment?.createdAt)}</p>
+                                            </div>
                                         </div>
+                                        {
+                                            comment?.author?._id === user?._id && (
+
+                                                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAtklEQVR4nO3SsYkCURSF4QED2cQG1HQTCzAWjM1twAJMjBZBLMPAPrQBs4VtwALcYFFQ0OWTgRGeg6jDCCrMDwfevZd3DlxuFBUUvD9ooB2onMesij4GiUbYOWcezGN1sgR8yc4GpXsDPtBKraR9Q5/RS4FZxhU18wQssE4ZfuP3EQHLpB4HZtv4TNF7RMBPUseneOIv6XWLgJhiRc+/ohUqmARme9QwzBMwDT4fgvel3j/q1wyPjNG/VaJ5K54AAAAASUVORK5CYII="
+                                                    className='h-6 w-6 cursor-pointer hover:shadow-lg    m-2'
+                                                    onClick={() => handleDeleteComment(comment?._id)}
+                                                ></img>
+                                            )
+                                        }
+
                                     </div>
                                     <p className="text-white">{comment?.content}</p>
                                 </div>
@@ -212,13 +293,21 @@ const CommentsModal = ({ setShowComments, comments }) => {
                         })
                             :
                             (
-                                <div className='text-2xl text-white'>No comments yet</div>
+                                <div className='text-2xl text-white w-full text-center'>No comments yet</div>
                             )
                     }
                 </div>
                 <div className="flex bg-white rounded-b-lg">
-                    <input type="text" placeholder='Add  new comment' className='w-full rounded-b-lg focus:outline-none text-lg p-1' />
-                    <div className="button bg-blue-600  text-white text-lg p-1 rounded-br-lg px-3 cursor-pointer">Add</div>
+                    <input type="text" ref={content}
+                        onKeyDown={(e) => {
+                            if (e.key === 'Enter') {
+                                handleCommentInput()
+                            }
+                        }}
+                        placeholder='Add  new comment' className='w-full rounded-b-lg focus:outline-none text-lg p-1' />
+                    <button className="submit bg-blue-600  text-white text-lg p-1 rounded-br-lg px-3 cursor-pointer"
+                        onClick={handleCommentInput}
+                    >Add</button>
                 </div>
             </div>
         </div>

@@ -73,7 +73,7 @@ exports.createBlog = async (req, res) => {
 exports.deleteBlog = async (req, res) => {
     const { user_id, blog_id } = req.body
     const doc = req.file
-    if (!userId || !blog_id) {
+    if (!user_id || !blog_id) {
         return res.status(400).json({ message: "Need user id and blog id" })
     }
 
@@ -84,12 +84,12 @@ exports.deleteBlog = async (req, res) => {
             result = await deleteOnCloudinary(blog.public_id)
         }
         await Blog.deleteOne({ _id: blog_id })
-        const updateUser = await User.findByIdAndUpdate(_id,
-            { $pull: { blogs: newBlog._id }, },
+        const updateUser = await User.findByIdAndUpdate(user_id,
+            { $pull: { blogs: blog_id }, },
             { new: true, useFindAndModify: false }
         )
 
-        return res.status(200).json({ message: "Blog created successfully", newBlog })
+        return res.status(200).json({ message: "Blog deleted successfully"})
     } catch (error) {
         console.log(error)
         return res.status(500).json({ message: error.message })
@@ -169,18 +169,15 @@ exports.updateLike = async (req, res) => {
 
 exports.addComment = async (req, res) => {
     const { blog_id, user_id, content } = req.body;
+    console.log(req.body)
 
     try {
-        // Create a new comment
         const newComment = new Comment({
             content,
             author: user_id
         });
 
-        // Save the comment to the database
         const savedComment = await newComment.save();
-
-        // Update the blog's comments array
         const updatedBlog = await Blog.findByIdAndUpdate(
             blog_id,
             { $push: { comments: savedComment._id } },

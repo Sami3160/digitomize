@@ -31,6 +31,5 @@ app.use('/api/blog', blogRouts);
 app.use('/api/portfolio', portfolioRoutes);
 
 
-
 const PORT = 5000;
 app.listen(PORT, console.log(`Server running on port ${PORT}`));
