@@ -1,16 +1,89 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
-import { param } from "../../../backend/routes/userRoutes"
 
 function UserProfile() {
     const [userData, setUserData] = useState({})
     const { user_id } = useParams()
+    const [showModal, setShowModal] = useState('')
+    const logoMap = {
+        "Leetcode": "https://img.icons8.com/external-tal-revivo-shadow-tal-revivo/24/external-level-up-your-coding-skills-and-quickly-land-a-job-logo-shadow-tal-revivo.png",
+        "CodingNinjas": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAaGVYSWZNTQAqAAAACAAEAQYAAwAAAAEAAgAAARIAAwAAAAEAAQAAASgAAwAAAAEAAgAAh2kABAAAAAEAAAA+AAAAAAADoAEAAwAAAAEAAQAAoAIABAAAAAEAAABfoAMABAAAAAEAAABfAAAAAPfNbXAAAAP5SURBVHicvZZPaFxVFMa/79z73mTG2Fg0pLUmbWyTagJKERFDNYILbVpQDK0uBK1pElLcuNCFS8GNIKhV1CiKoCCNrQspKP6BqMWNEanFP4lJkyxKxGqNTSYz8969x0WccTKZxHTy5ywevPfuvd/vnXfuPR+xghjubWiRmLfR4GZV7BDySq9qSehK5pcLBRBSnrLLDOB4z/b7lOxV1TYbyCYhoAVJVqoNAvAAcuqvKQswfGTXdeMSvyDCTkMg8kDsK/7YpQDUAH4RwLm+7TfCxR8kLFsysSJeM9nyIcU3P/Y0bFXHgdCyZS7Wyn9wJQAKMFB5PmnZmok3QroEYKy74e7Q4NDcBooDQL4GqODjVmiWKzYCMEJI5RugsI4H6LyKBYDRnuvrAXdXzi0tHhoicorI+wkAUwSiVQKogH/MZ4DxHQkxNdklAEJDxE4/VeVzgfVDDa9O/kWsTY1aAFBFG5dIa8IQGafv+YTtaj72a3YtRBcAHD8IQ7C13K+3QmSdn/BR9onm/qk1FwcA217bkpyJ0tvKAQQCxA7vN7899TsA3PnA/iYNoswWX3N+YGDAXY7QLQcOpBLJqD4LNzU08Nl0AWA6l7tKiM1eFxIQQM4pFBjMP3PUI0YT3ed1dnxvZ8dPSj1rlL945fdfnzw1lh/X/kh7VTRTfauh360euyFsBX0TVFIphnsB/AfgJao2iqC0uZCAU42s6ET+mVG+6b3rCsJgD4A9AOCi+Izz2gdgrHi+QPcp5ckgGVhVBUDEUe7FrwY+Olc8zoZkQkuO5HwoGHnD2fz9lydPjdx+6N59jKI+gBbA54KZE9+cGJwpnjf4zmAGwNNtBzuOR7noQYI7Vd235or0S6UaHO1rvAmxnhZBdXEdCAGvSAu1tfH1ifFygGsRAkEG1EUFpQBUNfSxbFovcQCQbOQuQZFddAwoEBixavyudQWoQe20kn+y5CRSzG9DKO5ZV4Br+4fmAJ0s12ByTiFk58jRneuWBSGgBM6UA3AKhIZXS+zeGO1qrFsPAALASM/2+xMiH0ZLtOLQEDmvP8PzFSPui5j2QhjlVu3W6k3dJQLA8OEttRIkfrDCOufLDw7+9QHZ2GcVvEhqrlLhgiklHi0kfrR7x1vJgIf/zxEJ5xcoLdoKAKDOdxRcsad/ORPLQ0Ikl3PghXdauR0oyoAWjuCm/snvFHqsyq7Sb11mLOgBqXTmmXTkP0kFGwexAGDru7/NViHxcDqnH6csYTaAY1EX3NY/fOEis51zsT4L1b+TlrBCrKLmlo1llx3ubWgJIY95oEMVjVZYRWLVdjS/C7z6/Sv6rrNHW6pTcbrVAzcI0OCBzVS1lXJw/qLi8No/YzuoX35Hj9UAAAAASUVORK5CYII=",
+        "Codeforces": "https://img.icons8.com/external-tal-revivo-filled-tal-revivo/24/external-codeforces-programming-competitions-and-contests-programming-community-logo-filled-tal-revivo.png",
+        "GfG": "https://digitomize.com/assets/geeksforgeeks-1a83bb08.svg",
+        "CodeChef": "https://digitomize.com/assets/codechef-f6a4f2da.svg",
+        "GitHub": "https://img.icons8.com/ios-glyphs/30/github.png",
+        "HackerRank": "https://img.icons8.com/windows/32/hackerrank.png",
+    }
+    const contactMap = {
+        "X": {
+            "img": "https://img.icons8.com/ios-filled/50/twitterx--v1.png",
+            "profile": "https://twitter.com/rchandra"
+        },
+        "LinkedIn": {
+            "img": "https://img.icons8.com/fluency/48/linkedin.png",
+            "profile": "https://linkedin.com/rchandra"
+        },
+        "Medium": {
+            "img":"https://img.icons8.com/glyph-neue/64/medium-monogram.png",
+            "profile": "https://medium.com/rchandra"
+        },
+        "StackOverflow": {
+            "img":"https://img.icons8.com/color/48/stackoverflow.png",
+            "profile": "https://stackoverflow.com/rchandra"
+        },
+    }
+
+    const dummyStats = {
+        "Leetcode": {
+            "Username": "RChandra",
+            "Contest Rating": 1500,
+            "Contests Attended": 4,
+            "Problems Solved": 100,
+            "Profile Link": "https://leetcode.com/rchandra",
+        },
+        "Codeforces": {
+            "Username": "RChandra",
+            "Contest Rating": 1700,
+            "Contests Attended": 10,
+            "Problems Solved": 200,
+            "Profile Link": "https://codeforces.com/rchandra",
+        },
+        "GfG": {
+            "Username": "RChandra",
+            "Contest Rating": 1100,
+            "Contests Attended": 2,
+            "Problems Solved": 50,
+            "Profile Link": "https://geeksforgeeks.com/rchandra",
+        },
+        "CodeChef": {
+            "Username": "RChandra",
+            "Contest Rating": 1300,
+            "Contests Attended": 5,
+            "Problems Solved": 70,
+            "Profile Link": "https://codechef.com/rchandra",
+        },
+        "GitHub": {
+            "Username": "RChandra",
+            "Repositories": 10,
+            "Stars": 20,
+            "Total Contributions": 100,
+            "Profile Link": "https://github.com/rchandra",
+        },
+        "HackerRank": {
+            "Username": "RChandra",
+            "Contest Rating": 1400,
+            "Contests Attended": 6,
+            "Problems Solved": 80,
+            "Profile Link": "https://hackerrank.com/rchandra",
+        },
+        "CodingNinjas": "No stats available",
+    }
     useEffect(() => {
         const getdata = async () => {
             try {
-                const res=await axios.get(`http://localhost:5000/api/user/getUser/user_id/`, {
-                    params:{
+                const res = await axios.get(`http://localhost:5000/api/users/getUser`, {
+                    params: {
                         user_id
                     }
                 })
@@ -28,106 +101,132 @@ function UserProfile() {
         return <h1>No user found</h1>
     }
     else if (Object.keys(userData).length === 0) {
-        return <h1  className="text-white">Loading...</h1>
+        return <h1 className="text-white">Loading...</h1>
     }
     else {
         return (
             <div className="mt-10">
-                <section className="w-full overflow-hidden dark:bg-gray-900">
-                    <div className="w-full mx-auto">
-                        <img src="https://images.unsplash.com/photo-1560697529-7236591c0066?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHwxMHx8Y292ZXJ8ZW58MHwwfHx8MTcxMDQ4MTEwNnww&ixlib=rb-4.0.3&q=80&w=1080" alt="User Cover"
-                            className="w-full xl:h-[20rem] lg:h-[22rem] md:h-[16rem] sm:h-[13rem] xs:h-[9.5rem]" />
+                <section className="w-full flex flex-col gap-2 pt-20  ">
+                    <div className="grid grid-cols-2 p-16 w-[90%] mx-auto bg-[#161616]">
+                        <div className="info col-span-1 bg-[#1B1B1B] shadow-lg p-10">
+                            <h1 className="text-5xl text-start text-white font-extrabold">{userData?.username}</h1>
+                            <p className="text-xl mb-2 text-start text-white font-[100]  font-sans">{userData?.firstname} {userData?.lastname}</p>
+                            {
+                                userData?.bio && <p className="text-white text-md  font-[100] font-sans">
+                                    Description
+                                    <span className="text-[#5bdac7e7]"> {userData.bio}</span>
+                                </p>
+                            }
+                            {
+                                userData?.institute && (
+                                    <p className="text-white text-md  font-sans font-[100]">
+                                        Institute name
+                                        <span className="text-[#5bdac7e7]"> {userData.institute}</span>
+                                    </p>
+                                )
+                            }
+                            <p className="text-white text-md  font-sans font-[100]">
+                                Contests attended
+                                <span className="text-[#5bdac7e7]"> 4</span>
+                            </p>
+                            <p className="text-white text-2xl font-bold font-sans mt-2">
+                                Available profiles
+                            </p>
+                            <div className="flex flex-wrap gap-3 mt-2">
 
-                        <div className="w-full mx-auto flex justify-center">
-                            <img src="https://images.unsplash.com/photo-1463453091185-61582044d556?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHwxMnx8cGVvcGxlfGVufDB8MHx8fDE3MTA0ODExOTN8MA&ixlib=rb-4.0.3&q=80&w=1080" alt="User Profile"
-                                className="rounded-full object-cover xl:w-[16rem] xl:h-[16rem] lg:w-[16rem] lg:h-[16rem] md:w-[12rem] md:h-[12rem] sm:w-[10rem] sm:h-[10rem] xs:w-[8rem] xs:h-[8rem] outline outline-2 outline-offset-2 outline-yellow-500 shadow-xl relative xl:bottom-[7rem] lg:bottom-[8rem] md:bottom-[6rem] sm:bottom-[5rem] xs:bottom-[4.3rem]" />
+                                {
+                                    Object.keys(logoMap).map((keys, index) => (
+                                        <div className="relative"
+                                            key={index}
+                                            onMouseEnter={() => setShowModal(keys)}
+                                            onMouseLeave={() => setShowModal('')}
+                                        >
+                                            <img
+                                                src={logoMap[keys]} className="h-14 w-14 cursor-pointer hover:scale-125 transition-all  rounded-full p-2"
+                                            />
+                                            {
+                                                showModal === keys && <StatsModal keys={keys} stats={dummyStats} />
+                                            }
+
+                                        </div>
+                                    ))
+                                }
+                            </div>
+                            <p className="text-white text-2xl font-bold font-sans mt-2">
+                                Contacts
+                            </p>
+                            <div className="flex flex-wrap gap-3 mt-2">
+
+                                {
+                                    Object.keys(contactMap).map((keys, index) => (
+                                        <a className="relative"
+                                            key={index}
+                                            href={contactMap[keys].profile}
+                                            target="_blank"
+                                        >
+                                            <img
+                                                src={contactMap[keys].img} className="h-14 w-14 cursor-pointer hover:scale-125 transition-all  rounded-full p-2"
+                                            />
+                                        </a>
+                                    ))
+                                }
+                            </div>
+
+
+
+
+
                         </div>
 
-                        <div
-                            className="xl:w-[80%] lg:w-[90%] md:w-[94%] sm:w-[96%] xs:w-[92%] mx-auto flex flex-col gap-4 justify-center items-center relative xl:-top-[6rem] lg:-top-[6rem] md:-top-[4rem] sm:-top-[3rem] xs:-top-[2.2rem]">
-                            <h1 className="text-center text-gray-800 dark:text-white text-4xl font-serif">Samuel Abera</h1>
-                            <p className="w-full text-gray-700 dark:text-gray-400 text-md text-pretty sm:text-center xs:text-justify">Lorem, ipsum dolor sit amet
-                                consectetur adipisicing elit. Quisquam debitis labore consectetur voluptatibus mollitia dolorem
-                                veniam omnis ut quibusdam minima sapiente repellendus asperiores explicabo, eligendi odit, dolore
-                                similique fugiat dolor, doloremque eveniet. Odit, consequatur. Ratione voluptate exercitationem hic
-                                eligendi vitae animi nam in, est earum culpa illum aliquam. Atque aperiam et voluptatum voluptate
-                                distinctio, nostrum hic voluptatibus nisi. Eligendi voluptatibus numquam maxime voluptatem labore
-                                similique qui illo est magnam adipisci autem quisquam, quia incidunt excepturi, possimus odit
-                                praesentium?</p>
+                        <div className="profilepic relative col-span-1 flex p-10 shadow-lg justify-center bg-[#1B1B1B]">
+                            <div className="bg-[#5bdac7e7] absolute h-full  z-10 right-0 top-0 w-full"
+                                style={{ clipPath: "polygon(66% 0, 100% 0, 100% 100%, 25% 100%, 83% 49%)" }}
+                            >
 
-                            <div
-                                className="px-2 flex rounded-sm bg-gray-200 text-gray-500 dark:bg-gray-700 dark:bg-opacity-30 dark:text-gray-700 hover:text-gray-600 hover:dark:text-gray-400">
-                                <a href="https://www.linkedin.com/in/samuel-abera-6593a2209/">
-                                    <div data-title="LinkedIn" className="p-2 hover:text-primary hover:dark:text-primary">
-                                        <svg className="w-8 h-8 text-gray-800 dark:text-white" aria-hidden="true"
-                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
-                                            viewBox="0 0 24 24">
-                                            <path fillRule="evenodd"
-                                                d="M12.51 8.796v1.697a3.738 3.738 0 0 1 3.288-1.684c3.455 0 4.202 2.16 4.202 4.97V19.5h-3.2v-5.072c0-1.21-.244-2.766-2.128-2.766-1.827 0-2.139 1.317-2.139 2.676V19.5h-3.19V8.796h3.168ZM7.2 6.106a1.61 1.61 0 0 1-.988 1.483 1.595 1.595 0 0 1-1.743-.348A1.607 1.607 0 0 1 5.6 4.5a1.601 1.601 0 0 1 1.6 1.606Z"
-                                                clipRule="evenodd" />
-                                            <path d="M7.2 8.809H4V19.5h3.2V8.809Z" />
-                                        </svg>
-
-                                    </div>
-                                </a>
-                                <a href="https://twitter.com/Samuel7Abera7">
-                                    <div data-title="X" className="p-2 hover:text-primary hover:dark:text-primary">
-                                        <svg className="w-8 h-8 text-gray-800 dark:text-white" aria-hidden="true"
-                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
-                                            viewBox="0 0 24 24">
-                                            <path
-                                                d="M13.795 10.533 20.68 2h-3.073l-5.255 6.517L7.69 2H1l7.806 10.91L1.47 22h3.074l5.705-7.07L15.31 22H22l-8.205-11.467Zm-2.38 2.95L9.97 11.464 4.36 3.627h2.31l4.528 6.317 1.443 2.02 6.018 8.409h-2.31l-4.934-6.89Z" />
-                                        </svg>
-
-                                    </div>
-                                </a>
-                                <a href="">
-                                    <div data-title="Facebook" className="p-2 hover:text-blue-500 hover:dark:text-blue-500">
-                                        <svg className="w-8 h-8 text-gray-800 dark:text-white" aria-hidden="true"
-                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
-                                            viewBox="0 0 24 24">
-                                            <path fillRule="evenodd"
-                                                d="M13.135 6H15V3h-1.865a4.147 4.147 0 0 0-4.142 4.142V9H7v3h2v9.938h3V12h2.021l.592-3H12V6.591A.6.6 0 0 1 12.592 6h.543Z"
-                                                clipRule="evenodd" />
-                                        </svg>
-
-                                    </div>
-                                </a>
-                                <a href="https://www.youtube.com/@silentcoder7">
-                                    <div data-title="Youtube" className="p-2 hover:text-primary hover:dark:text-primary">
-                                        <svg className="w-8 h-8 text-gray-800 dark:text-white" aria-hidden="true"
-                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
-                                            viewBox="0 0 24 24">
-                                            <path fillRule="evenodd"
-                                                d="M21.7 8.037a4.26 4.26 0 0 0-.789-1.964 2.84 2.84 0 0 0-1.984-.839c-2.767-.2-6.926-.2-6.926-.2s-4.157 0-6.928.2a2.836 2.836 0 0 0-1.983.839 4.225 4.225 0 0 0-.79 1.965 30.146 30.146 0 0 0-.2 3.206v1.5a30.12 30.12 0 0 0 .2 3.206c.094.712.364 1.39.784 1.972.604.536 1.38.837 2.187.848 1.583.151 6.731.2 6.731.2s4.161 0 6.928-.2a2.844 2.844 0 0 0 1.985-.84 4.27 4.27 0 0 0 .787-1.965 30.12 30.12 0 0 0 .2-3.206v-1.516a30.672 30.672 0 0 0-.202-3.206Zm-11.692 6.554v-5.62l5.4 2.819-5.4 2.801Z"
-                                                clipRule="evenodd" />
-                                        </svg>
-                                    </div>
-                                </a>
                             </div>
-
-                            <div className="w-full flex gap-4 justify-center items-center mt-10">
-                                <div
-                                    className="xl:w-1/4 xl:h-32 lg:w-1/5 lg:h-32 md:w-1/5 md:h-28 sm:w-1/3 sm:h-[5rem] xs:w-1/3 xs:h-[4rem] flex justify-center items-center rounded-sm text-center text-lg px-6 py-4 border-2 border-dashed border-gray-300 dark:text-white dark:border-2 dark:border-dashed dark:border-gray-700">
-                                    27
-                                </div>
-
-                                <div
-                                    className="xl:w-1/4 xl:h-32 lg:w-1/5 lg:h-32 md:w-1/5 md:h-28 sm:w-1/3 sm:h-[5rem] xs:w-1/3 xs:h-[4rem] flex justify-center items-center rounded-sm text-center text-lg px-6 py-4 border-2 border-dashed border-gray-300 dark:text-white dark:border-2 dark:border-dashed dark:border-gray-700">
-                                    777
-                                </div>
-
-                                <div
-                                    className="xl:w-1/4 xl:h-32 lg:w-1/5 lg:h-32 md:w-1/5 md:h-28 sm:w-1/3 sm:h-[5rem] xs:w-1/3 xs:h-[4rem] flex justify-center items-center rounded-sm text-center text-lg px-6 py-4 border-2 border-dashed border-gray-300 dark:text-white dark:border-2 dark:border-dashed dark:border-gray-700">
-                                    34
-                                </div>
-                            </div>
+                            <img src={userData.profileUrl} alt="profile" className="shadow-lg w-96 h-96 object-cover z-20" />
                         </div>
                     </div>
+
                 </section>
             </div>
         )
     }
+}
+
+const StatsModal = ({ keys, stats }) => {
+    return (
+        <div className={`absolute   left-0 z-30 pt-7 h-auto ${stats[keys] === "No stats available" ? '-bottom-16' : '-bottom-36'}`}>
+            <div className="p-2 bg-slate-800 w-60 text-white rounded-lg px-4 py-4">
+
+                <div className="title text-white font-semibold">
+                    {keys} stats
+                </div>
+                <div className="pl-2 text-gray-300">
+
+                    {
+                        stats[keys] === "No stats available" ? <p>No stats available</p> :
+                            Object.keys(stats[keys]).map((key, index) => {
+                                if (key === "Profile Link") {
+                                    return (
+                                        <a key={index} href={stats[keys][key]} target="_blank" rel="noreferrer" className="text-[#5bdac7e7]">
+                                            {key}
+
+                                        </a>
+                                    )
+                                }
+                                return (
+                                    <div key={index} className="flex justify-between items-center">
+                                        <p>{key}</p>
+                                        <p>{stats[keys][key]}</p>
+                                    </div>
+                                )
+                            })
+                    }
+                </div>
+            </div>
+        </div>
+    )
 }
 
 export default UserProfile
