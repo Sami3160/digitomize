@@ -31,3 +31,12 @@ exports.updatePortfolio = async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 };
+
+// exports.gfgdata = async (req, res) => {
+//     try {
+//         const response = await axios.post('https://geeks-for-geeks-api.vercel.app/atharvpatil73');
+//         res.json(response.data); // Send the response back to the frontend
+//     } catch (error) {
+//         res.status(500).send('Error fetching data from GeeksforGeeks API');
+//     }
+// };
