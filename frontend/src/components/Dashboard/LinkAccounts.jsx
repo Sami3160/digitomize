@@ -1,4 +1,21 @@
+import axios from "axios";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../../context/AuthContext";
+
 const LinkModal = ({ isOpen, onRequestClose }) => {
+    const [platformLists, setPlatformLists]=useState({})
+    const {user}=useContext(AuthContext)
+    useEffect(()=>{
+        const update=async()=>{
+            console.log(user?._id);
+            
+            const res=await axios.get(`http://localhost:5000/api/portfolio/linkedaccounts?_id=${user?._id}`)
+
+            console.log(res.data)
+            setPlatformLists(res.data)
+        }
+        update()
+    },[])
     const logoMap = {
         "Leetcode": "https://img.icons8.com/external-tal-revivo-shadow-tal-revivo/24/external-level-up-your-coding-skills-and-quickly-land-a-job-logo-shadow-tal-revivo.png",
         "Codeforces": "https://img.icons8.com/external-tal-revivo-filled-tal-revivo/24/external-codeforces-programming-competitions-and-contests-programming-community-logo-filled-tal-revivo.png",
@@ -31,14 +48,18 @@ const LinkModal = ({ isOpen, onRequestClose }) => {
                         <div className=" w-[55%] text-lg gap-3 bg-black/30 text-slate-300 cursor-pointer justify-between items-center border border-gray-700 rounded-lg p-1    px-6 flex">
                             <img src={logoMap["Codeforces"]} className="h-7 w-7 bg-slate-100 rounded-full p-[1px]" />
                             Codeforces
-                            <Add />
+                            {
+                                platformLists['cfUsername']?<p className="text-sm mx-1 text-gray-500">{platformLists['cfUsername']}</p>:<Add />
+                            }
                         </div>
 
                         <div className=" w-[55%] text-lg gap-3 bg-black/30 text-slate-300 cursor-pointer justify-between items-center border border-gray-700 rounded-lg p-1    px-6 flex">
                             <img src={logoMap["GitHub"]} className="h-7 w-7 bg-slate-100 rounded-full p-[1px]" />
 
                             Github
-                            <Add />
+                            {
+                                platformLists['githubUsername']?<p className="text-sm mx-1 text-gray-500">{platformLists['githubUsername']}</p>:<Add />
+                            }
                         </div>
 
 
@@ -46,25 +67,34 @@ const LinkModal = ({ isOpen, onRequestClose }) => {
                             <img src={logoMap["CodeChef"]} className="h-7 w-7 bg-slate-100 rounded-full p-[1px]" />
 
                             CodeChef
-                            <Add />
-                        </div>
+                            
+                            {
+                                platformLists['cfUsername']?<p className="text-sm mx-1 text-gray-500">{platformLists['cfUsername']}</p>:<Add />
+                            }                        </div>
                         <div className=" w-[55%] text-lg gap-3 bg-black/30 text-slate-300 cursor-pointer justify-between items-center border border-gray-700 rounded-lg p-1    px-6 flex">
                             <img src={logoMap["Leetcode"]} className="h-7 w-7 bg-slate-100 rounded-full p-[1px]" />
 
                             Leetcode
-                            <Add />
+                            {
+                                platformLists['lcUsername']?<p className="text-sm mx-1 text-gray-500">{platformLists['lcUsername']}</p>:<Add />
+                            }
+                            
                         </div>
                         <div className=" w-[55%] text-lg gap-3 bg-black/30 text-slate-300 cursor-pointer justify-between items-center border border-gray-700 rounded-lg p-1    px-6 flex">
                             <img src={logoMap["HackerRank"]} className="h-7 w-7 bg-slate-100 rounded-full p-[1px]" />
 
                             HackerRank
-                            <Add />
+                            {
+                                platformLists['hrUsername']?<p className="text-sm mx-1 text-gray-500">{platformLists['hrUsername']}</p>:<Add />
+                            }
                         </div>
                         <div className=" w-[55%] text-lg gap-3 bg-black/30 text-slate-300 cursor-pointer justify-between items-center border border-gray-700 rounded-lg p-1    px-6 flex">
                             <img src={logoMap["GfG"]} className="h-7 w-7 bg-slate-100 rounded-full p-[1px]" />
 
                             GeeksForGeeks
-                            <Add />
+                            {
+                                platformLists['gfgUsername']?<p className="text-sm mx-1 text-gray-500">{platformLists['gfgUsername']}</p>:<Add />
+                            }
                         </div>
 
                     </div>
@@ -83,7 +113,18 @@ const LinkModal = ({ isOpen, onRequestClose }) => {
     );
 };
 
-const Add = () => {
+const Add = ({_id, platform,onRequestClose}) => {
+    
+    const handleSubmit= async ()=>{
+        try {
+            const result=await axios.post(`http://localhost:5000/api/portfolio/linkedaccounts?_id=${_id}&platform=${platform}`)
+            alert('Account linked!')
+            onRequestClose();
+        } catch (error) {
+            console.log(error)
+            alert(error)
+        }
+    }
     return (
         /* From Uiverse.io by mRcOol7 */
         <button
