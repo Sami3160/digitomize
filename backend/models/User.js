@@ -13,7 +13,13 @@ const userSchema = new mongoose.Schema({
     bio: String,
     institute: String,
     address: String,
-
+    lcUsername: String,
+    cfUsername: String,
+    gfgUsername: String,
+    ccUsername: String,
+    hrUsername: String,
+    cnUsername: String,
+    githubUsername: String,
     profileUrl:{
         type:String,
         default:'https://www.llt.at/wp-content/uploads/2021/11/blank-profile-picture-g77b5d6651-1280-705x705.png'

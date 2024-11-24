@@ -132,3 +132,99 @@ exports.getSafeUserData=async (req, res)=>{
     res.status(500).json({ message: error.message });
   }
 }
+
+// Controller for linking accounts
+exports.linkAccounts = async (req, res) => {
+  const { _id, platform } = req.query; // Extract user ID and platform from query params
+  const { username } = req.body; // Extract the username from the request body
+  console.log(_id, platform, username);
+  // Map of platforms to database fields
+  const validPlatforms = {
+    leetcode: 'lcUsername',
+    codeforces: 'cfUsername',
+    gfg: 'gfgUsername',
+    codechef: 'ccUsername',
+    hackerrank: 'hrUsername',
+    github: 'githubUsername',
+    codingninjas: 'cnUsername',
+  };
+
+  // Get the field to update based on the platform
+  const fieldToUpdate = validPlatforms[platform?.toLowerCase()];
+
+  // Validate platform
+  if (!fieldToUpdate) {
+    return res.status(400).json({ error: 'Invalid platform specified' });
+  }
+
+  try {
+    // Update the user's account details
+    const updatedUser = await User.findByIdAndUpdate(
+      _id,
+      { [fieldToUpdate]: username },
+      { new: true } // Return the updated document
+    );
+
+    // Handle case where user is not found
+    if (!updatedUser) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    // Respond with the updated user
+    res.status(200).json({
+      message: `${platform} account linked successfully!`,
+      updatedUser,
+    });
+    // console.log("new:",updatedUser);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'An error occurred while linking accounts' });
+  }
+};
+
+
+exports.unlinkAccount = async (req, res) => {
+  const { _id, platform } = req.query; // Extract user ID and platform from query params
+
+  // Map of platforms to database fields
+  const validPlatforms = {
+    leetcode: 'lcUsername',
+    codeforces: 'cfUsername',
+    gfg: 'gfgUsername',
+    codechef: 'ccUsername',
+    hackerrank: 'hrUsername',
+    github: 'githubUsername',
+    codingninjas: 'cnUsername',
+  };
+
+  // Get the field to clear based on the platform
+  const fieldToClear = validPlatforms[platform?.toLowerCase()];
+
+  // Validate platform
+  if (!fieldToClear) {
+    return res.status(400).json({ error: 'Invalid platform specified' });
+  }
+
+  try {
+    // Update the user's account details by setting the field to null
+    const updatedUser = await User.findByIdAndUpdate(
+      _id,
+      { [fieldToClear]: null }, // Clear the specific platform field
+      { new: true } // Return the updated document
+    );
+
+    // Handle case where user is not found
+    if (!updatedUser) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    // Respond with the updated user
+    res.status(200).json({
+      message: `${platform} account unlinked successfully!`,
+      updatedUser,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'An error occurred while unlinking the account' });
+  }
+};

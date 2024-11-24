@@ -50,9 +50,9 @@ exports.getLinkedAccounts = async (req, res) => {
 
         const _id = req.query._id;
         console.log(_id)
-        const { lcUsername, cfUsername, gfgUsername, githubUsername, ccUsername, hrUsername } = await User.findById(_id).lean()
-        console.log({ lcUsername, cfUsername, gfgUsername, githubUsername, ccUsername, hrUsername })
-        res.status(200).json({ lcUsername, cfUsername, gfgUsername, githubUsername, ccUsername, hrUsername })
+        const { lcUsername, cfUsername, gfgUsername, githubUsername, ccUsername, hrUsername ,cnUsername } = await User.findById(_id).lean()
+        console.log({ lcUsername, cfUsername, gfgUsername, githubUsername, ccUsername, hrUsername,cnUsername })
+        res.status(200).json({ lcUsername, cfUsername, gfgUsername, githubUsername, ccUsername, hrUsername,cnUsername })
     } catch (error) {
         console.error(error)
         res.status(500).json({ message: error })
