@@ -15,7 +15,7 @@ function FileUpload(req, res, next) {
 
     uploadSingle(req, res, async function (err) {
         if (err) {
-            cosnole.log("eror in image middleware :",err.message)
+            console.log("eror in image middleware :",err.message)
             return res.status(500).json({ error: err, message: "Error in uploading file inside middleware" });
         }
         if(!req.file){            
