@@ -31,7 +31,8 @@
     "nodemon": "^3.1.7",
     "passport": "^0.7.0",
     "passport-github2": "^0.1.12",
-    "passport-google-oauth20": "^2.0.0"
+    "passport-google-oauth20": "^2.0.0",
+    "puppeteer": "^23.11.1"
   },
   "devDependencies": {
     "prettier": "^3.3.3"

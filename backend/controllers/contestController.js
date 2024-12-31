@@ -1,5 +1,5 @@
 const Contest = require('../models/Contest');
-
+const axios = require('axios');
 exports.getAllContests = async (req, res) => {
     const { platform, difficulty } = req.query;
     try {
@@ -75,10 +75,10 @@ exports.getLeetcodeContests = async (req, res) => {
                     date: new Date(contest.startTime * 1000).toLocaleString(),
                     // difficulty: "Easy",
                     link: `https://leetcode.com/contest/${contest.titleSlug}`,
-                    duration: contest.duration/3600+" hours"
+                    duration: contest.duration / 3600 + " hours"
                 }
             })
-            res.json({ message: "success",contests });
+            res.json({ message: "success", contests });
         })
         .catch((error) => {
             if (!res.headersSent) {
@@ -87,3 +87,65 @@ exports.getLeetcodeContests = async (req, res) => {
         });
 }
 
+
+
+exports.getAllContestsApi = async (req, res) => {
+    console.log('checking server');
+    const today = new Date();
+    const maxDate = new Date(today);
+    maxDate.setDate(today.getDate() + 28);
+
+    // Format dates to ISO 8601 (required for the API)
+    const formatDate = date => date.toISOString().split('.')[0] + 'Z';
+    const timeMin = formatDate(today);
+    const timeMax = formatDate(maxDate);
+
+    // Base API URL
+    const baseUrl = 'https://clients6.google.com/calendar/v3/calendars/iu1iul1u3n8ic3s78f4df15u4o%40group.calendar.google.com/events';
+
+    // API key and other query parameters
+    const params = {
+        calendarId: 'iu1iul1u3n8ic3s78f4df15u4o@group.calendar.google.com',
+        singleEvents: true,
+        eventTypes: ['default', 'focusTime', 'outOfOffice'],
+        timeZone: 'GMT+05:30',
+        maxAttendees: 1,
+        maxResults: 250,
+        sanitizeHtml: true,
+        timeMin,
+        timeMax,
+        key: 'AIzaSyBNlYH01_9Hc5S1J9vuFmu2nUqBZJNAXxs'
+    };
+
+    try {
+        // Fetch data from the API
+        const response = await axios.get(baseUrl, { params });
+        const data = response.data;
+
+        // Filter and group data by platform extracted from the summary
+        console.log('Fetched Events:', data.items.length);
+        const groupedEvents = data.items.reduce((acc, event) => {
+            // Extract platform from summary using regex
+            const platformMatch = event.summary.match(/\[(.*?)\]/);
+            const platform = platformMatch ? platformMatch[1] : 'Other';
+
+            if (!acc[platform]) acc[platform] = [];
+            acc[platform].push({
+                title: event.summary,
+                start: event.start.dateTime || event.start.date,
+                end: event.end.dateTime || event.end.date,
+                description: event.description || 'No description'
+            });
+
+            return acc;
+        }, {});
+
+        // Output grouped data
+        res.status(200).json({ message: 'Success', data: groupedEvents });
+    } catch (error) {
+        console.log(error);
+        console.error('Error:', error.response ? error.response.data : error.message);
+        res.status(500).json({ message: error.message });
+    }
+
+}
