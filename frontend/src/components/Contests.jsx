@@ -8,21 +8,23 @@ const Contests = () => {
   const [allContests, setAllContests] = useState([]);
   const [filteredContests, setFilteredContests] = useState([]);
 
-  useEffect(async () => {
+  useEffect( () => {
     // const res = await axios.get("https://api.digitomize.com/contests");
-    const res = await axios.get(
-      "http://localhost:5000/api/contests/allcontest"
-    );
+    const call=async()=>{
+
+      const res = await axios.get(
+        "http://localhost:5000/api/contests/allcontest"
+      );
     console.log("data: ");
     const data = res.data.data;
     console.log(data);
-
+    
     const result = [];
 
     for (const platform in data) {
       data[platform].forEach(item => {
           item.platform = platform;
-  
+          
           // Calculate duration
           const duration = calculateDuration(item.start, item.end);
           item.duration = duration;
@@ -31,14 +33,16 @@ const Contests = () => {
           item.start_time = formatDateTime(item.start);
   
           result.push(item);
-      });
-  }
-
-    console.log("result");
-    console.log(result);
-
-    setAllContests(result);
-    setFilteredContests(result);
+        });
+      }
+      
+      console.log("result");
+      console.log(result);
+      
+      setAllContests(result);
+      setFilteredContests(result);
+    }
+     call()
   }, []);
 
   const formatDateTime = (isoString) => {
