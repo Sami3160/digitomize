@@ -16,7 +16,7 @@ export default function Navbar({ className }) {
   return (
     <div className={cn("fixed top-10 inset-x-0 max-w-xl mx-auto z-50 rounded-full shadow-lg")}>
       <Menu setActive={setActive}>
-        <HoveredLink to="/">Home</HoveredLink>
+        <HoveredLink to="/home">Home</HoveredLink>
 
         {/* <MenuItem setActive={setActive} active={active} item="Home"> */}
         {/* <div className="flex flex-col space-y-4 text-sm">

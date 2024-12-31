@@ -60,41 +60,49 @@ export const BentoGridItem = ({
   id,
   platform,
   link,
+  description,
 }) => {
-  if (typeof startTime === "number") {
-    startTime = new Date(startTime * 1000).toLocaleString();
-  }
+  // if (typeof startTime === "number") {
+  //   startTime = new Date(startTime * 1000).toLocaleString();
+  // }
   // const [link, setLink] = useState("")
   let linkRef = "";
   switch (platform) {
-    case "codeforces":
-      linkRef = "https://codeforces.com/contests/" + id;
+    case "Codeforces":
+      linkRef = "https://codeforces.com/contests/";
       break;
-    case "leetcode":
-      linkRef = link;
+    case "LeetCode":
+      linkRef = "https://leetcode.com/";
       break;
-    case "codechef":
-      linkRef = "https://www.codechef.com/" + id;
+    case "Codechef":
+      linkRef = "https://www.codechef.com/";
       break;
     case "hackerrank":
-      linkRef = "https://www.hackerrank.com/contests/" + id;
+      linkRef = "https://www.hackerrank.com/contests/";
+      break;
+    case "yukicoder":
+      linkRef = "https://yukicoder.me/";
+      break;
+    case "AtCoder":
+      linkRef = "https://atcoder.jp/";
       break;
   }
+
   // if()
   return (
     <div
       className={cn(
-        "row-span-1 min-h-52 rounded-xl group/bento hover:shadow-xl transition duration-200  shadow-none p-4 bg-black border-white/[0.2] border justify-between flex flex-col space-y-4",
+        "row-span-1 min-h-52 rounded-xl group/bento hover:shadow-xl transition duration-200  shadow-none p-4 bg-black border-2  justify-between flex flex-col space-y-4",
         className
       )}
     >
       {header}
       <div className="group-hover/bento:translate-x-2 transition duration-200 h-full flex flex-col items-center justify-center relative">
-        <div className="text-white w-full absolute top-2 left-0">
-          Start Time:{startTime}
+        <div className="text-white w-full text-[14px] font-semibold absolute top-2 left-0">
+          Starts on : {startTime}
         </div>
         <div className="absolute top-2 right-2">
-          {platform == "leetcode" ? (
+          {platform == "LeetCode" ? (
             //leetcode icon
             <img
               width="24"
@@ -102,7 +110,7 @@ export const BentoGridItem = ({
               src="https://img.icons8.com/external-tal-revivo-shadow-tal-revivo/24/external-level-up-your-coding-skills-and-quickly-land-a-job-logo-shadow-tal-revivo.png"
               alt="external-level-up-your-coding-skills-and-quickly-land-a-job-logo-shadow-tal-revivo"
             />
-          ) : platform == "codeforces" ? (
+          ) : platform == "Codeforces" ? (
             //codeforces icon
             <svg
               className="w-8"
@@ -130,7 +138,7 @@ export const BentoGridItem = ({
               src="https://www.vhv.rs/dpng/d/575-5752613_coding-ninjas-blog-graphic-design-hd-png-download.png"
               alt="coding ninjas icon"
             />
-          ) : platform === "atcoder" ? (
+          ) : platform === "AtCoder" ? (
             <img
               width="40"
               height="60"
@@ -144,13 +152,22 @@ export const BentoGridItem = ({
               src={codechef}
               alt="coding ninjas icon"
             />
+          ) : platform === "yukicoder" ? (
+            <img
+              width="40"
+              height="60"
+              src={
+                "https://pbs.twimg.com/profile_images/875757061669232640/T1_mPQuO_400x400.jpg"
+              }
+              alt="yuki coder"
+            />
           ) : null}
         </div>
-        <div className="font-sans font-bold  text-neutral-200 mb-2 mt-2 text-2xl">
+        <div className="font-sans font-bold  text-neutral-200 mb-2 mt-2 text-xl">
           {title}
         </div>
-        <div className="text-white absolute bottom-0 left-2">
-          Duration: {duration} Hours
+        <div className="text-white absolute bottom-0 left-2 text-[14px] font-semibold">
+          Duration: {duration.hours} Hours {duration.minutes} Minutes
         </div>
         <Link
           to={linkRef}

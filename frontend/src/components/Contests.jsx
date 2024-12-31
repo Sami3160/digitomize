@@ -9,17 +9,61 @@ const Contests = () => {
   const [filteredContests, setFilteredContests] = useState([]);
 
   useEffect(async () => {
-    const res = await axios.get("https://api.digitomize.com/contests");
-    setAllContests(res.data.results);
-    setFilteredContests(res.data.results);
+    // const res = await axios.get("https://api.digitomize.com/contests");
+    const res = await axios.get(
+      "http://localhost:5000/api/contests/allcontest"
+    );
+    console.log("data: ");
+    const data = res.data.data;
+    console.log(data);
+
+    const result = [];
+
+    for (const platform in data) {
+      data[platform].forEach(item => {
+          item.platform = platform;
+  
+          // Calculate duration
+          const duration = calculateDuration(item.start, item.end);
+          item.duration = duration;
+  
+          // Format start time
+          item.start_time = formatDateTime(item.start);
+  
+          result.push(item);
+      });
+  }
+
+    console.log("result");
+    console.log(result);
+
+    setAllContests(result);
+    setFilteredContests(result);
   }, []);
+
+  const formatDateTime = (isoString) => {
+    const date = new Date(isoString);
+
+    // Extract date components
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are 0-indexed
+    const day = String(date.getDate()).padStart(2, '0');
+
+    // Extract time components
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+
+    // Format as "YYYY-MM-DD HH:MM"
+    return `${year}-${month}-${day} ${hours}:${minutes}`;
+};
+
 
   useEffect(() => {
     if (selectedPlatform === "all") {
       setFilteredContests(allContests);
     } else {
       setFilteredContests(
-        allContests.filter((contest) => contest.host === selectedPlatform)
+        allContests.filter((contest) => contest.platform === selectedPlatform)
       );
     }
   }, [selectedPlatform]);
@@ -28,8 +72,27 @@ const Contests = () => {
     if (!e.target.value) {
       setSelectedPlatform("all");
     } else {
+      console.log("selected: " + e.target.value);
       setSelectedPlatform(e.target.value);
     }
+  };
+
+  const calculateDuration = (start, end) => {
+    // Parse the start and end timestamps
+    const startDate = new Date(start);
+    const endDate = new Date(end);
+
+    // Calculate the difference in milliseconds
+    const durationMs = endDate - startDate;
+
+    // Convert milliseconds to minutes
+    const durationMinutes = Math.floor(durationMs / (1000 * 60));
+
+    // Convert minutes to hours and minutes
+    const hours = Math.floor(durationMinutes / 60);
+    const minutes = durationMinutes % 60;
+
+    return { hours, minutes };
   };
 
   return (
@@ -105,11 +168,12 @@ const Contests = () => {
         >
           <option value="">Platform</option>
           <option value="all">All</option>
-          <option value="leetcode">Leetcode</option>
+          <option value="LeetCode">Leetcode</option>
           <option value="codechef">Codechef</option>
-          <option value="codeforces">Codeforces</option>
+          <option value="Codeforces">Codeforces</option>
           <option value="codingninjas">coding Ninjas</option>
-          <option value="atcoder">Atcoder</option>
+          <option value="AtCoder">Atcoder</option>
+          <option value="yukicoder">yukicoder</option>
         </select>
         <div className="flex items-center gap-4">
           <p className="text-white">Duration(min):</p>
@@ -138,12 +202,12 @@ const Contests = () => {
             {filteredContests
               ? filteredContests.map((element, index) => (
                   <ContestCard
-                    platform={element.host}
+                    platform={element.platform}
                     header={""}
                     duration={element.duration}
                     id={index}
                     link={element.url}
-                    startTime={element.startTimeUnix}
+                    startTime={element.start_time}
                     icon={
                       <img
                         width="24"
@@ -153,7 +217,7 @@ const Contests = () => {
                       />
                     }
                     className={""}
-                    title={element.name}
+                    title={element.title}
                     key={index}
                   />
                 ))
