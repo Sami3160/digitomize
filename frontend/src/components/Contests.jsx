@@ -1,48 +1,59 @@
 import { useEffect, useState } from "react";
 import ContestCard, { BentoGrid } from "./ContestCard";
 import axios from "axios";
-
+import HackathonCard from "./HackathonCard";
 const Contests = () => {
   const [duration, setDuration] = useState(50);
   const [selectedPlatform, setSelectedPlatform] = useState("all");
   const [allContests, setAllContests] = useState([]);
   const [filteredContests, setFilteredContests] = useState([]);
+  const [displayHackathons, setDisplayHackathons] = useState(false);
+  const [hackathonData, setHackathonData] = useState([]);
 
-  useEffect( () => {
+  useEffect(() => {
+    const getHackathonData = async () => {
+      const response = await axios.get("https://api.digitomize.com/hackathons");
+      console.log("hackathon list");
+      console.log(response);
+      setHackathonData(response.data.results);
+    };
+    getHackathonData();
+  }, []);
+
+  useEffect(() => {
     // const res = await axios.get("https://api.digitomize.com/contests");
-    const call=async()=>{
-
+    const call = async () => {
       const res = await axios.get(
         "http://localhost:5000/api/contests/allcontest"
       );
-    console.log("data: ");
-    const data = res.data.data;
-    console.log(data);
-    
-    const result = [];
+      console.log("contests data new: ");
+      const data = res.data.data;
+      console.log(data);
 
-    for (const platform in data) {
-      data[platform].forEach(item => {
+      const result = [];
+
+      for (const platform in data) {
+        data[platform].forEach((item) => {
           item.platform = platform;
-          
+
           // Calculate duration
           const duration = calculateDuration(item.start, item.end);
           item.duration = duration;
-  
+
           // Format start time
           item.start_time = formatDateTime(item.start);
-  
+
           result.push(item);
         });
       }
-      
+
       console.log("result");
       console.log(result);
-      
+
       setAllContests(result);
       setFilteredContests(result);
-    }
-     call()
+    };
+    call();
   }, []);
 
   const formatDateTime = (isoString) => {
@@ -50,17 +61,16 @@ const Contests = () => {
 
     // Extract date components
     const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are 0-indexed
-    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, "0"); // Months are 0-indexed
+    const day = String(date.getDate()).padStart(2, "0");
 
     // Extract time components
-    const hours = String(date.getHours()).padStart(2, '0');
-    const minutes = String(date.getMinutes()).padStart(2, '0');
+    const hours = String(date.getHours()).padStart(2, "0");
+    const minutes = String(date.getMinutes()).padStart(2, "0");
 
     // Format as "YYYY-MM-DD HH:MM"
     return `${year}-${month}-${day} ${hours}:${minutes}`;
-};
-
+  };
 
   useEffect(() => {
     if (selectedPlatform === "all") {
@@ -106,13 +116,20 @@ const Contests = () => {
           All at <span className="rounded-md bg-blue-500 px-4">one</span> place
         </p>
         <div className="flex items-center justify-center gap-4">
-          <button className="border py-2 px-4 rounded-md text-slate-300 font-semibold flex gap-2 items-center">
+          <button
+            onClick={() => setDisplayHackathons(false)}
+            className={`border py-2 px-4 rounded-md font-semibold flex gap-2 items-center ${
+              displayHackathons
+                ? "text-slate-300"
+                : " bg-white border-blue-500 border-2 opacity-90 text-black"
+            }`}
+          >
             Contests{" "}
             <svg
               className="w-8"
               focusable="false"
               aria-hidden="true"
-              fill="white"
+              fill={`${displayHackathons ? "white" : "black"}`}
               viewBox="0 0 24 24"
               data-testid="TrendingUpIcon"
             >
@@ -148,13 +165,20 @@ const Contests = () => {
             </span>
           </button>
 
-          <button className="border px-4 py-2 rounded-md text-slate-300 font-semibold flex gap-2 items-center">
+          <button
+            onClick={() => setDisplayHackathons(true)}
+            className={`border px-4 py-2 rounded-md  font-semibold flex gap-2 items-center ${
+              displayHackathons
+                ? "bg-white border-blue-500 border-2 opacity-90 text-black"
+                : " text-slate-300"
+            }`}
+          >
             Hackathons{" "}
             <svg
               className="w-8"
               focusable="false"
               aria-hidden="true"
-              fill="white"
+              fill={`${displayHackathons ? "black" : "white"}`}
               viewBox="0 0 24 24"
               data-testid="TrendingUpIcon"
             >
@@ -163,7 +187,12 @@ const Contests = () => {
           </button>
         </div>
       </div>
-      <div className="bg-[#171a1a] w-[80%] p-4 rounded-md flex justify-between">
+
+      <div
+        className={`bg-[#171a1a] w-[80%] p-4 rounded-md flex justify-between ${
+          displayHackathons ? "hidden" : "block"
+        }`}
+      >
         <select
           name=""
           onChange={(e) => handleChange(e)}
@@ -193,14 +222,21 @@ const Contests = () => {
           </div>
         </div>
       </div>
-      <p className="text-white text-xl">
+      <p
+        className={`text-white text-xl ${
+          displayHackathons ? "hidden" : "block"
+        }`}
+      >
         Have a favorite contest platform we&apos;re missing? Join our{" "}
         <span className="text-blue-600 cursor-pointer">Discord</span> or{" "}
         <span className="text-blue-600 cursor-pointer">click here</span> and let
         us know!
       </p>
-
-      <div className="flex pb-20 flex-col gap-2 w-full">
+      <div
+        className={`flex pb-20 flex-col gap-2 w-full ${
+          displayHackathons ? "hidden" : "block"
+        }`}
+      >
         {
           <BentoGrid className="grid-cols-1 md:grid-cols-2 lg:grid-cols-3  ">
             {filteredContests
@@ -228,6 +264,33 @@ const Contests = () => {
               : null}
           </BentoGrid>
         }
+      </div>
+
+
+      <p
+        className={`text-white text-xl ${
+          displayHackathons ? "block" : "hidden"
+        }`}
+      >
+        Want hackathons from more platforms? Join our{" "}
+        <span className="text-blue-600 cursor-pointer">Discord</span> or{" "}
+        <span className="text-blue-600 cursor-pointer">click here</span> and let
+        us know!
+      </p>
+
+      <div className={` ${displayHackathons ? "block" : "hidden"} `}>
+        <div className="container mx-auto p-4">
+          {" "}
+          {/* Added container for centering */}
+          <h2 className="text-2xl font-bold mb-4">Upcoming Hackathons</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {" "}
+            {/* Responsive grid */}
+            {hackathonData.map((hackathon) => (
+              <HackathonCard key={hackathon.url} hackathon={hackathon} /> // Use appropriate key
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );

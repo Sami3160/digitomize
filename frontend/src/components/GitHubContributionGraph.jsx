@@ -1,5 +1,5 @@
-import  { useEffect, useState } from 'react';
-import './GitHubContributionGraph.css'; // Assuming you have a CSS file for styles
+import { useEffect, useState } from "react";
+import "./GitHubContributionGraph.css"; // Assuming you have a CSS file for styles
 
 const GitHubContributionGraph = ({ data }) => {
   const [squares, setSquares] = useState([]);
@@ -17,6 +17,33 @@ const GitHubContributionGraph = ({ data }) => {
 
     generateSquares();
   }, [data]);
+
+  const getDateFromIndex = (index) => {
+    const startDate = new Date(new Date().getFullYear(), 0, 1);
+    const resultDate = new Date(startDate.setDate(startDate.getDate() + index));
+    return resultDate.toDateString();
+  };
+  useEffect(() => {
+    const squaresList = document.querySelectorAll(".squares li");
+    squaresList.forEach((square, index) => {
+      square.addEventListener("mouseover", (event) =>
+        handleMouseOver(event, index)
+      );
+    });
+
+    return () => {
+      squaresList.forEach((square) => {
+        square.removeEventListener("mouseover", (event) =>
+          handleMouseOver(event, index)
+        );
+      });
+    };
+  }, [squares]);
+
+  const handleMouseOver = (event, index) => {
+    const date = getDateFromIndex(index);
+    event.target.setAttribute("title", date);
+  };
 
   return (
     <div className="graph text-white">
@@ -43,9 +70,7 @@ const GitHubContributionGraph = ({ data }) => {
         <li>Fri</li>
         <li>Sat</li>
       </ul>
-      <ul className="squares">
-        {squares}
-      </ul>
+      <ul className="squares">{squares}</ul>
     </div>
   );
 };

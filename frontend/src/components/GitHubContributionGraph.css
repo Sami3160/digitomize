@@ -84,12 +84,13 @@ body {
     background-color: #ebedf0;
 }
 
+/* previous was: #c6e48b updated to #7bc96f*/
 .squares li[data-level="1"] {
-    background-color: #c6e48b;
+    background-color: #7bc96f;
 }
 
 .squares li[data-level="2"] {
-    background-color: #7bc96f;
+    background-color: #76cb69;
 }
 
 .squares li[data-level="3"] {
