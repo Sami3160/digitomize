@@ -3,7 +3,6 @@ const Comment = require('../models/Comments')
 const User = require('../models/User')
 const { uploadOnCloudinary, deleteOnCloudinary } = require('./cloudnary')
 
-
 exports.createBlog = async (req, res) => {
     const { _id, title, content, category, tags } = req.body
     const doc = req.file
@@ -89,7 +88,7 @@ exports.deleteBlog = async (req, res) => {
             { new: true, useFindAndModify: false }
         )
 
-        return res.status(200).json({ message: "Blog deleted successfully"})
+        return res.status(200).json({ message: "Blog deleted successfully" })
     } catch (error) {
         console.log(error)
         return res.status(500).json({ message: error.message })
@@ -146,20 +145,20 @@ exports.updateLike = async (req, res) => {
         // console.log(comments);
 
         const blogData = await Blog.findById(blog_id)
-        if(blogData.likes.includes(user_id)){
+        if (blogData.likes.includes(user_id)) {
             const updateBlog = await Blog.findByIdAndUpdate(blog_id,
                 { $pull: { likes: user_id }, },
                 { new: true, useFindAndModify: false }
             )
             console.log(updateBlog)
-        }else{
+        } else {
             const updateBlog = await Blog.findByIdAndUpdate(blog_id,
                 { $push: { likes: user_id }, },
                 { new: true, useFindAndModify: false }
             )
             console.log(updateBlog)
         }
-        return res.status(200).json({ message:"like updated successfully" })
+        return res.status(200).json({ message: "like updated successfully" })
     } catch (error) {
         console.log(error)
         return res.status(500).json({ message: error.message })
@@ -207,3 +206,33 @@ exports.deleteComment = async (req, res) => {
         return res.status(500).json({ message: error.message });
     }
 };
+
+exports.getUserContributions = async (req, res) => {
+    const userId = req.params.userId;
+    try {
+        const user = await User.findById(userId).populate('blogs'); // Populate the blogs
+
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        const contributions = Array(365).fill(0); // Initialize the array with 0s
+
+        if (user.blogs && user.blogs.length > 0) {
+            user.blogs.forEach(blog => {
+                const createdAt = new Date(blog.createdAt);
+                const startOfYear = new Date(createdAt.getFullYear(), 0, 1); // Get the start of the year
+                const diffInDays = Math.floor((createdAt - startOfYear) / (1000 * 60 * 60 * 24));
+
+                if (diffInDays >= 0 && diffInDays < 365) { // Ensure within the year
+                    contributions[diffInDays]++;
+                }
+            });
+        }
+
+        res.status(200).json(contributions); // Send the contributions array
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Server error' + error });
+    }
+}
