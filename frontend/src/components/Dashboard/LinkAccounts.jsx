@@ -116,91 +116,89 @@ const LinkModal = ({ isOpen, onRequestClose }) => {
   };
 
     return (
-        <div className={`fixed ${!isOpen && "hidden"} inset-0 z-[51]  overflow-y-auto modal `}>
-            <div
-                className="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center"
-            >
-                <div
-                    className="fixed inset-0 transition-opacity bg-gray-500 bg-opacity-75"
-                    onClick={() => onRequestClose()}
-                ></div>
-                <span className="hidden sm:inline-block sm:align-middle sm:h-screen"></span>&#8203;
-                <div
-                    className="inline-block px-4 pt-5 pb-4 overflow-hidden text-left align-bottom transition-all transform bg-[#0D1517] rounded-lg shadow-xl sm:align-middle sm:max-w-lg sm:w-full sm:p-6"
-                >
-                    <div>
-                        <h3 className="text-lg font-bold leading-6 text-white">Link Other Accounts</h3>
-                        <div className="mt-2">
-                            <p className="text-sm text-gray-300">Connect to other platforms to get up-to-date progress tracking.</p>
-                        </div>
-                    </div>
-                    <div className="w-full flex flex-col gap-4 items-center mt-10 px-10">
-                        {Object.keys(logoMap).map((platform) => (
-                            <div
-                            key={platform}
-                            className="relative w-full text-lg gap-3 bg-black/30 text-slate-300 cursor-pointer justify-between items-center border border-gray-700 rounded-lg p-1 px-6 flex"
-                            onMouseEnter={() => setShowUnlinkButton(platform)}
-                            onMouseLeave={() => setShowUnlinkButton(null)}
-                            >
-                            {/* Platform Info */}
-                            <span className="flex gap-3">
-                                <img
-                                src={logoMap[platform]}
-                                alt={`${platform} logo`}
-                                className="h-7 w-7 bg-slate-100 rounded-full p-[1px]"
-                                />
-                                {platform}
-                            </span>
-
-                            <span className="flex gap-3 justify-center items-center " >
-                            {/* Displaying platform username or Add component */}
-                            {platformLists[platformKeyMap[platform]] ? (
-                                <p className="text-sm mx-1 text-gray-500">
-                                {platformLists[platformKeyMap[platform]]}
-                                </p>
-                            ) : (
-                                <Add handleAddClick={handleAddClick} platform={platform} />
-                            )}
-                            </span>
-
-
-                            {/* Unlink Button with Slide-out Effect */}
-                            {platformLists[platformKeyMap[platform]] && (
-                                <FaUnlink
-                                className={`absolute -right-6 opacity-0 text-gray-500 w-4 h-4 hover:text-red-400 transition-all duration-600 ease-in-out ${
-                                    showUnlinkButton === platform ? "opacity-100" : "opacity-0"
-                                }`}
-                                onClick={() => handleUnlinkClick(platform)}
-                                />
-                            )}
-                            </div>
-                        ))}
-            </div>
-            
+      <div className={`fixed inset-0 z-[51] ${!isOpen && "hidden"} overflow-y-auto`}>
+      {/* Overlay */}
+      <div className="fixed inset-0 bg-black/60 backdrop-blur-sm" onClick={onRequestClose}></div>
+    
+      {/* Modal */}
+      <div className="flex min-h-screen items-center justify-center px-4 py-8">
+        <div className="relative w-full max-w-xl bg-[#0D1517] rounded-2xl shadow-lg p-6 sm:p-8 z-50">
+          {/* Header */}
+          <div>
+            <h3 className="text-xl font-semibold text-white">Link Other Accounts</h3>
+            <p className="mt-1 text-sm text-gray-400">
+              Connect to other platforms to get up-to-date progress tracking.
+            </p>
+          </div>
+    
+          {/* Accounts */}
+          <div className="w-full flex flex-col gap-4 items-center mt-8">
+            {Object.keys(logoMap).map((platform) => (
+              <div
+                key={platform}
+                className="relative w-full bg-black/30 text-gray-300 text-base rounded-xl border border-gray-700 px-5 py-3 flex justify-between items-center hover:bg-black/40 transition-all duration-300"
+                onMouseEnter={() => setShowUnlinkButton(platform)}
+                onMouseLeave={() => setShowUnlinkButton(null)}
+              >
+                {/* Logo & Platform */}
+                <div className="flex gap-3 items-center">
+                  <img
+                    src={logoMap[platform]}
+                    alt={`${platform} logo`}
+                    className="h-8 w-8 bg-white rounded-full p-1"
+                  />
+                  <span className="capitalize">{platform}</span>
+                </div>
+    
+                {/* Platform Status */}
+                <div className="flex items-center gap-2">
+                  {platformLists[platformKeyMap[platform]] ? (
+                    <p className="text-sm text-gray-400">
+                      {platformLists[platformKeyMap[platform]]}
+                    </p>
+                  ) : (
+                    <Add handleAddClick={handleAddClick} platform={platform} />
+                  )}
+                </div>
+    
+                {/* Unlink Icon */}
+                {platformLists[platformKeyMap[platform]] && (
+                  <FaUnlink
+                    className={`absolute -right-6 transition-opacity duration-300 ease-in-out text-gray-400 hover:text-red-500 ${
+                      showUnlinkButton === platform ? "opacity-100" : "opacity-0"
+                    }`}
+                    onClick={() => handleUnlinkClick(platform)}
+                  />
+                )}
+              </div>
+            ))}
+          </div>
         </div>
-
-
-         {/* Modal */}
+      </div>
+    
+      {/* Add Username Modal */}
       {showModal && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black/50">
-          <div className="bg-white p-6 rounded-lg shadow-lg w-96">
-            <h2 className="text-lg font-bold mb-4">Add Username for {selectedPlatform}</h2>
+        <div className="fixed inset-0 flex items-center justify-center bg-black/60 backdrop-blur-sm z-50">
+          <div className="bg-[#1a1a1a] text-white w-[90%] max-w-md p-6 rounded-2xl shadow-xl">
+            <h2 className="text-lg font-semibold mb-4">
+              Add Username for {selectedPlatform}
+            </h2>
             <input
               type="text"
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
               placeholder="Enter username/handle"
-              className="w-full border border-gray-300 rounded-lg p-2 mb-4"
+              className="w-full p-2 text-white bg-black/20 border border-gray-600 rounded-lg focus:outline-none"
             />
-            <div className="flex justify-end gap-4">
+            <div className="flex justify-end gap-3 mt-4">
               <button
-                className="px-4 py-2 bg-gray-300 text-black rounded-lg"
+                className="px-4 py-2 bg-gray-600 rounded-lg hover:bg-gray-700"
                 onClick={() => setShowModal(false)}
               >
                 Cancel
               </button>
               <button
-                className="px-4 py-2 bg-blue-500 text-white rounded-lg"
+                className="px-4 py-2 bg-blue-600 rounded-lg hover:bg-blue-700"
                 onClick={handleSave}
               >
                 Save
@@ -209,33 +207,33 @@ const LinkModal = ({ isOpen, onRequestClose }) => {
           </div>
         </div>
       )}
-
-          {/* Confirmation Dialog */}
-         {showConfirmation && currentPlatform && (
-                    <div className="absolute top-0 left-0 w-full h-full bg-black/60 bg-opacity-50 flex justify-center items-center">
-                    <div className="bg-[#1d1d1d] p-6 rounded-lg text-center text-white w-1/2 text-lg">
-                        <p>
-                        Are you sure you want to unlink your {currentPlatform} account?
-                        </p>
-                        <div className="mt-4 flex justify-center gap-3">
-                        <button
-                            className="bg-green-500 w-1/4 text-white px-4 py-2 rounded-lg hover:bg-green-600"
-                            onClick={handleConfirmUnlink}
-                        >
-                            Yes
-                        </button>
-                        <button
-                            className="bg-gray-500 w-1/4 text-white px-4 py-2 rounded-lg hover:bg-gray-600"
-                            onClick={handleCancelUnlink}
-                        >
-                            No
-                        </button>
-                        </div>
-                    </div>
-                    </div>
-                )}
+    
+      {/* Confirmation Dialog */}
+      {showConfirmation && currentPlatform && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black/60 backdrop-blur-sm z-50">
+          <div className="bg-[#1d1d1d] p-6 rounded-2xl shadow-lg w-[90%] max-w-md text-white text-center">
+            <p className="text-lg">
+              Are you sure you want to unlink your <strong>{currentPlatform}</strong> account?
+            </p>
+            <div className="mt-6 flex justify-center gap-4">
+              <button
+                className="bg-green-600 hover:bg-green-700 px-4 py-2 w-24 rounded-lg"
+                onClick={handleConfirmUnlink}
+              >
+                Yes
+              </button>
+              <button
+                className="bg-gray-600 hover:bg-gray-700 px-4 py-2 w-24 rounded-lg"
+                onClick={handleCancelUnlink}
+              >
+                No
+              </button>
+            </div>
+          </div>
         </div>
-        </div>
+      )}
+    </div>
+    
     );
 };
 

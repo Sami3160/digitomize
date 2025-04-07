@@ -122,7 +122,7 @@ export default function ExploreContests() {
       <div className='flex flex-col justify-center items-center py-10 px-60 text-center'>
         <h1 className='text-6xl text-white font-extrabold leading-tight'>
           <span className='bg-[#5eead4] text-[#1b1a1a] px-1'>Discover</span> the perfect coding competition for you</h1>
-        <p className='text-[#5e5e5e] font-bold mt-5 w-1/2'>Filter contests based on various criteria and view contest details such as remaining time, duration, and more.</p>
+        <p className='text-[#5e5e5e] text-base font-bold mt-5 w-1/2'>Filter contests based on various criteria and view contest details such as remaining time, duration, and more.</p>
         <button className='bg-[#5eead4] rounded-xl px-5 py-2 font-semibold text-lg my-5 hover:bg-[#58f6de] active:scale-95 transition-transform ease-in-out flex justify-center items-center gap-2' onClick={() => navigate("/contest")}><TbListSearch className="w-6 h-6" />Explore Contests </button>
 
       </div>

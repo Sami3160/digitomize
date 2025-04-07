@@ -48,11 +48,12 @@ export const MenuItem = ({ setActive, active, item, children }) => {
 export const Menu = ({ setActive, children }) => {
   return (
     <nav
-      onMouseLeave={() => setActive(null)}
-      className="relative rounded-full border-2 bg-teal-300 border-teal-800  shadow-input flex justify-evenly space-x-4 px-1 py-2 "
-    >
-      {children}
-    </nav>
+    onMouseLeave={() => setActive(null)}
+    className="relative rounded-full border-2 bg-gradient-to-r from-[#0fdbd9] to-[#4ce0c5] border-teal-800 shadow-input flex justify-evenly space-x-4 px-1 py-2"
+  >
+    {children}
+  </nav>
+  
   );
 };
 
@@ -82,23 +83,25 @@ export const HoveredLink = ({ children, ...rest }) => {
   return (
     <Link
       {...rest}
-      className=" font-medium  duration-300 text-[#1b1a1a]  hover:bg-white transition-all  hover:shadow-lg px-3 py-2 rounded-3xl flex justify-center items-center "
+      className="font-medium text-[#1b1a1a] px-4 py-2 rounded-full transition-all duration-300 hover:bg-white/80 hover:text-black hover:shadow-md flex justify-center items-center gap-1 backdrop-blur-sm border border-black/10"
     >
       {children}
     </Link>
   );
 };
 
+
 export const HoveredLink2 = ({ children, ...rest }) => {
   return (
     <Link
       {...rest}
-      className="font-medium transition-shadow duration-300 text-white hover:text-gray-800  hover:bg-white hover:shadow-lg px-3 py-2 rounded-3xl flex justify-center items-center "
+      className="font-medium text-white px-4 py-2 rounded-full transition-all duration-300 hover:bg-white hover:text-gray-900 hover:shadow-lg flex justify-center items-center gap-1 border border-white/10"
     >
       {children}
     </Link>
   );
 };
+
 
 
 

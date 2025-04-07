@@ -100,88 +100,136 @@ const SettingsModal = ({ isOpen, onRequestClose }) => {
         }
     }
     return (
-        <div className={`fixed ${!isOpen && "hidden"} inset-0 z-[51]  overflow-y-auto modal `}>
-            <div
-                className="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center"
-            >
-                <div
-                    className="fixed inset-0 transition-opacity bg-gray-500 bg-opacity-75"
-                    onClick={() => onRequestClose()}
-                >
-                    <span className="hidden sm:inline-block sm:align-middle sm:h-screen">
-                        &#8203;
-
-                    </span>
+        <div className={`fixed inset-0 z-[51] overflow-y-auto ${!isOpen && "hidden"}`}>
+        <div className="flex items-center justify-center min-h-screen px-4 py-8 text-center">
+          {/* Overlay */}
+          <div
+            className="fixed inset-0 bg-black bg-opacity-70 transition-opacity"
+            onClick={onRequestClose}
+          ></div>
+      
+          {/* Modal Box */}
+          <div className="relative z-10 w-full max-w-3xl sm:rounded-2xl bg-[#121212] border border-[#2d2d2d] text-white shadow-xl p-6">
+            <h3 className="text-2xl font-semibold text-cyan-400 mb-2">Update Profile</h3>
+            <p className="text-sm text-gray-400 mb-6">Update your profile information here.</p>
+      
+            {/* Content */}
+            <div className="flex flex-col sm:flex-row gap-6">
+              {/* Profile Image */}
+              <div className="relative self-center">
+                <img
+                  src={imageChanged ? URL.createObjectURL(userData?.profileUrl) : user?.profileUrl}
+                  className="w-28 h-28 rounded-xl object-cover border border-[#3a3a3a]"
+                  alt="profile"
+                />
+                <FaEdit
+                  className="absolute bottom-1 right-1 text-white bg-cyan-600 hover:bg-cyan-700 p-1 rounded-lg text-2xl cursor-pointer"
+                  onClick={() => document.getElementById("fileInput").click()}
+                />
+                {imageChanged && (
+                  <FaWindowClose
+                    className="absolute bottom-1 right-10 text-white bg-red-600 hover:bg-red-700 p-1 rounded-lg text-2xl cursor-pointer"
+                    onClick={() => {
+                      document.getElementById("fileInput").value = "";
+                      setUserData({ ...userData, profileUrl: null });
+                      setImageChanged(false);
+                    }}
+                  />
+                )}
+                <input
+                  id="fileInput"
+                  type="file"
+                  className="hidden"
+                  accept="image/png, image/gif, image/jpeg"
+                  name="profileUrl"
+                  onChange={handleImg}
+                />
+              </div>
+      
+              {/* Input Fields */}
+              <div className="flex flex-col w-full gap-3">
+                <div className="flex gap-2">
+                  <input
+                    type="text"
+                    name="firstname"
+                    placeholder="First name"
+                    value={userData.firstname}
+                    onChange={handleChange}
+                    className="w-1/2 bg-[#1f1f1f] text-white border border-gray-600 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                  />
+                  <input
+                    type="text"
+                    name="lastname"
+                    placeholder="Last name"
+                    value={userData.lastname}
+                    onChange={handleChange}
+                    className="w-1/2 bg-[#1f1f1f] text-white border border-gray-600 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                  />
                 </div>
-
-                <div
-                    className="inline-block px-4 pt-5 pb-4 overflow-hidden text-left align-bottom transition-all transform bg-[#0D1517] rounded-lg shadow-xl sm:align-middle sm:max-w-2xl sm:w-full sm:p-6"
-                >
-                    <div>
-                        <h3 className="text-lg font-bold leading-6 text-white">Update Profile</h3>
-                        <div className="mt-2">
-                            <p className="text-sm text-gray-300">Update your profile information here.</p>
-                        </div>
-                    </div>
-                    <div className="mt-10 flex flex-col items-start w-full">
-                        <div className="flex justify-between w-full">
-
-                            <div className="profile relative inline-block">
-                                <img src={imageChanged ? URL.createObjectURL(userData?.profileUrl) : (user?.profileUrl)} className="w-28 h-28 rounded-xl object-cover" alt="" />
-                                <FaEdit
-                                    className="bg-blue-500 cursor-pointer text-white border rounded-lg text-2xl absolute p-1  bottom-1 -right-1"
-                                    onClick={() => document.getElementById("fileInput").click()}
-                                />
-                                {
-                                    imageChanged && (
-                                        <FaWindowClose
-                                            className="bg-red-500 cursor-pointer text-white border rounded-lg text-2xl absolute p-1  bottom-1 right-5"
-                                            onClick={() => {
-                                                document.getElementById("fileInput").value = "";
-                                                setUserData({ ...userData, profileUrl: null })
-                                                setImageChanged(false)
-                                            }}
-                                        />
-                                    )
-                                }
-                                <input id="fileInput" type="file" className="hidden" accept="image/png, image/gif, image/jpeg" name="profileUrl" onChange={handleImg} />
-                            </div>
-                            <div className="flex flex-col gap-2 w-[49%]">
-                                <input type="text" className="border w-full bg-black/30 focus:outline-none text-white border-gray-700 rounded-lg text-lg p-1 px-2" onChange={handleChange} name="firstname" placeholder="First name" value={userData["firstname"]} />
-                                <input type="text" className="border w-full bg-black/30 focus:outline-none text-white border-gray-700 rounded-lg text-lg p-1 px-2" onChange={handleChange} name="lastname" placeholder="Last name" value={userData["lastname"]} />
-                                <input type="text" className="border w-full bg-black/30 focus:outline-none text-white border-gray-700 rounded-lg text-lg p-1 px-2" onChange={handleChange} name="username" placeholder="Username" value={userData["username"]} />
-                            </div>
-                        </div>
-                        <div className="flex flex-wrap  gap-2 w-full mt-3 ">
-                            <input type="text" className="border bg-black/30 focus:outline-none text-white border-gray-700 w-[49%] rounded-lg text-lg p-1 px-2" onChange={handleChange} name="institute" placeholder="Institute name" value={userData["institute"]} />
-                            <input type="text" className="border bg-black/30 focus:outline-none text-white border-gray-700 w-[49%] rounded-lg text-lg p-1 px-2" onChange={handleChange} name="password" placeholder="Password" value={userData["password"]} />
-                            <input type="text" className="border bg-black/30 focus:outline-none text-white border-gray-700 w-full rounded-lg text-lg p-1 px-2" onChange={handleChange} name="address" placeholder="Address" value={userData["address"]} />
-                        </div>
-                        <div className="mt-3 w-full ">
-
-                            <label className="text-lg text-gray-400 font-normal ">Bio/Description</label>
-                            <textarea className="border w-full rounded-lg bg-black/30 focus:outline-none text-white border-gray-700  text-lg p-1 px-2 " value={userData["bio"]} onChange={handleChange} name="bio">
-
-                            </textarea>
-                        </div>
-                    </div>
-                    <div className="mt-5 sm:mt-6 flex gap-5">
-                        <button
-                            onClick={() => onRequestClose()}
-                            className="inline-flex justify-center w-full px-4 py-2 text-base font-medium text-white bg-blue-600 border border-transparent rounded-md shadow-sm close-modal hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:text-sm"
-                        >
-                            Close
-                        </button>
-                        <button
-                            onClick={() => handleSave()}
-                            className="inline-flex justify-center w-full px-4 py-2 text-base font-medium text-white bg-blue-600 border border-transparent rounded-md shadow-sm close-modal hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:text-sm"
-                        >
-                            {loading ? 'Saving info...' : 'Save'}
-                        </button>
-                    </div>
+                <input
+                  type="text"
+                  name="username"
+                  placeholder="Username"
+                  value={userData.username}
+                  onChange={handleChange}
+                  className="w-full bg-[#1f1f1f] text-white border border-gray-600 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                />
+                <input
+                  type="text"
+                  name="institute"
+                  placeholder="Institute name"
+                  value={userData.institute}
+                  onChange={handleChange}
+                  className="w-full bg-[#1f1f1f] text-white border border-gray-600 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                />
+                <input
+                  type="text"
+                  name="password"
+                  placeholder="Password"
+                  value={userData.password}
+                  onChange={handleChange}
+                  className="w-full bg-[#1f1f1f] text-white border border-gray-600 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                />
+                <input
+                  type="text"
+                  name="address"
+                  placeholder="Address"
+                  value={userData.address}
+                  onChange={handleChange}
+                  className="w-full bg-[#1f1f1f] text-white border border-gray-600 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                />
+                <div className="mt-2">
+                  <label className="text-sm text-gray-400">Bio / Description</label>
+                  <textarea
+                    name="bio"
+                    value={userData.bio}
+                    onChange={handleChange}
+                    className="w-full mt-1 bg-[#1f1f1f] text-white border border-gray-600 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                    rows={3}
+                  ></textarea>
                 </div>
+              </div>
             </div>
+      
+            {/* Buttons */}
+            <div className="mt-6 flex justify-end gap-4">
+              <button
+                onClick={onRequestClose}
+                className="px-5 py-2 text-white bg-gray-700 hover:bg-gray-600 rounded-lg text-sm"
+              >
+                Close
+              </button>
+              <button
+                onClick={handleSave}
+                className="px-5 py-2 bg-cyan-600 hover:bg-cyan-700 text-white rounded-lg text-sm font-semibold"
+              >
+                {loading ? 'Saving info...' : 'Save'}
+              </button>
+            </div>
+          </div>
         </div>
+      </div>
+      
     );
 };
 export default SettingsModal;

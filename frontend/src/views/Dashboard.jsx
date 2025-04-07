@@ -6,6 +6,31 @@ import SettingsModal from "../components/Dashboard/Settings";
 import LinkModal from "../components/Dashboard/LinkAccounts";
 import NewBlogModal from "../components/Dashboard/NewBlogModal";
 import axios from "axios";
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  Tooltip,
+  Area,
+  ResponsiveContainer,
+} from "recharts";
+import { IconClockHour5, IconQuote, IconUser } from "@tabler/icons-react";
+
+import {
+  IconFlame,
+  IconCalendarCheck,
+  IconTimelineEvent,
+  IconArticle,
+  IconEye,
+} from "@tabler/icons-react";
+
+import {
+  IconEdit,
+  IconLink,
+  IconPencil,
+  IconLogout,
+} from "@tabler/icons-react";
 
 export default function Dashboard() {
   const { user, logout } = useContext(AuthContext);
@@ -272,6 +297,49 @@ export default function Dashboard() {
     loadData();
   }, []);
 
+  const data = [
+    { day: "Mon", value: 480 },
+    { day: "Tue", value: 500 },
+    { day: "Wed", value: 730 },
+    { day: "Thu", value: 750 },
+    { day: "Fri", value: 650 },
+    { day: "Sat", value: 770 },
+    { day: "Sun", value: 920 },
+  ];
+
+
+  const [time, setTime] = useState("");
+  const [greeting, setGreeting] = useState("");
+  const quotes = [
+    "Write. Share. Inspire.",
+    "Keep the streak alive 💪",
+    "One blog at a time.",
+    "Create with purpose ✍️",
+    "Digitomize your thoughts!",
+  ];
+  const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+
+  useEffect(() => {
+    const updateTime = () => {
+      const now = new Date();
+      const hours = now.getHours();
+      const mins = now.getMinutes().toString().padStart(2, "0");
+      const formattedTime = `${(hours % 12 || 12)}:${mins} ${hours >= 12 ? "PM" : "AM"}`;
+
+      setTime(formattedTime);
+
+      if (hours < 12) setGreeting("Good Morning");
+      else if (hours < 18) setGreeting("Good Afternoon");
+      else setGreeting("Good Evening");
+    };
+
+    updateTime();
+    const interval = setInterval(updateTime, 60000); // update every minute
+
+    return () => clearInterval(interval);
+  }, []);
+
+
   if (user)
     return (
       <div className="w-full h-full">
@@ -289,114 +357,162 @@ export default function Dashboard() {
         )}
 
         <div className="flex flex-row pt-24 px-10 pb-4 mt-10">
-          <div className="w-2/12 mr-6">
-            <div className="bg-[#0D1717] text-gray-500 rounded-xl gap-3 shadow-lg mb-6 px-6 py-4 flex flex-col items-center">
-              <img
-                src={user?.profileUrl}
-                className="rounded-md"
-                alt=""
-                srcSet=""
-              />
-              <p className="text-sm text-gray-300 font-medium">
-                {user?.username}
-              </p>
-              <p className="text-xs font-light -mt-3 text-gray-400">
-                {user?.email}
-              </p>
-              <p className="text-xs font-light text-gray-400 text-wrap">
-                {user?.bio}
-              </p>
-              {/* {console.log(user)} */}
-              <p
-                className="text-md shadow-sm cursor-pointer w-full text-center bg-[#21302D] text-teal-100 p-1 px-4 rounded-lg"
-                onClick={() => setIsModalOpen(true)}
-              >
-                Edit Profile
-              </p>
-              <p
-                className="text-md shadow-sm cursor-pointer w-full text-center bg-[#21302D] text-blue-100 p-1 px-4 rounded-lg"
-                onClick={() => setIsLinkModalOpen(true)}
-              >
-                Link Account
-              </p>
-              <p
-                className="text-md shadow-sm cursor-pointer w-full text-center bg-[#21302D] text-yellow-100 p-1 px-4 rounded-lg"
-                onClick={() => setIsBlogModalOpen(true)}
-              >
-                New Blog
-              </p>
-              <p
-                className="text-md shadow-sm cursor-pointer w-full text-center bg-[#21302D] text-red-100 p-1 px-4 rounded-lg"
-                onClick={() => {
-                  logout();
-                  navigate("/");
-                }}
-              >
-                Logout
-              </p>
-            </div>
+              <div className="w-2/12 mr-6">
+                <div className="bg-[#1a1a1a] border border-[#2a2a2a] text-gray-300 rounded-t-xl shadow-lg px-5 py-6 flex flex-col items-center gap-4">
+                  
+                  {/* Profile Pic */}
+                  <img
+                    src={user?.profileUrl}
+                    alt="Profile"
+                    className="rounded-full w-24 h-24 object-cover border border-[#2bb359]"
+                  />
 
-            <div className="bg-[#0D1717] text-gray-500 rounded-xl shadow-lg mb-6 px-6 py-4">
-              <p className="inline-block  hover:text-gray-600 my-2 w-full">
-                Streak 0
-              </p>
-              <p className="inline-block  hover:text-gray-600 my-2 w-full">
-                Active Days 0
-              </p>
-              <p className="inline-block  hover:text-gray-600 my-2 w-full">
-                Longest Streak 0
-              </p>
-              <p className="inline-block  hover:text-gray-600 my-2 w-full">
-                Total Blogs 0
-              </p>
-              <p className="inline-block  hover:text-gray-600 my-2 w-full">
-                Profile Views 0
-              </p>
-            </div>
+                  {/* User Info */}
+                  <div className="text-center space-y-1">
+                    <p className="text-base font-semibold">{user?.username}</p>
+                    <p className="text-xs text-gray-400">{user?.email}</p>
+                    <p className="text-xs text-gray-500">{user?.bio}</p>
+                  </div>
+
+                  {/* Divider */}
+                  <div className="h-px w-full bg-[#2a2a2a] my-2"></div>
+
+                  {/* Actions */}
+                  <SidebarAction
+                    icon={<IconEdit size={16} />}
+                    label="Edit Profile"
+                    onClick={() => setIsModalOpen(true)}
+                    color="text-[#2bb359]"
+                    bg="bg-[#283a2e]"
+                  />
+                  <SidebarAction
+                    icon={<IconLink size={16} />}
+                    label="Link Account"
+                    onClick={() => setIsLinkModalOpen(true)}
+                    color="text-blue-300"
+                    bg="bg-[#1f2e2c]"
+                  />
+                  <SidebarAction
+                    icon={<IconPencil size={16} />}
+                    label="New Blog"
+                    onClick={() => setIsBlogModalOpen(true)}
+                    color="text-yellow-200"
+                    bg="bg-[#2e2a1f]"
+                  />
+                  {/* Uncomment this if you don't have logout elsewhere */}
+                  {/* <SidebarAction
+                    icon={<IconLogout size={16} />}
+                    label="Logout"
+                    onClick={() => {
+                      logout();
+                      navigate("/");
+                    }}
+                    color="text-red-300"
+                    bg="bg-[#2a1e1e]"
+                  /> */}
+                </div>
+            
+
+
+            <div className="bg-[#1a1a1a] border border-[#2a2a2a] rounded-b-xl shadow-lg px-6 py-6 space-y-4">
+            <StatRow icon={<IconFlame size={22} />} label="Streak" value="0" />
+            <StatRow icon={<IconCalendarCheck size={22} />} label="Active Days" value="0" />
+            <StatRow icon={<IconTimelineEvent size={22} />} label="Longest Streak" value="0" />
+            <StatRow icon={<IconArticle size={22} />} label="Total Blogs" value="0" />
+            <StatRow icon={<IconEye size={22} />} label="Profile Views" value="0" />
+          </div>
+
           </div>
 
           <div className="w-10/12">
             <div className="flex flex-row">
-              <div
-                className="bg-no-repeat bg-red-200 border border-red-300 rounded-xl w-7/12 mr-2 p-6"
-                style={{
-                  backgroundImage:
-                    "url(https://previews.dropbox.com/p/thumb/AAvyFru8elv-S19NMGkQcztLLpDd6Y6VVVMqKhwISfNEpqV59iR5sJaPD4VTrz8ExV7WU9ryYPIUW8Gk2JmEm03OLBE2zAeQ3i7sjFx80O-7skVlsmlm0qRT0n7z9t07jU_E9KafA9l4rz68MsaZPazbDKBdcvEEEQPPc3TmZDsIhes1U-Z0YsH0uc2RSqEb0b83A1GNRo86e-8TbEoNqyX0gxBG-14Tawn0sZWLo5Iv96X-x10kVauME-Mc9HGS5G4h_26P2oHhiZ3SEgj6jW0KlEnsh2H_yTego0grbhdcN1Yjd_rLpyHUt5XhXHJwoqyJ_ylwvZD9-dRLgi_fM_7j/p.png?fv_content=true&size_mode=5);",
-                  backgroundPosition: "90% center",
-                }}
-              >
-                <p className="text-5xl text-indigo-900">
-                  Welcome <br />
-                  <strong>Lorem Ipsum</strong>
+            <div className="bg-[#1a1a1a] border border-[#2a2a2a] rounded-xl w-7/12 mr-2 p-6">
+                <p className="text-4xl text-[#5eead4] mb-1">
+                  {greeting},
                 </p>
-                <span className="bg-red-300 text-xl text-white inline-block rounded-full mt-12 px-8 py-2">
-                  <strong>01:51</strong>
-                </span>
+                <p className="text-5xl text-white font-bold mt-4 flex items-center gap-3">
+                  <IconUser size={36} className="text-[#5eead4]" />
+                  {/* {user?.username || "Harshvardhan"} 👋 */}
+                  {user?.firstname} {user?.lastname}👋
+                </p>
+
+                <span className=" flex w-1/4 items-center justify-center gap-2 bg-[#12342f] text-white text-xl rounded-full mt-6 px-6 py-2 border border-[#5eead4]">
+                <IconClockHour5 size={22} />
+                {time}
+              </span>
+
+
+              <p className="mt-6 text-gray-400 italic text-lg flex items-center gap-2">
+                <IconQuote size={20} className="text-[#5eead4]" />
+                {randomQuote}
+              </p>
               </div>
 
-              <div
-                className="bg-no-repeat bg-orange-200 border border-orange-300 rounded-xl w-5/12 ml-2 p-6"
-                style={{
-                  backgroundImage:
-                    " url(https://previews.dropbox.com/p/thumb/AAuwpqWfUgs9aC5lRoM_f-yi7OPV4txbpW1makBEj5l21sDbEGYsrC9sb6bwUFXTSsekeka5xb7_IHCdyM4p9XCUaoUjpaTSlKK99S_k4L5PIspjqKkiWoaUYiAeQIdnaUvZJlgAGVUEJoy-1PA9i6Jj0GHQTrF_h9MVEnCyPQ-kg4_p7kZ8Yk0TMTL7XDx4jGJFkz75geOdOklKT3GqY9U9JtxxvRRyo1Un8hOObbWQBS1eYE-MowAI5rNqHCE_e-44yXKY6AKJocLPXz_U4xp87K4mVGehFKC6dgk_i5Ur7gspuD7gRBDvd0sanJ9Ybr_6s2hZhrpad-2WFwWqSNkh/p.png?fv_content=true&size_mode=5)",
-                  backgroundPosition: "100% 40%",
-                }}
-              >
-                <p className="text-5xl text-indigo-900">
-                  Inbox <br />
-                  <strong>23</strong>
-                </p>
-                <a
-                  href=""
-                  className="bg-orange-300 text-xl text-white underline hover:no-underline inline-block rounded-full mt-12 px-8 py-2"
-                >
-                  <strong>See messages</strong>
-                </a>
-              </div>
+
+              <div className="bg-[#1a1a1a] border border-[#2a2a2a] rounded-xl w-5/12 ml-2 p-6 relative overflow-hidden">
+                  <div className="mb-6">
+                    <p className="text-2xl font-semibold text-[#5eead4]">Digitomize Rank</p>
+                    <p className="text-5xl font-bold text-white">#830</p>
+                  </div>
+
+                  {/* Line Graph */}
+                  <div className="w-full h-40">
+                    <ResponsiveContainer width="100%" height="100%">
+                      <LineChart data={data}>
+                        {/* Gradient definition */}
+                        <defs>
+                          <linearGradient id="primaryGradient" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stopColor="#5eead4" stopOpacity={0.4} />
+                            <stop offset="100%" stopColor="#5eead4" stopOpacity={0} />
+                          </linearGradient>
+                        </defs>
+
+                        <XAxis dataKey="day" stroke="#334155" />
+                        <YAxis hide />
+                        <Tooltip
+                          contentStyle={{
+                            backgroundColor: "#1a1a1a",
+                            border: "1px solid #5eead4",
+                            color: "white",
+                            borderRadius: "8px",
+                          }}
+                          cursor={{ stroke: "#334155", strokeWidth: 1 }}
+                        />
+                        <Line
+                          type="monotone"
+                          dataKey="value"
+                          stroke="#5eead4"
+                          strokeWidth={3}
+                          dot={{
+                            r: 4,
+                            stroke: "#1a1a1a",
+                            strokeWidth: 2,
+                            fill: "#5eead4",
+                          }}
+                        />
+                        {/* Gradient fill area under line */}
+                        <Area
+                          type="monotone"
+                          dataKey="value"
+                          stroke="none"
+                          fill="url(#primaryGradient)"
+                        />
+                      </LineChart>
+                    </ResponsiveContainer>
+                  </div>
+
+                  {/* <a
+                    href="#"
+                    className="mt-6 inline-block bg-[#12342f] border border-[#5eead4] text-white text-lg rounded-full px-6 py-2 hover:bg-[#1f403d] transition duration-300"
+                  >
+                    View More Stats
+                  </a> */}
+                </div>
+
             </div>
             <div className="space-y-8 mt-4">
               {/* Row 1: Leetcode Card (Full Width) */}
-              <div className="bg-[#1a1a1a] rounded-xl shadow-lg p-6 w-full text-white overflow-auto scrollbar-hide">
+              <div className="bg-[#1a1a1a] border border-[#2a2a2a] rounded-xl shadow-lg p-6 w-full text-white overflow-auto scrollbar-hide">
                 <h2 className="text-2xl font-bold text-yellow-500 mb-3">
                   Leetcode
                 </h2>
@@ -529,7 +645,7 @@ export default function Dashboard() {
                   </div>
 
                   {/* Contest Info Section */}
-                  <div className="bg-[#222222] rounded-lg py-6 px-4 w-1/2 text-xs text-gray-300 shadow-md">
+                  <div className="bg-[#222222] border border-[#2a2a2a] rounded-lg py-6 px-4 w-1/2 text-xs text-gray-300 shadow-md">
                     <p className="font-semibold text-lg text-yellow-500 mb-4">
                       Contest Stats
                     </p>
@@ -558,7 +674,7 @@ export default function Dashboard() {
               </div>
 
               {/* Row 2: Codeforces Card */}
-              <div className="bg-[#1a1a1a] rounded-xl shadow-lg p-6 w-full overflow-auto text-white scrollbar-hide">
+              <div className="bg-[#1a1a1a] border border-[#2a2a2a] rounded-xl shadow-lg p-6 w-full overflow-auto text-white scrollbar-hide">
                 <h2 className="text-2xl font-bold text-blue-500 mb-4">
                   Codeforces
                 </h2>
@@ -643,13 +759,13 @@ export default function Dashboard() {
               </div>
 
               {/* Row 3: GeeksforGeeks Card */}
-              <div className="bg-[#1a1a1a] rounded-xl shadow-lg p-6 w-full overflow-auto text-white">
+              {/* <div className="bg-[#1a1a1a] rounded-xl shadow-lg p-6 w-full overflow-auto text-white">
                 <h2 className="text-2xl font-bold text-green-500 mb-3">
                   GeeksforGeeks
-                </h2>
+                </h2> */}
 
                 {/* Profile Section */}
-                <div className="flex gap-4 items-center mb-6">
+                {/* <div className="flex gap-4 items-center mb-6">
                   <img
                     src={gfgdata?.profile?.avatar}
                     alt="profileImage"
@@ -663,10 +779,10 @@ export default function Dashboard() {
                       Rank: {gfgdata?.profile?.ranking}
                     </p>
                   </div>
-                </div>
+                </div> */}
 
                 {/* Stats Section */}
-                <div className="bg-[#222222] rounded-lg py-4 px-3 text-sm text-gray-300 shadow-md">
+                {/* <div className="bg-[#222222] rounded-lg py-4 px-3 text-sm text-gray-300 shadow-md">
                   <p className="font-semibold text-lg text-green-500 mb-4">
                     Stats
                   </p>
@@ -684,10 +800,10 @@ export default function Dashboard() {
                       </span>
                     </div>
                   </div>
-                </div>
+                </div> */}
 
                 {/* Tags Section */}
-                <div className="my-4">
+                {/* <div className="my-4">
                   <p className="text-xl font-semibold text-gray-300">
                     Popular Tags:
                   </p>
@@ -701,8 +817,8 @@ export default function Dashboard() {
                       </span>
                     ))}
                   </div>
-                </div>
-              </div>
+                </div> */}
+              {/* </div> */}
             </div>
 
             <GitHubContributionGraph data={heatMapData} />
@@ -711,3 +827,26 @@ export default function Dashboard() {
       </div>
     );
 }
+
+// 👇 Below component for cleaner layout
+const StatRow = ({ icon, label, value }) => (
+  <div className="flex items-center justify-between hover:bg-[#222] px-4 py-2 rounded-md transition duration-200 group">
+    <div className="flex items-center space-x-3 text-white">
+      <div className="text-[#5eead4] group-hover:text-[#3dd1bc]">{icon}</div>
+      <span className="text-sm">{label}</span>
+    </div>
+    <span className="text-gray-400 font-mono">{value}</span>
+  </div>
+);
+
+
+// 👇 Component for Reusability
+const SidebarAction = ({ icon, label, onClick, color, bg }) => (
+  <p
+    className={`flex items-center gap-2 justify-center w-full text-sm font-medium py-2 px-4 rounded-md cursor-pointer shadow-sm transition duration-200 hover:opacity-90 ${bg} ${color}`}
+    onClick={onClick}
+  >
+    {icon}
+    {label}
+  </p>
+);
