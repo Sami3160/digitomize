@@ -1658,5 +1658,283 @@
                 "link": "https://www.geeksforgeeks.org/maximum-depth-of-n-ary-tree/"
             }
         ]
-    }
+    },
+    "stripe": {
+    "array": [
+      {
+        "title": "4Sum",
+        "link": "https://leetcode.com/problems/4sum/"
+      },
+      {
+        "title": "Product of Array Except Self",
+        "link": "https://leetcode.com/problems/product-of-array-except-self/"
+      },
+      {
+        "title": "Maximum Subarray",
+        "link": "https://leetcode.com/problems/maximum-subarray/"
+      }
+    ],
+    "string": [
+      {
+        "title": "Group Anagrams",
+        "link": "https://leetcode.com/problems/group-anagrams/"
+      },
+      {
+        "title": "Longest Substring Without Repeating Characters",
+        "link": "https://leetcode.com/problems/longest-substring-without-repeating-characters/"
+      }
+    ],
+    "dynamic programming": [
+      {
+        "title": "Coin Change",
+        "link": "https://leetcode.com/problems/coin-change/"
+      },
+      {
+        "title": "House Robber",
+        "link": "https://leetcode.com/problems/house-robber/"
+      }
+    ],
+    "divide and conquer": [
+      {
+        "title": "Merge Sort",
+        "link": "https://www.geeksforgeeks.org/merge-sort/"
+      },
+      {
+        "title": "Quick Sort",
+        "link": "https://www.geeksforgeeks.org/quick-sort/"
+      }
+    ],
+    "stack": [
+      {
+        "title": "Valid Parentheses",
+        "link": "https://leetcode.com/problems/valid-parentheses/"
+      },
+      {
+        "title": "Evaluate Reverse Polish Notation",
+        "link": "https://leetcode.com/problems/evaluate-reverse-polish-notation/"
+      }
+    ],
+    "graph": [
+      {
+        "title": "Course Schedule",
+        "link": "https://leetcode.com/problems/course-schedule/"
+      },
+      {
+        "title": "Number of Islands",
+        "link": "https://leetcode.com/problems/number-of-islands/"
+      }
+    ],
+    "tree": [
+      {
+        "title": "Binary Tree Inorder Traversal",
+        "link": "https://leetcode.com/problems/binary-tree-inorder-traversal/"
+      },
+      {
+        "title": "Lowest Common Ancestor of a Binary Tree",
+        "link": "https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/"
+      }
+    ]
+  },"pinterest": {
+    "array": [
+      {
+        "title": "Kth Largest Element in an Array",
+        "link": "https://leetcode.com/problems/kth-largest-element-in-an-array/"
+      },
+      {
+        "title": "Find All Numbers Disappeared in an Array",
+        "link": "https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array/"
+      }
+    ],
+    "string": [
+      {
+        "title": "Valid Palindrome",
+        "link": "https://leetcode.com/problems/valid-palindrome/"
+      },
+      {
+        "title": "Implement strStr()",
+        "link": "https://leetcode.com/problems/implement-strstr/"
+      }
+    ],
+    "dynamic programming": [
+      {
+        "title": "Climbing Stairs",
+        "link": "https://leetcode.com/problems/climbing-stairs/"
+      },
+      {
+        "title": "Longest Palindromic Subsequence",
+        "link": "https://leetcode.com/problems/longest-palindromic-subsequence/"
+      }
+    ],
+    "divide and conquer": [
+      {
+        "title": "Search in Rotated Sorted Array",
+        "link": "https://leetcode.com/problems/search-in-rotated-sorted-array/"
+      },
+      {
+        "title": "Median of Two Sorted Arrays",
+        "link": "https://leetcode.com/problems/median-of-two-sorted-arrays/"
+      }
+    ],
+    "stack": [
+      {
+        "title": "Min Stack",
+        "link": "https://leetcode.com/problems/min-stack/"
+      },
+      {
+        "title": "Largest Rectangle in Histogram",
+        "link": "https://leetcode.com/problems/largest-rectangle-in-histogram/"
+      }
+    ],
+    "graph": [
+      {
+        "title": "Clone Graph",
+        "link": "https://leetcode.com/problems/clone-graph/"
+      },
+      {
+        "title": "Pacific Atlantic Water Flow",
+        "link": "https://leetcode.com/problems/pacific-atlantic-water-flow/"
+      }
+    ],
+    "tree": [
+      {
+        "title": "Serialize and Deserialize Binary Tree",
+        "link": "https://leetcode.com/problems/serialize-and-deserialize-binary-tree/"
+      },
+      {
+        "title": "Path Sum",
+        "link": "https://leetcode.com/problems/path-sum/"
+      }
+    ]
+  },"leap-motion": {
+    "array": [
+      {
+        "title": "3Sum",
+        "link": "https://leetcode.com/problems/3sum/"
+      },
+      {
+        "title": "Trapping Rain Water",
+        "link": "https://www.geeksforgeeks.org/trapping-rain-water/"
+      },
+      {
+        "title": "Find the Median of a Data Stream",
+        "link": "https://www.codechef.com/problems/MEDIANSTREAM"
+      },
+      {
+        "title": "Top K Frequent Elements",
+        "link": "https://www.codeforces.com/problemset/problem/602/B"
+      }
+    ],
+    "string": [
+      {
+        "title": "Longest Palindromic Subsequence",
+        "link": "https://www.geeksforgeeks.org/longest-palindromic-subsequence-dp-12/"
+      },
+      {
+        "title": "Minimum Window Substring",
+        "link": "https://leetcode.com/problems/minimum-window-substring/"
+      },
+      {
+        "title": "Word Search",
+        "link": "https://www.codeforces.com/contest/822/problem/B"
+      },
+      {
+        "title": "Longest Repeating Substring",
+        "link": "https://www.hackerrank.com/challenges/repeated-string/problem"
+      },
+      {
+        "title": "Valid Sudoku",
+        "link": "https://leetcode.com/problems/valid-sudoku/"
+      }
+    ],
+    "dynamic programming": [
+      {
+        "title": "Edit Distance",
+        "link": "https://www.hackerrank.com/challenges/string-transformation/problem"
+      },
+      {
+        "title": "Longest Increasing Subsequence II",
+        "link": "https://leetcode.com/problems/longest-increasing-subsequence-ii/"
+      },
+      {
+        "title": "Wildcard Matching",
+        "link": "https://www.codeforces.com/problemset/problem/333/B"
+      },
+      {
+        "title": "Dungeon Game",
+        "link": "https://leetcode.com/problems/dungeon-game/"
+      },
+      {
+        "title": "Unique Paths III",
+        "link": "https://leetcode.com/problems/unique-paths-iii/"
+      }
+    ],
+    "divide and conquer": [
+      {
+        "title": "Count Complete Tree Nodes",
+        "link": "https://www.geeksforgeeks.org/count-complete-tree-nodes-in-a-binary-tree/"
+      },
+      {
+        "title": "Find Minimum in Rotated Sorted Array",
+        "link": "https://www.codechef.com/problems/ROTATEARRAY"
+      },
+      {
+        "title": "Max Sum of Rectangle No Larger Than K",
+        "link": "https://leetcode.com/problems/max-sum-of-rectangle-no-larger-than-k/"
+      }
+    ],
+    "stack": [
+      {
+        "title": "Next Greater Element II",
+        "link": "https://www.geeksforgeeks.org/next-greater-element/"
+      },
+      {
+        "title": "132 Pattern",
+        "link": "https://leetcode.com/problems/132-pattern/"
+      },
+      {
+        "title": "Remove K Digits",
+        "link": "https://www.codeforces.com/problemset/problem/313/B"
+      },
+      {
+        "title": "Basic Calculator",
+        "link": "https://leetcode.com/problems/basic-calculator/"
+      },
+      {
+        "title": "Design a Stack with Increment Operation",
+        "link": "https://leetcode.com/problems/design-a-stack-with-increment-operation/"
+      }
+    ],
+    "graph": [
+      {
+        "title": "Alien Dictionary",
+        "link": "https://www.geeksforgeeks.org/alien-dictionary/"
+      },
+      {
+        "title": "Find a Connected Component in a Graph",
+        "link": "https://www.codeforces.com/problemset/problem/587/B"
+      },
+      {
+        "title": "Minimum Cost to Connect All Points",
+        "link": "https://leetcode.com/problems/minimum-cost-to-connect-all-points/"
+      },
+      {
+        "title": "Network Delay Time",
+        "link": "https://www.hackerrank.com/challenges/journey-to-the-moon/problem"
+      },
+      {
+        "title": "Find the Town Judge",
+        "link": "https://leetcode.com/problems/find-the-town-judge/"
+      }
+    ],
+    "tree": [
+      {
+        "title": "Find the Duplicate Subtrees",
+        "link": "https://www.geeksforgeeks.org/find-duplicate-subtrees/"
+      },
+      {
+        "title": "Construct Binary Tree from Preorder and Postorder Traversal",
+        "link": "https://www.geeksforgeeks.org/construct-a-binary-tree-from-parent-array-representation/"
+      }
+    ]
+  }
 }

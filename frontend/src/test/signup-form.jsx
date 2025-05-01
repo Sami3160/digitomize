@@ -52,7 +52,7 @@ export function SignupFormDemo() {
           console.log("hehe ifff");
           console.log(response.data)
           localStorage.setItem("token", response.data.token);
-          localStorage.setItem("user", JSON.stringify(response.data.user._id));
+          localStorage.setItem("user", JSON.stringify(response.data.savedUser._id));
           setSuccess(true);
           setTimeout(() => setSuccess(false), 2500);
           setTimeout(() => navigate("/home"), 3000);

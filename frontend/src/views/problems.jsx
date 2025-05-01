@@ -34,15 +34,19 @@ export default function ProblemsPage() {
                     </div>
 
                     <div className=" flex  justify-evenly">
+                    <Link to="/problems?company=pinterest" className='p-2 px-12 rounded-md bg-red-500 hover:bg-red-700 border border-slate-100 transition-bg duration-300'>Pinterest</Link>
+
                         <Link to="/problems?company=meta" className='p-2 px-12 rounded-md bg-blue-300 hover:bg-blue-400 border border-slate-100 transition-bg duration-300'>Meta</Link>
                         <Link to="/problems?company=oracle" className='p-2 px-12 rounded-md bg-orange-400 hover:bg-orange-700 border border-slate-100 transition-bg duration-300'>Oracle</Link>
                         <Link to="/problems?company=ibm" className='p-2 px-12 rounded-md bg-blue-700 hover:bg-blue-900 border border-slate-100 transition-bg duration-300'>IBM</Link>
+                        <Link to="/problems?company=stripe" className='p-2 px-12 rounded-md bg-blue-600 hover:bg-blue-800 border border-slate-100 transition-bg duration-300'>Stripe</Link>
                     </div>
                     <div className=" flex  justify-evenly">
                         <Link to="/problems?company=tcs" className='p-2 px-12 rounded-md bg-purple-500 hover:bg-purple-700 border border-slate-100 transition-bg duration-300'>TCS</Link>
                         <Link to="/problems?company=adobe" className='p-2 px-12 rounded-md bg-red-400 hover:bg-red-600 border border-slate-100 transition-bg duration-300'>Adobe</Link>
                         <Link to="/problems?company=nvidia" className='p-2 px-12 rounded-md bg-green-400 hover:bg-green-600 border border-slate-100 transition-bg duration-300'>Nvidia</Link>
                         <Link to="/problems?company=snap" className='p-2 px-12 rounded-md bg-yellow-300 hover:bg-yellow-500 border border-slate-100 transition-bg duration-300'>Snap</Link>
+                        <Link to="/problems?company=leap-motion" className='p-2 px-12 rounded-md bg-teal-400 hover:bg-teal-500 border border-slate-100 transition-bg duration-300'>Leap Motion</Link>
                     </div>
                 </div>
             </div>

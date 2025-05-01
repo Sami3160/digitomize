@@ -419,8 +419,8 @@ export default function Dashboard() {
               <StatRow icon={<IconFlame size={22} />} label="Streak" value="0" />
               <StatRow icon={<IconCalendarCheck size={22} />} label="Active Days" value="0" />
               <StatRow icon={<IconTimelineEvent size={22} />} label="Longest Streak" value="0" />
-              <StatRow icon={<IconArticle size={22} />} label="Total Blogs" value="0" />
-              <StatRow icon={<IconEye size={22} />} label="Profile Views" value="0" />
+              <StatRow icon={<IconArticle size={22} />} label="Total Blogs" value={`${user?.blogs? user?.blogs?.length : 0}`} />
+              <StatRow icon={<IconEye size={22} />} label="Profile Views" value={`${user?.views? Object.keys(user?.views).length : 0}`} />
             </div>
 
           </div>

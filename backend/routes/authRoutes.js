@@ -28,98 +28,124 @@ router.get(
 );
 
 ///forward the reques to google auth server
-router.get("/auth/google", async (req, res) => {
+router.post("/google", async (req, res) => {
+  console.log("auth pinged");
+  // console.log(req?.body?.params);
+  if (!req?.body?.params?.access_token) {
+    return res.status(400).json({ message: "No access token provided" });
+  }
   try {
     console.log("req came /auth/google");
 
-    const response = await axios.get(
-      "https://accounts.google.com/o/oauth2/v2/auth",
-      {
-        params: req.query,
-      }
-    );
-
-    console.log(response);
-    res.send(response.data);
-  } catch (error) {
-    console.log(error);
-    res.error(500).json({ error: "Internal server message" });
-  }
-});
-
-router.post("/google", async (req, res) => {
-  const { access_token } = req.body;
-
-  try {
-    // Use the access_token to fetch user info from Google
     const response = await axios
       .get("https://www.googleapis.com/oauth2/v3/userinfo", {
-        headers: { Authorization: `Bearer ${access_token}` },
+        headers: { Authorization: `Bearer ${req?.body?.params?.access_token}` },
       })
-      .catch((err) => {
-        console;
-      });
-
-    const { email, name } = response.data;
-
-    console.log("shssh");
-    console.log(email);
-
-    const user = await User.findOne({ email });
-
-    if (user) {
-      console.log("User found:", user);
-      const token = jwt.sign({ userId: user._id }, process.env.SESSION_SECRET, {
-        expiresIn: "4h",
-      });
-      res
-        .status(200)
-        .json({ token, user, message: "User logged in successfully" });
-    } else {
-      console.log("Creating new user");
-      const newUser = new User({
-        username: name, // Use the name from Google
-        email: email,
-        firstname: name,
-        lastname: "empty",
-        password: Date.now().toString(), // Dummy password
-        bio: "",
-      });
-
-      const savedUser = await newUser.save();
-      console.log("New user created:", savedUser);
-
-      const token = jwt.sign(
-        { userId: savedUser._id },
-        process.env.SESSION_SECRET,
-        {
-          expiresIn: "4h",
-        }
-      );
-      res
-        .status(201)
-        .json({ token, savedUser, message: "User created successfully" });
+      .then((res) => res.data);
+    console.log(response);
+    const email = response?.email;
+    if (!email) {
+       // Handle cases where Google doesn't return an email
+       console.error("No email received from Google.");
+       return res.status(400).json({ message: "Could not retrieve email from Google." });
     }
+    // res.send(response.data)
+    const moreUserInfo = await User.findOne({ email: email }).select(
+      "-password"
+    );
+    if(!moreUserInfo){
+      return res.status(401).json({message: "User not found"});
+    }
+    const token = jwt.sign(
+      { userId: moreUserInfo._id },
+      process.env.SESSION_SECRET,
+      {
+        expiresIn: "4h",
+      }
+    );
+    console.log(token);
+    console.log(moreUserInfo);
+    return res
+      .status(200)
+      .json({ token, userInfo:moreUserInfo, message: "User logged in successfully" });
 
-    //   // Check if the user exists in your database
-    //   let user = await User.findOne({ email });
-
-    //   // If the user doesn't exist, create a new user
-    //   if (!user) {
-    //     user = new User({ email, name });
-    //     await user.save();
-    //   }
-
-    //   // Generate a token for the user
-    //   const token = generateToken(user._id);
-
-    //   // Return the token and user info
-    //   res.status(200).json({ token, user });
+    // res.send(response.data);
   } catch (error) {
-    console.error("Google authentication error:", error);
-    res.status(500).json({ message: "Google authentication failed." });
+    console.log(error);
+    res.status(500).json({ error: "Internal server message" });
   }
 });
+
+// router.post("/google/demo", async (req, res) => {
+//   const { access_token } = req.body;
+
+//   try {
+//     // Use the access_token to fetch user info from Google
+//     const response = await axios
+//       .get("https://www.googleapis.com/oauth2/v3/userinfo", {
+//         headers: { Authorization: `Bearer ${access_token}` },
+//       })
+
+//     const { email, name } = response.userInfo;
+
+//     console.log("shssh");
+//     console.log(email);
+
+//     const user = await User.findOne({ email });
+
+//     if (user) {
+//       console.log("User found:", user);
+//       const token = jwt.sign({ userId: user._id }, process.env.SESSION_SECRET, {
+//         expiresIn: "4h",
+//       });
+//       res
+//         .status(200)
+//         .json({ token, user, message: "User logged in successfully" });
+//     } else {
+//       console.log("Creating new user");
+//       const newUser = new User({
+//         username: name, // Use the name from Google
+//         email: email,
+//         firstname: name,
+//         lastname: "empty",
+//         password: Date.now().toString(), // Dummy password
+//         bio: "",
+//       });
+
+//       const savedUser = await newUser.save();
+//       console.log("New user created:", savedUser);
+
+//       const token = jwt.sign(
+//         { userId: savedUser._id },
+//         process.env.SESSION_SECRET,
+//         {
+//           expiresIn: "4h",
+//         }
+//       );
+//       res
+//         .status(201)
+//         .json({ token, savedUser, message: "User created successfully" });
+//     }
+
+//     //   // Check if the user exists in your database
+//     //   let user = await User.findOne({ email });
+
+//     //   // If the user doesn't exist, create a new user
+//     //   if (!user) {
+//     //     user = new User({ email, name });
+//     //     await user.save();
+//     //   }
+
+//     //   // Generate a token for the user
+//     //   const token = generateToken(user._id);
+
+//     //   // Return the token and user info
+//     //   res.status(200).json({ token, user });
+//   } catch (error) {
+//     console.error("Google authentication error:", error);
+//     res.status(500).json({ message: "Google authentication failed." });
+//   }
+// });
 
 router.get("/login/success", async (req, res) => {
   if (req.user) {

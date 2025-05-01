@@ -59,7 +59,7 @@ function SmolCard({ name, amount }) {
     "dynamic programming": "https://img.icons8.com/ios-glyphs/30/smartphone-ram.png",
     "divide and conquer": "https://img.icons8.com/ios-glyphs/30/crown.png",
   }
-  const n = name[0].toUpperCase() + name.slice(1)
+  const n = name[0]?.toUpperCase() + name?.slice(1)
   return (
     <div
       className="flex h-24 w-52   bg-gradient-to-br from-[rgba(75,30,133,1)] to-[rgba(75,30,133,0.01)] 

@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { registerUser, loginUser, getUserProfile, updateUser, updateProfile, getSafeUserData,linkAccounts,unlinkAccount, getLeetCodeHeatData } = require('../controllers/userController');
+const {updateViewCount, registerUser, loginUser, getUserProfile, updateUser, updateProfile, getSafeUserData,linkAccounts,unlinkAccount, getLeetCodeHeatData } = require('../controllers/userController');
 const { protect } = require('../middleware/authMiddleware');
 const FileUpload = require('../config/multer-config');
 
@@ -14,4 +14,6 @@ router.get('/getUser', getSafeUserData);
 router.post('/linkAccounts',linkAccounts);
 router.delete('/unlinkAccount', unlinkAccount);
 router.post('/getHeatData',getLeetCodeHeatData);
+router.post('/updateViews',updateViewCount);
+
 module.exports = router;

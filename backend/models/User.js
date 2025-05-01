@@ -23,7 +23,12 @@ const userSchema = new mongoose.Schema({
     profileUrl:{
         type:String,
         default:'https://www.llt.at/wp-content/uploads/2021/11/blank-profile-picture-g77b5d6651-1280-705x705.png'
-    }
+    },
+    views: {
+        type: Map,
+        of: Date,
+        default: {}
+      }
 });
 
 module.exports = mongoose.model("User", userSchema);
