@@ -35,6 +35,18 @@ exports.registerUser = async (req, res) => {
   }
 };
 
+exports.getLeetCodeHeatData = async (req, res) => {
+  const response = await fetch('https://leetcode.com/graphql', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(req.body),
+  });
+  console.log("gettning heat data")
+
+  const data = await response.json();
+  res.json(data);
+}
+
 exports.loginUser = async (req, res) => {
   const { email, password } = req.body;
   try {
@@ -83,14 +95,14 @@ exports.updateUser = async (req, res) => {
     if (bio) data.bio = bio
     console.log(req.body);
     console.log(_id);
-    
+
     if (password) {
       const hashedPassword = await bcrypt.hash(password, 10);
       await User.updateOne({ _id }, {
         password: hashedPassword
       })
     }
-    
+
     const user = await User.updateOne({ _id }, { ...data });
     console.log(user);
     return res.status(200).json(user);
@@ -102,27 +114,27 @@ exports.updateUser = async (req, res) => {
   }
 };
 
-exports.updateProfile=async  (req, res) =>{
+exports.updateProfile = async (req, res) => {
   // console.table(req.file)
-  const {_id}=req.body;
-  console.log("body : ",req.body)
+  const { _id } = req.body;
+  console.log("body : ", req.body)
   try {
-      const result = await uploadOnCloudinary(req.file.path, 'profile')
-      // console.log("result: ",result)
-      const public_id=await User.findById({_id}).select('public_id')
-      if(public_id){
-        await deleteOnCloudinary(public_id);
-      }
-      await User.findOneAndUpdate({_id}, {profileUrl:result.url, public_id:result.public_id})
-      return res.status(200).json({ message: "Image uploaded successfully 1", result })
+    const result = await uploadOnCloudinary(req.file.path, 'profile')
+    // console.log("result: ",result)
+    const public_id = await User.findById({ _id }).select('public_id')
+    if (public_id) {
+      await deleteOnCloudinary(public_id);
+    }
+    await User.findOneAndUpdate({ _id }, { profileUrl: result.url, public_id: result.public_id })
+    return res.status(200).json({ message: "Image uploaded successfully 1", result })
   } catch (error) {
-      console.log("huihiu ",error)
-      return res.status(500).json({ message: "Error in uploading image", error })
-      
+    console.log("huihiu ", error)
+    return res.status(500).json({ message: "Error in uploading image", error })
+
   }
 }
 
-exports.getSafeUserData=async (req, res)=>{
+exports.getSafeUserData = async (req, res) => {
   try {
     // console.log(req.body)
     // console.log(req.param)

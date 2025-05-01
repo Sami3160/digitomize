@@ -31,11 +31,12 @@ import {
   IconPencil,
   IconLogout,
 } from "@tabler/icons-react";
+import LeetCodeHeatmap from "../components/LeetCodeHeatMap";
 
 export default function Dashboard() {
   const { user, logout } = useContext(AuthContext);
   const navigate = useNavigate();
-  const [heatMapData,setHeatMapData]=useState([]);
+  const [heatMapData, setHeatMapData] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLinkModalOpen, setIsLinkModalOpen] = useState(false);
   const [isBlogModalOpen, setIsBlogModalOpen] = useState(false);
@@ -46,14 +47,14 @@ export default function Dashboard() {
     setIsLinkModalOpen(false);
   };
 
-  useEffect(()=>{
-    const getHeatMapData=async ()=>{
-        let userid=user?._id;
-        const response=await axios.get(`http://localhost:5000/api/blog/contributions/${userid}`)
-        setHeatMapData(response.data);
+  useEffect(() => {
+    const getHeatMapData = async () => {
+      let userid = user?._id;
+      const response = await axios.get(`http://localhost:5000/api/blog/contributions/${userid}`)
+      setHeatMapData(response.data);
     }
     getHeatMapData();
-  },[])
+  }, [])
 
   let initdata = {
     profile: {
@@ -357,50 +358,50 @@ export default function Dashboard() {
         )}
 
         <div className="flex flex-row pt-24 px-10 pb-4 mt-10">
-              <div className="w-2/12 mr-6">
-                <div className="bg-[#1a1a1a] border border-[#2a2a2a] text-gray-300 rounded-t-xl shadow-lg px-5 py-6 flex flex-col items-center gap-4">
-                  
-                  {/* Profile Pic */}
-                  <img
-                    src={user?.profileUrl}
-                    alt="Profile"
-                    className="rounded-full w-24 h-24 object-cover border border-[#2bb359]"
-                  />
+          <div className="w-2/12 mr-6">
+            <div className="bg-[#1a1a1a] border border-[#2a2a2a] text-gray-300 rounded-t-xl shadow-lg px-5 py-6 flex flex-col items-center gap-4">
 
-                  {/* User Info */}
-                  <div className="text-center space-y-1">
-                    <p className="text-base font-semibold">{user?.username}</p>
-                    <p className="text-xs text-gray-400">{user?.email}</p>
-                    <p className="text-xs text-gray-500">{user?.bio}</p>
-                  </div>
+              {/* Profile Pic */}
+              <img
+                src={user?.profileUrl}
+                alt="Profile"
+                className="rounded-full w-24 h-24 object-cover border border-[#2bb359]"
+              />
 
-                  {/* Divider */}
-                  <div className="h-px w-full bg-[#2a2a2a] my-2"></div>
+              {/* User Info */}
+              <div className="text-center space-y-1">
+                <p className="text-base font-semibold">{user?.username}</p>
+                <p className="text-xs text-gray-400">{user?.email}</p>
+                <p className="text-xs text-gray-500">{user?.bio}</p>
+              </div>
 
-                  {/* Actions */}
-                  <SidebarAction
-                    icon={<IconEdit size={16} />}
-                    label="Edit Profile"
-                    onClick={() => setIsModalOpen(true)}
-                    color="text-[#2bb359]"
-                    bg="bg-[#283a2e]"
-                  />
-                  <SidebarAction
-                    icon={<IconLink size={16} />}
-                    label="Link Account"
-                    onClick={() => setIsLinkModalOpen(true)}
-                    color="text-blue-300"
-                    bg="bg-[#1f2e2c]"
-                  />
-                  <SidebarAction
-                    icon={<IconPencil size={16} />}
-                    label="New Blog"
-                    onClick={() => setIsBlogModalOpen(true)}
-                    color="text-yellow-200"
-                    bg="bg-[#2e2a1f]"
-                  />
-                  {/* Uncomment this if you don't have logout elsewhere */}
-                  {/* <SidebarAction
+              {/* Divider */}
+              <div className="h-px w-full bg-[#2a2a2a] my-2"></div>
+
+              {/* Actions */}
+              <SidebarAction
+                icon={<IconEdit size={16} />}
+                label="Edit Profile"
+                onClick={() => setIsModalOpen(true)}
+                color="text-[#2bb359]"
+                bg="bg-[#283a2e]"
+              />
+              <SidebarAction
+                icon={<IconLink size={16} />}
+                label="Link Account"
+                onClick={() => setIsLinkModalOpen(true)}
+                color="text-blue-300"
+                bg="bg-[#1f2e2c]"
+              />
+              <SidebarAction
+                icon={<IconPencil size={16} />}
+                label="New Blog"
+                onClick={() => setIsBlogModalOpen(true)}
+                color="text-yellow-200"
+                bg="bg-[#2e2a1f]"
+              />
+              {/* Uncomment this if you don't have logout elsewhere */}
+              {/* <SidebarAction
                     icon={<IconLogout size={16} />}
                     label="Logout"
                     onClick={() => {
@@ -410,23 +411,23 @@ export default function Dashboard() {
                     color="text-red-300"
                     bg="bg-[#2a1e1e]"
                   /> */}
-                </div>
-            
+            </div>
+
 
 
             <div className="bg-[#1a1a1a] border border-[#2a2a2a] rounded-b-xl shadow-lg px-6 py-6 space-y-4">
-            <StatRow icon={<IconFlame size={22} />} label="Streak" value="0" />
-            <StatRow icon={<IconCalendarCheck size={22} />} label="Active Days" value="0" />
-            <StatRow icon={<IconTimelineEvent size={22} />} label="Longest Streak" value="0" />
-            <StatRow icon={<IconArticle size={22} />} label="Total Blogs" value="0" />
-            <StatRow icon={<IconEye size={22} />} label="Profile Views" value="0" />
-          </div>
+              <StatRow icon={<IconFlame size={22} />} label="Streak" value="0" />
+              <StatRow icon={<IconCalendarCheck size={22} />} label="Active Days" value="0" />
+              <StatRow icon={<IconTimelineEvent size={22} />} label="Longest Streak" value="0" />
+              <StatRow icon={<IconArticle size={22} />} label="Total Blogs" value="0" />
+              <StatRow icon={<IconEye size={22} />} label="Profile Views" value="0" />
+            </div>
 
           </div>
 
           <div className="w-10/12">
             <div className="flex flex-row">
-            <div className="bg-[#1a1a1a] border border-[#2a2a2a] rounded-xl w-7/12 mr-2 p-6">
+              <div className="bg-[#1a1a1a] border border-[#2a2a2a] rounded-xl w-7/12 mr-2 p-6">
                 <p className="text-4xl text-[#5eead4] mb-1">
                   {greeting},
                 </p>
@@ -437,77 +438,77 @@ export default function Dashboard() {
                 </p>
 
                 <span className=" flex w-1/4 items-center justify-center gap-2 bg-[#12342f] text-white text-xl rounded-full mt-6 px-6 py-2 border border-[#5eead4]">
-                <IconClockHour5 size={22} />
-                {time}
-              </span>
+                  <IconClockHour5 size={22} />
+                  {time}
+                </span>
 
 
-              <p className="mt-6 text-gray-400 italic text-lg flex items-center gap-2">
-                <IconQuote size={20} className="text-[#5eead4]" />
-                {randomQuote}
-              </p>
+                <p className="mt-6 text-gray-400 italic text-lg flex items-center gap-2">
+                  <IconQuote size={20} className="text-[#5eead4]" />
+                  {randomQuote}
+                </p>
               </div>
 
 
               <div className="bg-[#1a1a1a] border border-[#2a2a2a] rounded-xl w-5/12 ml-2 p-6 relative overflow-hidden">
-                  <div className="mb-6">
-                    <p className="text-2xl font-semibold text-[#5eead4]">Digitomize Rank</p>
-                    <p className="text-5xl font-bold text-white">#830</p>
-                  </div>
+                <div className="mb-6">
+                  <p className="text-2xl font-semibold text-[#5eead4]">Digitomize Rank</p>
+                  <p className="text-5xl font-bold text-white">#830</p>
+                </div>
 
-                  {/* Line Graph */}
-                  <div className="w-full h-40">
-                    <ResponsiveContainer width="100%" height="100%">
-                      <LineChart data={data}>
-                        {/* Gradient definition */}
-                        <defs>
-                          <linearGradient id="primaryGradient" x1="0" y1="0" x2="0" y2="1">
-                            <stop offset="0%" stopColor="#5eead4" stopOpacity={0.4} />
-                            <stop offset="100%" stopColor="#5eead4" stopOpacity={0} />
-                          </linearGradient>
-                        </defs>
+                {/* Line Graph */}
+                <div className="w-full h-40">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <LineChart data={data}>
+                      {/* Gradient definition */}
+                      <defs>
+                        <linearGradient id="primaryGradient" x1="0" y1="0" x2="0" y2="1">
+                          <stop offset="0%" stopColor="#5eead4" stopOpacity={0.4} />
+                          <stop offset="100%" stopColor="#5eead4" stopOpacity={0} />
+                        </linearGradient>
+                      </defs>
 
-                        <XAxis dataKey="day" stroke="#334155" />
-                        <YAxis hide />
-                        <Tooltip
-                          contentStyle={{
-                            backgroundColor: "#1a1a1a",
-                            border: "1px solid #5eead4",
-                            color: "white",
-                            borderRadius: "8px",
-                          }}
-                          cursor={{ stroke: "#334155", strokeWidth: 1 }}
-                        />
-                        <Line
-                          type="monotone"
-                          dataKey="value"
-                          stroke="#5eead4"
-                          strokeWidth={3}
-                          dot={{
-                            r: 4,
-                            stroke: "#1a1a1a",
-                            strokeWidth: 2,
-                            fill: "#5eead4",
-                          }}
-                        />
-                        {/* Gradient fill area under line */}
-                        <Area
-                          type="monotone"
-                          dataKey="value"
-                          stroke="none"
-                          fill="url(#primaryGradient)"
-                        />
-                      </LineChart>
-                    </ResponsiveContainer>
-                  </div>
+                      <XAxis dataKey="day" stroke="#334155" />
+                      <YAxis hide />
+                      <Tooltip
+                        contentStyle={{
+                          backgroundColor: "#1a1a1a",
+                          border: "1px solid #5eead4",
+                          color: "white",
+                          borderRadius: "8px",
+                        }}
+                        cursor={{ stroke: "#334155", strokeWidth: 1 }}
+                      />
+                      <Line
+                        type="monotone"
+                        dataKey="value"
+                        stroke="#5eead4"
+                        strokeWidth={3}
+                        dot={{
+                          r: 4,
+                          stroke: "#1a1a1a",
+                          strokeWidth: 2,
+                          fill: "#5eead4",
+                        }}
+                      />
+                      {/* Gradient fill area under line */}
+                      <Area
+                        type="monotone"
+                        dataKey="value"
+                        stroke="none"
+                        fill="url(#primaryGradient)"
+                      />
+                    </LineChart>
+                  </ResponsiveContainer>
+                </div>
 
-                  {/* <a
+                {/* <a
                     href="#"
                     className="mt-6 inline-block bg-[#12342f] border border-[#5eead4] text-white text-lg rounded-full px-6 py-2 hover:bg-[#1f403d] transition duration-300"
                   >
                     View More Stats
                   </a> */}
-                </div>
+              </div>
 
             </div>
             <div className="space-y-8 mt-4">
@@ -569,11 +570,10 @@ export default function Dashboard() {
                         <circle
                           className="text-green-400"
                           strokeWidth="3"
-                          strokeDasharray={`${
-                            (leetcodedata?.solved?.easy /
-                              leetcodedata?.solved?.totalsolved) *
+                          strokeDasharray={`${(leetcodedata?.solved?.easy /
+                            leetcodedata?.solved?.totalsolved) *
                             100
-                          }, 100`}
+                            }, 100`}
                           stroke="currentColor"
                           fill="transparent"
                           r="16"
@@ -584,41 +584,37 @@ export default function Dashboard() {
                         <circle
                           className="text-yellow-400"
                           strokeWidth="3"
-                          strokeDasharray={`${
-                            (leetcodedata?.solved?.medium /
-                              leetcodedata?.solved?.totalsolved) *
+                          strokeDasharray={`${(leetcodedata?.solved?.medium /
+                            leetcodedata?.solved?.totalsolved) *
                             100
-                          }, 100`}
+                            }, 100`}
                           stroke="currentColor"
                           fill="transparent"
                           r="16"
                           cx="18"
                           cy="18"
-                          strokeDashoffset={`-${
-                            (leetcodedata?.solved?.easy /
-                              leetcodedata?.solved?.totalsolved) *
+                          strokeDashoffset={`-${(leetcodedata?.solved?.easy /
+                            leetcodedata?.solved?.totalsolved) *
                             100
-                          }`}
+                            }`}
                         />
                         <circle
                           className="text-red-400"
                           strokeWidth="3"
-                          strokeDasharray={`${
-                            (leetcodedata?.solved?.hard /
-                              leetcodedata?.solved?.totalsolved) *
+                          strokeDasharray={`${(leetcodedata?.solved?.hard /
+                            leetcodedata?.solved?.totalsolved) *
                             100
-                          }, 100`}
+                            }, 100`}
                           stroke="currentColor"
                           fill="transparent"
                           r="16"
                           cx="18"
                           cy="18"
-                          strokeDashoffset={`-${
-                            ((leetcodedata?.solved?.easy +
-                              leetcodedata?.solved?.medium) /
-                              leetcodedata?.solved?.totalsolved) *
+                          strokeDashoffset={`-${((leetcodedata?.solved?.easy +
+                            leetcodedata?.solved?.medium) /
+                            leetcodedata?.solved?.totalsolved) *
                             100
-                          }`}
+                            }`}
                         />
                       </svg>
                       <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
@@ -764,8 +760,8 @@ export default function Dashboard() {
                   GeeksforGeeks
                 </h2> */}
 
-                {/* Profile Section */}
-                {/* <div className="flex gap-4 items-center mb-6">
+              {/* Profile Section */}
+              {/* <div className="flex gap-4 items-center mb-6">
                   <img
                     src={gfgdata?.profile?.avatar}
                     alt="profileImage"
@@ -781,8 +777,8 @@ export default function Dashboard() {
                   </div>
                 </div> */}
 
-                {/* Stats Section */}
-                {/* <div className="bg-[#222222] rounded-lg py-4 px-3 text-sm text-gray-300 shadow-md">
+              {/* Stats Section */}
+              {/* <div className="bg-[#222222] rounded-lg py-4 px-3 text-sm text-gray-300 shadow-md">
                   <p className="font-semibold text-lg text-green-500 mb-4">
                     Stats
                   </p>
@@ -802,8 +798,8 @@ export default function Dashboard() {
                   </div>
                 </div> */}
 
-                {/* Tags Section */}
-                {/* <div className="my-4">
+              {/* Tags Section */}
+              {/* <div className="my-4">
                   <p className="text-xl font-semibold text-gray-300">
                     Popular Tags:
                   </p>
@@ -821,7 +817,8 @@ export default function Dashboard() {
               {/* </div> */}
             </div>
 
-            <GitHubContributionGraph data={heatMapData} />
+            {/* <GitHubContributionGraph data={heatMapData} /> */}
+            <LeetCodeHeatmap username={user.lcUsername} />
           </div>
         </div>
       </div>
