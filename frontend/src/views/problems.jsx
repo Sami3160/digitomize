@@ -16,41 +16,64 @@ export default function ProblemsPage() {
         }
         // console.log(location)
     }, [location.search, searchParams])
+
+const companies = [
+  { name: "Google", icon: "https://img.icons8.com/color/48/google-logo.png" },
+  { name: "Flipkart", icon: "https://static.vecteezy.com/system/resources/thumbnails/049/401/761/small/flipkart-icon-transparent-background-free-png.png" },
+  { name: "Uber", icon: "https://img.icons8.com/ios-filled/50/ffffff/uber.png" },
+  { name: "Amazon", icon: "https://img.icons8.com/ios-filled/50/ffffff/amazon.png" },
+  { name: "Apple", icon: "https://img.icons8.com/ios-filled/50/ffffff/mac-os.png" },
+  { name: "Pinterest", icon: "https://img.icons8.com/color/48/pinterest--v1.png" },
+  { name: "Meta", icon: "https://img.icons8.com/fluency/48/meta.png" },
+  { name: "Oracle", icon: "https://img.icons8.com/ios-filled/50/ffffff/oracle-logo.png" },
+  { name: "IBM", icon: "https://img.icons8.com/ios-filled/50/ffffff/ibm.png" },
+  { name: "Stripe", icon: "https://img.icons8.com/ios-filled/50/ffffff/stripe.png" },
+  { name: "TCS", icon: "https://marvel-b1-cdn.bc0a.com/f00000000004333/www.zuora.com/wp-content/uploads/2024/03/tcs-p-c.png" },
+  { name: "Adobe", icon: "https://static.cdnlogo.com/logos/a/90/adobe.png" },
+  { name: "Nvidia", icon: "https://img.icons8.com/ios-filled/50/73b300/nvidia.png" },
+  { name: "Snapchat", icon: "https://static.vecteezy.com/system/resources/previews/018/930/694/non_2x/snapchat-logo-snapchat-icon-transparent-free-png.png" },
+  { name: "Leap Motion", icon: "https://logowik.com/content/uploads/images/leap-motion4851.logowik.com.webp" }
+];
+
     return (
-        <div className='w-[80vw]  mt-40  rounded-2xl mx-auto'>
+        <>
+        
+   <div className="max-w-6xl mx-auto py-24 px-6">
+      <div className="text-center my-12">
+        <h2 className="text-4xl md:text-5xl font-bold text-white">Top Companies</h2>
+        <p className="mt-4 text-xl text-gray-400">And their frequently asked questions</p>
+      </div>
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5 justify-items-center">
+        {companies.map((company, idx) => {
+          const paramCompany = searchParams.get('company');
+          const companySlug = company.name.toLowerCase().replace(/\s/g, "-");
+          const isActive = paramCompany === companySlug;
+          return (
+            <Link
+              key={idx}
+              to={`/problems?company=${companySlug}`}
+              className={`w-full flex justify-center items-center gap-3 text-white font-medium py-3 px-4 rounded-xl transition duration-200 border border-white/10 bg-[#1ADCD5]/10 hover:bg-[#1ADCD5]/30 backdrop-blur-md ${
+                isActive ? 'ring-2 ring-[#1ADCD5] border-[#1ADCD5] bg-[#1ADCD5]/30' : ''
+              }`}
+            >
+              <img src={company.icon} alt={company.name} className="w-6 h-6 object-contain" />
+              <span className="truncate text-base">{company.name}</span>
+            </Link>
+          );
+        })}
+      </div>
 
-            <div className="text-center flex flex-col gap-4 p-20 pt-10">
-
-                <p className='text-7xl text-white font-extrabold'>Top companies</p>
-                <p className='text-2xl text-white'>And their frequently asked questions</p>
-
-                <div className="companies grid grid-rows-3 gap-4 text-white text-lg mt-10 text-start font-medium ">
-                    <div className=" flex  justify-evenly">
-                        <Link to="/problems?company=google" className='p-2 px-12 rounded-md bg-yellow-300 hover:bg-yellow-400 border border-slate-100 transition-bg duration-300'>Google</Link>
-                        <Link to="/problems?company=flipkart" className='p-2 px-12 rounded-md bg-blue-500 hover:bg-blue-600 border border-slate-100 transition-bg duration-300'>Flipkart</Link>
-                        <Link to="/problems?company=uber" className='p-2 px-12 rounded-md bg-black hover:bg-slate-100 border hover:text-black border-slate-100 transition-bg duration-300'>Uber</Link>
-                        <Link to="/problems?company=amazon" className='p-2 px-12 rounded-md bg-yellow-400 hover:bg-yellow-500 border border-slate-100 transition-bg duration-300'>Amazon</Link>
-                        <Link to="/problems?company=apple" className='p-2 px-12 rounded-md bg-slate-300 text-gray-600 hover:bg-slate-600 hover:text-white border border-slate-100 transition-bg duration-300'>Apple</Link>
-                    </div>
-
-                    <div className=" flex  justify-evenly">
-                    <Link to="/problems?company=pinterest" className='p-2 px-12 rounded-md bg-red-500 hover:bg-red-700 border border-slate-100 transition-bg duration-300'>Pinterest</Link>
-
-                        <Link to="/problems?company=meta" className='p-2 px-12 rounded-md bg-blue-300 hover:bg-blue-400 border border-slate-100 transition-bg duration-300'>Meta</Link>
-                        <Link to="/problems?company=oracle" className='p-2 px-12 rounded-md bg-orange-400 hover:bg-orange-700 border border-slate-100 transition-bg duration-300'>Oracle</Link>
-                        <Link to="/problems?company=ibm" className='p-2 px-12 rounded-md bg-blue-700 hover:bg-blue-900 border border-slate-100 transition-bg duration-300'>IBM</Link>
-                        <Link to="/problems?company=stripe" className='p-2 px-12 rounded-md bg-blue-600 hover:bg-blue-800 border border-slate-100 transition-bg duration-300'>Stripe</Link>
-                    </div>
-                    <div className=" flex  justify-evenly">
-                        <Link to="/problems?company=tcs" className='p-2 px-12 rounded-md bg-purple-500 hover:bg-purple-700 border border-slate-100 transition-bg duration-300'>TCS</Link>
-                        <Link to="/problems?company=adobe" className='p-2 px-12 rounded-md bg-red-400 hover:bg-red-600 border border-slate-100 transition-bg duration-300'>Adobe</Link>
-                        <Link to="/problems?company=nvidia" className='p-2 px-12 rounded-md bg-green-400 hover:bg-green-600 border border-slate-100 transition-bg duration-300'>Nvidia</Link>
-                        <Link to="/problems?company=snap" className='p-2 px-12 rounded-md bg-yellow-300 hover:bg-yellow-500 border border-slate-100 transition-bg duration-300'>Snap</Link>
-                        <Link to="/problems?company=leap-motion" className='p-2 px-12 rounded-md bg-teal-400 hover:bg-teal-500 border border-slate-100 transition-bg duration-300'>Leap Motion</Link>
-                    </div>
-                </div>
-            </div>
-            <CompanyProblems/>
-        </div>
-    )
+      <div className="mt-16">
+        {selectedCompany && (
+          <h3 className="text-2xl font-semibold text-white mb-6 text-center">
+            Frequently asked problems from <span className="text-[#1ADCD5]">{selectedCompany.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}</span>
+          </h3>
+        )}
+        <CompanyProblems />
+      </div>
+   
+    </div>
+ 
+    </>
+  );
 }

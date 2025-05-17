@@ -437,7 +437,7 @@ export default function Dashboard() {
                   {user?.firstname} {user?.lastname}👋
                 </p>
 
-                <span className=" flex w-1/4 items-center justify-center gap-2 bg-[#12342f] text-white text-xl rounded-full mt-6 px-6 py-2 border border-[#5eead4]">
+                <span className=" flex w-1/3 items-center justify-center gap-2 bg-[#12342f] text-white text-xl rounded-full mt-6 px-6 py-2 border border-[#5eead4]">
                   <IconClockHour5 size={22} />
                   {time}
                 </span>

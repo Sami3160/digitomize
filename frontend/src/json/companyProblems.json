@@ -10,66 +10,66 @@
                 "link": "https://www.geeksforgeeks.org/trapping-rain-water/"
             },
             {
-                "title": "Find the Median of a Data Stream",
-                "link": "https://www.codechef.com/problems/MEDIANSTREAM"
+                "title": "Longest Common Prefix of Strings",
+                "link": "https://www.geeksforgeeks.org/problems/longest-common-prefix-in-an-array5129/1"
             },
             {
-                "title": "Top K Frequent Elements",
-                "link": "https://www.codeforces.com/problemset/problem/602/B"
+                "title": "Top K: Frequent Elements in Array",
+                "link": "https://leetcode.com/problems/top-k-frequent-elements/description/"
             }
         ],
         "string": [
             {
-                "title": "Longest Palindromic Subsequence",
-                "link": "https://www.geeksforgeeks.org/longest-palindromic-subsequence-dp-12/"
+                "title": "Longest Palindromic Subsequence  ",
+                "link": "https://www.geeksforgeeks.org/problems/longest-palindromic-subsequence-1612327878/1"
             },
             {
-                "title": "Minimum Window Substring",
+                "title": "Minimum Window Substring ",
                 "link": "https://leetcode.com/problems/minimum-window-substring/"
             },
             {
-                "title": "Word Search",
-                "link": "https://www.codeforces.com/contest/822/problem/B"
+                "title": "Word Search    ",
+                "link": "https://leetcode.com/problems/word-search/description/"
             },
             {
-                "title": "Longest Repeating Substring",
+                "title": "Longest Repeating Substring ",
                 "link": "https://www.hackerrank.com/challenges/repeated-string/problem"
             },
             {
-                "title": "Valid Sudoku",
+                "title": "Valid Sudoku   ",
                 "link": "https://leetcode.com/problems/valid-sudoku/"
             }
         ],
         "dynamic programming": [
             {
                 "title": "Edit Distance",
-                "link": "https://www.hackerrank.com/challenges/string-transformation/problem"
+                "link": "https://www.geeksforgeeks.org/problems/edit-distance3702/1"
             },
             {
-                "title": "Longest Increasing Subsequence II",
+                "title": "Longest Increasing Subsequence II  ",
                 "link": "https://leetcode.com/problems/longest-increasing-subsequence-ii/"
             },
             {
-                "title": "Wildcard Matching",
-                "link": "https://www.codeforces.com/problemset/problem/333/B"
+                "title": "Wildcard Matching    ",
+                "link": "https://www.geeksforgeeks.org/problems/wildcard-pattern-matching/1"
             },
             {
-                "title": "Dungeon Game",
+                "title": "Dungeon Game ",
                 "link": "https://leetcode.com/problems/dungeon-game/"
             },
             {
-                "title": "Unique Paths III",
+                "title": "Unique Paths III ",
                 "link": "https://leetcode.com/problems/unique-paths-iii/"
             }
         ],
         "divide and conquer": [
             {
-                "title": "Count Complete Tree Nodes",
-                "link": "https://www.geeksforgeeks.org/count-complete-tree-nodes-in-a-binary-tree/"
+                "title": "Count Number of Nodes in a Binary Tree ",
+                "link": "https://www.geeksforgeeks.org/problems/count-number-of-nodes-in-a-binary-tree/1"
             },
             {
-                "title": "Find Minimum in Rotated Sorted Array",
-                "link": "https://www.codechef.com/problems/ROTATEARRAY"
+                "title": "Find Minimum in Rotated Sorted Array   ",
+                "link": "https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/description/"
             },
             {
                 "title": "Max Sum of Rectangle No Larger Than K",
@@ -78,19 +78,19 @@
         ],
         "stack": [
             {
-                "title": "Next Greater Element II",
-                "link": "https://www.geeksforgeeks.org/next-greater-element/"
+                "title": "Next Greater Element II    ",
+                "link": "https://www.geeksforgeeks.org/problems/next-larger-element-1587115620/1"
             },
             {
-                "title": "132 Pattern",
+                "title": "132 Pattern    ",
                 "link": "https://leetcode.com/problems/132-pattern/"
             },
             {
                 "title": "Remove K Digits",
-                "link": "https://www.codeforces.com/problemset/problem/313/B"
+                "link": "https://leetcode.com/problems/remove-k-digits/description/"
             },
             {
-                "title": "Basic Calculator",
+                "title": "Basic Calculator ",
                 "link": "https://leetcode.com/problems/basic-calculator/"
             },
             {
@@ -100,34 +100,34 @@
         ],
         "graph": [
             {
-                "title": "Alien Dictionary",
-                "link": "https://www.geeksforgeeks.org/alien-dictionary/"
+                "title": "Alien Dictionary ",
+                "link": "https://www.geeksforgeeks.org/problems/alien-dictionary/1"
             },
             {
-                "title": "Find a Connected Component in a Graph",
-                "link": "https://www.codeforces.com/problemset/problem/587/B"
+                "title": "Find a Connected Component in a Graph  ",
+                "link": "https://www.geeksforgeeks.org/problems/connected-components-in-an-undirected-graph/1"
             },
             {
-                "title": "Minimum Cost to Connect All Points",
-                "link": "https://leetcode.com/problems/minimum-cost-to-connect-all-points/"
+                "title": "Minimum Cost to Connect All Points     ",
+                "link": "https://leetcode.com/problems/min-cost-to-connect-all-points/description/"
             },
             {
-                "title": "Network Delay Time",
+                "title": "Network Delay Time   ",
                 "link": "https://www.hackerrank.com/challenges/journey-to-the-moon/problem"
             },
             {
-                "title": "Find the Town Judge",
+                "title": "Find the Town Judge ",
                 "link": "https://leetcode.com/problems/find-the-town-judge/"
             }
         ],
         "tree": [
             {
                 "title": "Find the Duplicate Subtrees",
-                "link": "https://www.geeksforgeeks.org/find-duplicate-subtrees/"
+                "link": "https://www.geeksforgeeks.org/problems/duplicate-subtrees/1"
             },
             {
-                "title": "Construct Binary Tree from Preorder and Postorder Traversal",
-                "link": "https://www.geeksforgeeks.org/construct-a-binary-tree-from-parent-array-representation/"
+                "title": "Construct Binary Tree from Preorder and Postorder Traversal    ",
+                "link": "https://www.geeksforgeeks.org/problems/construct-binary-tree-from-parent-array/1"
             }
         ]
     },
@@ -1503,7 +1503,7 @@
             }
         ]
     },
-    "snap": {
+    "snapchat": {
         "array": [
             {
                 "title": "Find the Duplicate Number",

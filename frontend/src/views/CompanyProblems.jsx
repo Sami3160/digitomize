@@ -1,6 +1,31 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import josnData from '../json/companyProblems.json'
+import { MdDataArray } from "react-icons/md";
+import { RiDoubleQuotesL } from "react-icons/ri";
+import { MdDynamicFeed } from "react-icons/md";
+import { TbMathXDivideY2 } from "react-icons/tb";
+import { BsStack } from "react-icons/bs";
+import { TbBinaryTree } from "react-icons/tb";
+import { PiGraph } from "react-icons/pi";
+import { GiReceiveMoney } from "react-icons/gi";
+import {
+  FaProjectDiagram,      // graph
+  FaTasks,               // tree
+  FaCode,                // array
+  FaLink,                // linked list
+  FaLayerGroup,          // stack
+  FaStream,              // queue
+  FaSitemap,             // heap
+  FaHashtag,             // hash
+  FaQuoteLeft,           // string
+  FaTh,                  // matrix
+  FaSearch,              // search
+  FaSort,                // sort
+  FaMoneyBillWave,       // greedy
+  FaMemory,              // dynamic programming
+  FaCompressAlt          // divide and conquer
+} from 'react-icons/fa';
 export default function CompanyProblems() {
   const [selectedCompany, setSelectedCompany] = useState()
   const [searchParams] = useSearchParams()
@@ -19,7 +44,7 @@ export default function CompanyProblems() {
   }, [location.search, searchParams])
   return (
     <div className='h-80 w-full'>
-      <div className="cards flex flex-wrap gap-3 ">
+      <div className="cards flex flex-wrap justify-center gap-3 ">
         {/* <SmolCard name={"graph"}  amount={4} /> */}
         {
           Object.keys(problemsData).map((val, index) => {
@@ -41,40 +66,34 @@ export default function CompanyProblems() {
   )
 }
 
+const iconMap = {
+graph: <PiGraph size={20} />,
+tree: <TbBinaryTree size={20} />,
+array: <MdDataArray size={20} />,
+linkedlist: <FaLink size={20} />,
+stack: <BsStack size={20} />,
+queue: <FaStream size={20} />,
+heap: <FaSitemap size={20} />,
+hash: <FaHashtag size={20} />,
+string: <RiDoubleQuotesL size={20} />,
+matrix: <FaTh size={20} />,
+search: <FaSearch size={20} />,
+sort: <FaSort size={20} />,
+greedy: <GiReceiveMoney size={20} />,
+"dynamic programming": <MdDynamicFeed size={20} />,
+"divide and conquer": <TbMathXDivideY2 size={20} />,
+};
 function SmolCard({ name, amount }) {
-  const imageMap = {
-    "graph": "https://img.icons8.com/ios/50/decentralized-network.png",
-    "tree": "https://img.icons8.com/ios-filled/50/parallel-tasks.png",
-    "array": "https://img.icons8.com/ios-filled/50/curly-brackets.png",
-    "linkedlist": "https://img.icons8.com/material-rounded/24/connected-no-data.png",
-    "stack": "https://img.icons8.com/sf-regular-filled/48/layers.png",
-    "queue": "https://img.icons8.com/material-rounded/24/queue.png",
-    "heap": "https://img.icons8.com/material-outlined/24/stacked-organizational-chart-highlighted-parent-node.png",
-    "hash": "https://img.icons8.com/material-outlined/24/hashtag-2.png",
-    "string": "https://img.icons8.com/material-rounded/24/quote-left.png",
-    "matrix": "https://img.icons8.com/material-outlined/24/matrix-logo.png",
-    "search": "https://img.icons8.com/material-outlined/24/google-web-search.png",
-    "sort": "https://img.icons8.com/ios-filled/50/generic-sorting.png",
-    "greedy": "https://img.icons8.com/ios-glyphs/30/money-bag.png",
-    "dynamic programming": "https://img.icons8.com/ios-glyphs/30/smartphone-ram.png",
-    "divide and conquer": "https://img.icons8.com/ios-glyphs/30/crown.png",
-  }
-  const n = name[0]?.toUpperCase() + name?.slice(1)
+  const title = name[0]?.toUpperCase() + name?.slice(1);
+
   return (
-    <div
-      className="flex h-24 w-52   bg-gradient-to-br from-[rgba(75,30,133,1)] to-[rgba(75,30,133,0.01)] 
-      items-center justify-evenly rounded-md border border-dashed border-gray-200 transition-colors duration-100 ease-in-out hover:border-gray-400/80">
-      <img src={imageMap[name]} alt="graph" className="w-14 h-14 text-white" />
-      <div className="flex flex-row px-3 gap-2 items-center text-white justify-center">
-        <div className="text-lg text-white">{n}</div>
-        <span className="font-bold text-white text-xl"> {amount}</span>
-
-      </div>
-
+    <div className="flex  py-2 px-4 gap-4 justify-between max-w-fit text-white  bg-gradient-to-br from-[rgba(75,30,133,1)] to-[rgba(75,30,133,0.01)] items-center  rounded-full border border-gray-800 transition-colors duration-100 ease-in-out hover:border-gray-400/80">
+      <div className="  ">{iconMap[name]}</div>
+        <div className="w-full text-sm">{title}</div>
+        <span className=" font-bold text-sm">{amount}</span>
     </div>
   );
 }
-
 
 const Table = ({ name, data }) => {
 
@@ -153,6 +172,7 @@ const Start = ({ url }) => {
       <div className="relative group">
         <button
           className="relative inline-block p-px font-semibold leading-6 text-white bg-teal-800 shadow-2xl cursor-pointer rounded-xl shadow-zinc-900 transition-transform duration-300 ease-in-out hover:scale-105 active:scale-95"
+          onClick={() => window.open(url, '_blank')}
         >
           <span
             className="absolute inset-0 rounded-xl bg-gradient-to-r from-teal-400 via-blue-500 to-purple-500 p-[2px] opacity-0 transition-opacity duration-500 group-hover:opacity-100"
@@ -162,7 +182,7 @@ const Start = ({ url }) => {
             <div className="relative z-10 flex items-center space-x-2">
               <span className="transition-all duration-500 group-hover:translate-x-1"
               >
-                <Link to={url} target='blank'>Visit</Link>
+                Visit
               </span>
               <svg
                 className="w-6 h-6 transition-transform duration-500 group-hover:translate-x-1"
@@ -183,6 +203,5 @@ const Start = ({ url }) => {
         </button>
       </div>
     </div>
-
   )
 }
