@@ -134,6 +134,7 @@ const Table = ({ name, data }) => {
                 if (val.link.includes("leetcode")) platform = "Leetcode"
                 if (val.link.includes("geeksforgeeks")) platform = "GfG"
                 if (val.link.includes("codingninjas")) platform = "Coding Ninjas"
+                if (val.link.includes("naukri")) platform = "Coding Ninjas"
                 if (val.link.includes("codechef")) platform = "CodeChef"
                 if (val.link.includes("hackerrank")) platform = "HackerRank"
                 if (val.title.length % 2 == 0) difficulty = "easy"
@@ -143,7 +144,7 @@ const Table = ({ name, data }) => {
                   <tr key={index} className='text-white'>
                     <td className="py-2 px-6 border-b border-gray-700">{val.title}</td>
                     <td className="py-2 px-6 border-b border-gray-700 ">
-                      <span className='flex gap-3'>
+                      <span className='flex gap-3 items-center '>
                         <img src={logoMap[platform]} alt="logo" className="w-6 h-6  rounded-full" />
                       {platform}
                       </span>
