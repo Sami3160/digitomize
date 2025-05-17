@@ -13,6 +13,7 @@ import Dashboard from './views/Dashboard'
 import BlogsPage from './views/BlogsPage'
 import SingleBlogPage from './views/SingleBlogPage'
 import UserProfile from './views/UserProfile'
+import { useNavigate } from 'react-router-dom'
 export default function GlobalRoute() {
     return (
         <BrowserRouter>
@@ -34,10 +35,27 @@ export default function GlobalRoute() {
                     <Route path="company" element={<CompanyProblems />} />
                 </Route>
                 <Route path="/qn" element={<ProblemsPage />} />
-                <Route path="*" element={<h1 className='text-white'>404 Not Found</h1>} />
+                <Route path="*" element={<NotFound/>} />
 
             </Routes>
             {/* <Footer/> */}
         </BrowserRouter>
     )
+}
+
+const NotFound = () => {
+    const navigate = useNavigate();
+
+    return (<div className='flex flex-col justify-center items-center h-screen'>
+                    <h1 className='text-9xl text-[#5eead4] font-bold'>404 Page Not Found</h1>
+                    
+                    <button
+                        onClick={() => {
+                            navigate('/');
+                        }} 
+                        className='mt-7 bg-primary px-10 py-2 rounded border border-[#5eead4] text-base text-white hover:bg-[#5eead4] hover:text-black font-medium active:scale-95 active:bg-primary transition-transform duration-150 ease-in-out'>
+                        Go to Home</button>
+
+                    </div>
+            )
 }

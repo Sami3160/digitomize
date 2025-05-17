@@ -1,6 +1,8 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 export default function Features() {
+  const navigate = useNavigate();
   return (
     <div className='px-20 my-10 text-white'>
     <div className='flex gap-20 my-32'>
@@ -46,10 +48,14 @@ export default function Features() {
     </div>
 
     <div className='flex flex-col justify-center items-center text-center'> 
-      <div className='w-2/5 '>
-        <h1 className='text-3xl w-5/6 font-medium self-center'>Start Your Coding Journey with Digitomize</h1>
+      <div className='w-2/5 text-center'>
+        <h1 className='text-3xl font-medium self-center'>Start Your Coding Journey with Digitomize</h1>
         <p className='mt-7 text-lg '>With Digitomize, you'll have access to all the resources you need to level up your coding skills. From coding contests to DSA question banks, we make it easier for you to achieve coding success.</p>
-        <button className='mt-7 bg-primary px-10 py-1 rounded border border-[#5eead4] text-white hover:bg-[#5eead4] hover:text-black font-medium active:scale-95 active:bg-primary transition-transform duration-150 ease-in-out'>Get started</button>
+        <button
+        onClick={() => {
+          navigate('/login');
+        }} 
+        className='mt-7 bg-primary px-10 py-2 rounded border border-[#5eead4] text-base text-white hover:bg-[#5eead4] hover:text-black font-medium active:scale-95 active:bg-primary transition-transform duration-150 ease-in-out'>Get started</button>
       </div>
     </div>
  </div>
