@@ -357,7 +357,7 @@ export default function Dashboard() {
           />
         )}
 
-        <div className="flex flex-col md:flex-row justify-center items-center pt-24 px-10 pb-4 my-10 gap-4 md:gap-0">
+        <div className="flex flex-col md:flex-row pt-24 px-10 pb-4 my-10 gap-4 md:gap-0">
           <div className="w-full md:w-2/12 md:mr-6">
             <div className="bg-[#1a1a1a] border border-[#2a2a2a] text-gray-300 rounded-t-xl shadow-lg px-5 py-6 flex flex-col items-center gap-4">
 
@@ -370,9 +370,9 @@ export default function Dashboard() {
 
               {/* User Info */}
               <div className="text-center space-y-1">
-                <p className="text-base font-semibold">{user?.username}</p>
-                <p className="text-xs text-gray-400">{user?.email}</p>
-                <p className="text-xs text-gray-500">{user?.bio}</p>
+                <p className="text-lg md:text-base font-semibold">{user?.username}</p>
+                <p className="text-base md:text-sm text-gray-400">{user?.email}</p>
+                <p className="text-base md:text-xs text-gray-500">{user?.bio}</p>
               </div>
 
               {/* Divider */}
@@ -426,7 +426,7 @@ export default function Dashboard() {
           </div>
 
           <div className="  w-full md:w-10/12">
-            <div className="flex md:flex-row flex-col justify-center items-center gap-4 md:gap-0">
+            <div className="flex md:flex-row flex-col  gap-4 md:gap-0">
               <div className="bg-[#1a1a1a] border border-[#2a2a2a] rounded-xl w-full md:w-7/12 md:mr-2 p-6">
                 <p className="text-4xl text-[#5eead4] mb-1">
                   {greeting},

@@ -13,7 +13,7 @@ const transition = {
 
 export const MenuItem = ({ setActive, active, item, children }) => {
   return (
-    <div onMouseEnter={() => setActive(item)} className="relative hover:shadow-lg hover:bg-white transition-all duration-300 px-3 rounded-3xl  flex justify-center items-center ">
+    <div onMouseEnter={() => setActive(item)} className="relative hover:shadow-lg hover:bg-white transition-all duration-300 px-4 py-2 rounded-3xl  flex justify-center items-center border md:border-none border-black/30 ">
       <motion.p
         transition={{ duration: 0.3 }}
         className="cursor-pointer hover:opacity-[0.9] text-[#1b1a1a] font-medium "
@@ -86,7 +86,7 @@ export const HoveredLink = ({ children, ...rest }) => {
   return (
     <Link
       {...rest}
-      className="font-medium text-[#1b1a1a] px-4 py-2 rounded-full transition-all duration-300 hover:bg-white/80 hover:text-black hover:shadow-md flex justify-center items-center gap-1 backdrop-blur-sm border border-black/10"
+      className="font-medium text-[#1b1a1a] px-4 py-2 rounded-full transition-all duration-300 hover:bg-white/80 hover:text-black hover:shadow-md flex justify-center items-center gap-1 backdrop-blur-sm border md:border-none border-black/30"
     >
       {children}
     </Link>
