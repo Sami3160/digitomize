@@ -15,19 +15,19 @@ export default function HeroSection() {
     return (
         <div className='mt-40 w-full h-full'>
 
-            <div className="w-full h-full flex flex-row px-20 justify-start items-center gap-10">
+            <div className="w-full h-full flex flex-col md:flex-row px-5 md:px-20 justify-start items-center md:gap-10">
 
-                <div className='flex flex-col'>
-                    <h1 className='text-6xl text-white  font-extrabold leading-tight'>
+                <div className='flex flex-col justify-center items-center text-center md:text-start'>
+                    <h1 className='text-3xl md:text-6xl text-white  font-extrabold leading-tight'>
                         Find Coding Contests, Practice Problems, and Build Your Developer Portfolio
                     </h1>
-                    <h4 className='text-2xl mt-3 text-white '>
+                    <h4 className='text-lg md:text-2xl mt-3 text-white '>
                         Discover events, track your progress, and level up your skills with real-time insights and personalized portfolios.
                         {/* Find Coding Contests, Practice Problems, and Build Your Developer Portfolio. */}
                     </h4>
 
                 </div>
-                <div className='flex-col gap-10 self-start h-auto'> 
+                <div className='flex flex-col  md:self-start w-full h-auto'> 
 
 
                     <HeroCard />

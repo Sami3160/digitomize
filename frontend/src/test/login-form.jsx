@@ -137,8 +137,8 @@ export function LoginFormDemo() {
   };
 
   return (
-    <div className="w-full h-full p-20 flex mt-14 ">
-      <div className="w-[90%] mx-auto flex   rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-black">
+    <div className="w-full h-full p-5 md:p-20 flex mt-24 md:mt-14 ">
+      <div className="w-[90%] mx-auto flex flex-col-reverse md:flex-row  gap-6 md:gap-0  rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-black">
         {isSuccess && (
           <div className="absolute left-1/2  transform -translate-x-1/2 ">
             <SuccessMessages
@@ -153,7 +153,7 @@ export function LoginFormDemo() {
           </div>
         )}
 
-        <div className="max-w-md w-full  rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-black border bborder-white">
+        <div className="max-w-md w-full  rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-black md:border bborder-white">
           <h2 className="font-bold text-xl text-neutral-200">
             Welcome back to Digitest
           </h2>
@@ -225,7 +225,7 @@ export function LoginFormDemo() {
           <img
             src={signin}
             alt="signin image"
-            className="ml-auto max-w-[80%]"
+            className="md:ml-auto max-w-[80%]"
           />
         </div>
       </div>

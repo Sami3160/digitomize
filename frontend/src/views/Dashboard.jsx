@@ -357,8 +357,8 @@ export default function Dashboard() {
           />
         )}
 
-        <div className="flex flex-row pt-24 px-10 pb-4 mt-10">
-          <div className="w-2/12 mr-6">
+        <div className="flex flex-col md:flex-row justify-center items-center pt-24 px-10 pb-4 my-10 gap-4 md:gap-0">
+          <div className="w-full md:w-2/12 md:mr-6">
             <div className="bg-[#1a1a1a] border border-[#2a2a2a] text-gray-300 rounded-t-xl shadow-lg px-5 py-6 flex flex-col items-center gap-4">
 
               {/* Profile Pic */}
@@ -425,19 +425,19 @@ export default function Dashboard() {
 
           </div>
 
-          <div className="w-10/12">
-            <div className="flex flex-row">
-              <div className="bg-[#1a1a1a] border border-[#2a2a2a] rounded-xl w-7/12 mr-2 p-6">
+          <div className="  w-full md:w-10/12">
+            <div className="flex md:flex-row flex-col justify-center items-center gap-4 md:gap-0">
+              <div className="bg-[#1a1a1a] border border-[#2a2a2a] rounded-xl w-full md:w-7/12 md:mr-2 p-6">
                 <p className="text-4xl text-[#5eead4] mb-1">
                   {greeting},
                 </p>
-                <p className="text-5xl text-white font-bold mt-4 flex items-center gap-3">
+                <p className="text-2xl md:text-5xl text-white font-bold mt-4 flex items-center gap-3">
                   <IconUser size={36} className="text-[#5eead4]" />
                   {/* {user?.username || "Harshvardhan"} 👋 */}
                   {user?.firstname} {user?.lastname}👋
                 </p>
 
-                <span className=" flex w-1/3 items-center justify-center gap-2 bg-[#12342f] text-white text-xl rounded-full mt-6 px-6 py-2 border border-[#5eead4]">
+                <span className=" flex md:w-1/3 items-center justify-center gap-2 bg-[#12342f] text-white text-xl rounded-full mt-6 px-6 py-2 border border-[#5eead4]">
                   <IconClockHour5 size={22} />
                   {time}
                 </span>
@@ -450,10 +450,10 @@ export default function Dashboard() {
               </div>
 
 
-              <div className="bg-[#1a1a1a] border border-[#2a2a2a] rounded-xl w-5/12 ml-2 p-6 relative overflow-hidden">
+              <div className="bg-[#1a1a1a] border border-[#2a2a2a] rounded-xl w-full md:w-5/12 ml-2 p-6 relative overflow-hidden">
                 <div className="mb-6">
                   <p className="text-2xl font-semibold text-[#5eead4]">Digitomize Rank</p>
-                  <p className="text-5xl font-bold text-white">#830</p>
+                  <p className="text-3xl md:text-5xl font-bold text-white">#830</p>
                 </div>
 
                 {/* Line Graph */}

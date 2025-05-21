@@ -4,7 +4,7 @@ export function HeroCard() {
   return (
     <CardContainer className="inter-var">
       <CardBody
-        className="relative group/card  hover:shadow-2xl hover:shadow-emerald-500/[0.1] bg-black border-white/[0.2]  w-auto sm:w-[30rem] h-auto rounded-xl p-6 border"
+        className="relative group/card  hover:shadow-2xl hover:shadow-emerald-500/[0.1] bg-black border-white/[0.2]     h-auto rounded-xl  md:p-6 border"
       >
         <CardItem translateZ="100" className="w-full h-full mt-4">
           {/* Replace Image with img */}

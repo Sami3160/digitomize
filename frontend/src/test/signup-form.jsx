@@ -106,7 +106,7 @@ export function SignupFormDemo() {
   };
 
   return (
-    <div className="w-[90%] mx-auto flex relative  rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-black">
+    <div className="w-[90%] mx-auto flex flex-col-reverse md:flex-row relative gap-6 md:gap-0  rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-black">
       {isSuccess && (
         <div className="absolute left-1/2  transform -translate-x-1/2 ">
           <SuccessMessages
@@ -121,7 +121,7 @@ export function SignupFormDemo() {
         </div>
       )}
 
-      <div className="max-w-md w-full  rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-black border bborder-white">
+      <div className="max-w-md w-full  rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-black md:border border-white">
         <h2 className="font-bold text-xl text-neutral-200">
           Welcome to Digitest
         </h2>
@@ -221,7 +221,7 @@ export function SignupFormDemo() {
         </form>
       </div>
       <div className="w-full flex justify-center">
-        <img src={signin} alt="signin image" className="ml-auto max-w-[80%]" />
+        <img src={signin} alt="signin image" className="md:ml-auto max-w-[80%]" />
       </div>
     </div>
   );

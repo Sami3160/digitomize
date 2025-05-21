@@ -51,12 +51,12 @@ function BlogsPage() {
     if (searchParams.get('id')) return <SingleBlogPage />
     return (
         <div className="pt-10">
-            <h1 className="text-7xl text-white  mx-32 mt-16">Daily Blogs</h1>
-            <h1 className="text-3xl text-white  mx-32 mt-5 ">
+            <h1 className="text-3xl md:text-7xl font-bold text-white mx-10 md:mx-32 mt-20 md:mt-16">Daily Blogs</h1>
+            <h1 className="text-lg md:text-3xl text-gray-400  mx-10 md:mx-32 mt-2 md:mt-5 ">
                 Explore our blog: your coding corner with practical tips, breakthrough trends, and inspiring discussions. Grow your skills, share your voice, and design your tech future.
             </h1>
-            <div className="max-w-screen-xl mx-auto p-16">
-                <div className="sm:grid lg:grid-cols-3 sm:grid-cols-2 gap-10">
+            <div className="max-w-screen-xl mx-auto p-5 md:p-16">
+                <div className="sm:grid lg:grid-cols-3 sm:grid-cols-2 gap-10 ">
                     {blogs?.map((object, index) => {
 
                         const handleBlogDelete = async() => {
@@ -93,7 +93,7 @@ function BlogsPage() {
                                     }
 
                                 }}
-                                className="bg-[#020617] relative  cursor-pointer hover:bg-[#101423] hover:text-white transition duration-300 max-w-sm rounded overflow-hidden shadow-lg">
+                                className="bg-[#1a1f35]  rounded-lg relative my-3 md:my-0  cursor-pointer hover:bg-[#101423] hover:text-white transition duration-300 max-w-sm  overflow-hidden shadow-lg">
                                 {
                                     object?.owner?._id === user?._id && (
 
@@ -103,25 +103,25 @@ function BlogsPage() {
                                         ></img>
                                     )
                                 }
-                                <div className="py-4 px-8">
+                                <div className="py-8 px-8">
                                     <div className="flex items-center  gap-4 text-white">
 
                                         <img src={object?.owner?.profileUrl} className="rounded-full h-12 w-12 " />
-                                        <div className="flex- flex-col gep-2 justify-center">
-                                            <p className="text-xl font-medium">{object?.owner?.username}</p >
+                                        <div className="flex flex-col  justify-center">
+                                            <p className="text-lg font-medium">{object?.owner?.username}</p >
                                             <p className="text-xs font-thin text-gray-300">{object?.owner?.firstname} {object?.owner?.lastname}</p >
                                         </div>
                                     </div>
                                     <NavLink href="#">
-                                        <h4 className="text-lg mb-3 text-white font-semibold">{object?.title}</h4>
+                                        <h4 className="text-xl mt-3 mb-1 text-white font-semibold">{object?.title}</h4>
                                     </NavLink>
-                                    <p className="mb-2 text-sm text-gray-600">{DOMPurify.sanitize(object?.content?.substring(0, 150) + "...", {
+                                    <p className="mb-2 text-sm text-gray-400">{DOMPurify.sanitize(object?.content?.substring(0, 150) + "...", {
                                         USE_PROFILES: {
                                             html: false
                                         }
                                     })}</p>
 
-                                    <img src={object.thumbnailUrl} className="h-32 object-fill w-full" />
+                                    <img src={object.thumbnailUrl} className="h-32 object-cover overflow-hidden rounded-xl w-full" />
 
                                     <hr className="mt-4" />
                                     <p className="text-xs text-gray-200">{formatDateTime(object.createdAt)}</p>
@@ -133,7 +133,7 @@ function BlogsPage() {
                 </div>
                 <div className="w-full flex justify-center">
 
-                    <button className="mt-10 bg-[#101423] rounded-full w-[70%]  border border-transparent font-medium hover:bg-slate-200 disabled:opacity-50 hover:dark:bg-slate-700 flex flex-row items-center focus:outline-none self-center  justify-center px-4 py-2 text-lg text-blue-600 dark:text-blue-500" type="button" 
+                    <button className="mt-10 bg-[#101423] rounded-full w-[70%] md:w-[20%]  border border-transparent font-medium hover:bg-slate-200 disabled:opacity-50 hover:dark:bg-slate-700 flex flex-row items-center focus:outline-none self-center  justify-center px-4 py-2 text-lg text-blue-600 dark:text-blue-500" type="button" 
                         onClick={async () => {
                             if(blogs.length>=totalBlogs){
                                 alert('No more blogs to load')

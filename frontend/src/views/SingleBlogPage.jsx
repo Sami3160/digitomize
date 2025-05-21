@@ -78,28 +78,28 @@ function SingleBlogPage() {
             <main className="container mx-auto mt-8 bg-[#111111] p-4 ">
                 <div className="flex flex-wrap justify-between">
                     <div className="w-full md:w-8/12 p-4 mb-8 bg-[#212121]">
-                        <img src={blogData?.thumbnailUrl} alt="Featured Image" className="w-full h-64 object-cover rounded" />
-                        <h2 className="text-4xl font-bold mt-4 mb-2 text-white">{blogData?.title}</h2>
-                        <p className="text-gray-300 mb-4 mt-4">
+                        <img src={blogData?.thumbnailUrl} alt="Featured Image" className="w-full h-64 object-cover rounded-xl" />
+                        <h2 className="text-2xl md:text-4xl font-bold mt-4 mb-2 text-white">{blogData?.title}</h2>
+                        <p className="text-gray-300 text-base mb-4 mt-4">
                             <div className="" dangerouslySetInnerHTML={{ __html: blogData?.content }}></div>
                         </p>
                     </div>
-                    <div className="w-full md:w-4/12 px-4 mb-8 flex flex-col gap-4">
+                    <div className="w-full md:w-4/12  mb-8 flex flex-col gap-4">
                         <div className="bg-[#212121] px-4 py-6  rounded">
 
-                            <h3 className="text-lg font-bold mb-2 text-white">Author</h3>
+                            <h3 className="text-xl font-bold mb-2 text-white">Author</h3>
                             <div className="w-full">
 
                                 <div className="flex gap-2 items-center "
                                 >
-                                    <img src={blogData?.owner?.profileUrl} className='h-10 w-10 rounded-full' />
+                                    <img src={blogData?.owner?.profileUrl} className='h-10 w-10 my-3 rounded-full' />
                                     <ul className="">
 
-                                        <li className="text-slate-200 font-bold text-lg">{blogData?.owner?.firstname} {blogData?.owner?.lastname}</li>
-                                        <li className="text-slate-400 text-xs font-[50]">{blogData?.owner?.username}</li>
+                                        <li className="text-white font-bold text-xl">{blogData?.owner?.firstname} {blogData?.owner?.lastname}</li>
+                                        <li className="text-slate-100 text-xs font-[50]">{blogData?.owner?.username}</li>
                                     </ul>
                                 </div>
-                                <span className='text-white text-lg mt-1 font-extralight'>Blogs created {blogData?.owner?.blogs?.length}</span>
+                                <span className='text-white text-base my-3 font-extralight'>Blogs created {blogData?.owner?.blogs?.length}</span>
                                 <div
                                     className="button w-[60%] cursor-pointer  md:w-[94%] lg:w-[60%] hover:bg-blue-700 bg-blue-600 text-white border-[0.5px] border-white mx-0 md:mx-auto lg:mx-0 p-1 rounded-xl text-center mt-2"
                                     onClick={() => navigate(`/profile/${blogData?.owner?._id}`)}

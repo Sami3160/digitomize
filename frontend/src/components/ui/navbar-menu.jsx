@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-
+import { FaChartLine } from "react-icons/fa";
 const transition = {
   type: "spring",
   mass: 0.5,
@@ -13,12 +13,14 @@ const transition = {
 
 export const MenuItem = ({ setActive, active, item, children }) => {
   return (
-    <div onMouseEnter={() => setActive(item)} className="relative hover:shadow-lg hover:bg-white transition-all duration-300 px-3 rounded-3xl flex justify-center items-center ">
+    <div onMouseEnter={() => setActive(item)} className="relative hover:shadow-lg hover:bg-white transition-all duration-300 px-3 rounded-3xl  flex justify-center items-center ">
       <motion.p
         transition={{ duration: 0.3 }}
         className="cursor-pointer hover:opacity-[0.9] text-[#1b1a1a] font-medium "
       >
-        {item}
+      
+         <span className="hidden md:inline">  {item}</span>
+                  <span className="md:hidden flex justify-center items-center text-lg"><FaChartLine /></span>
       </motion.p>
       {active !== null && (
         <motion.div
@@ -63,6 +65,7 @@ export const ProductItem = ({ title, description, href, src }) => {
       <img
         src={src}
         width={140}
+        
         height={70}
         alt={title}
         className="flex-shrink-0 rounded-md shadow-2xl"
@@ -71,7 +74,7 @@ export const ProductItem = ({ title, description, href, src }) => {
         <h4 className="text-xl font-bold mb-1 text-white">
           {title}
         </h4>
-        <p className=" text-sm max-w-[10rem] text-neutral-300">
+        <p className=" text-sm md:max-w-[10rem] text-neutral-300">
           {description}
         </p>
       </div>

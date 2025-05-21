@@ -114,54 +114,54 @@ const Table = ({ name, data }) => {
   const nm = name[0].toUpperCase() + name.slice(1)
   return (
     <div className="w-full my-3">
-      <div className="shadow-lg rounded-lg overflow-hidden mx-4 md:mx-10">
-        <table className="w-full table-fixed">
-          <thead>
-
-            <tr className="bg-[#2C2C2C] text-white">
-              <th className="w-full py-4 px-6 text-left  font-bold uppercase">{nm}</th>
-              <th className="w-1/2 py-4 px-6 text-left  font-bold uppercase"></th>
-              <th className="w-1/3 py-4 px-6 text-left  font-bold uppercase"></th>
-              <th className="w-1/2 py-4 px-6 text-left  font-bold uppercase"></th>
-            </tr>
-          </thead>
-          <tbody className="bg-[#191919]">
-            {
-              data.map((val, index) => {
-                let difficulty;
-                let platform = "Leetcode"
-                if (val.link.includes("codeforces")) platform = "Codeforces"
-                if (val.link.includes("leetcode")) platform = "Leetcode"
-                if (val.link.includes("geeksforgeeks")) platform = "GfG"
-                if (val.link.includes("codingninjas")) platform = "Coding Ninjas"
-                if (val.link.includes("naukri")) platform = "Coding Ninjas"
-                if (val.link.includes("codechef")) platform = "CodeChef"
-                if (val.link.includes("hackerrank")) platform = "HackerRank"
-                if (val.title.length % 2 == 0) difficulty = "easy"
-                else if (val.title.length % 3 == 0) difficulty = "medium"
-                else difficulty = "hard"
-                return (
-                  <tr key={index} className='text-white'>
-                    <td className="py-2 px-6 border-b border-gray-700">{val.title}</td>
-                    <td className="py-2 px-6 border-b border-gray-700 ">
-                      <span className='flex gap-3 items-center '>
-                        <img src={logoMap[platform]} alt="logo" className="w-6 h-6  rounded-full" />
-                      {platform}
-                      </span>
-                    </td>
-                    <td className="py-2 px-6 border-b border-gray-700 truncate">
-                      <span className={`${diffMap[difficulty]} text-white py-1 px-2 rounded-full text-xs`}>{difficulty}</span>
-                    </td>
-                    <td className="py-2 px-6 border-b border-gray-700">
-                      <Start url={val.link} />
-                    </td>
-                  </tr>
-                )
-              })
-            }
-
-          </tbody>
-        </table>
+      <div className="shadow-lg rounded-lg overflow-hidden mx-2 md:mx-10">
+        <div className="overflow-x-auto">
+          <table className="w-full table-fixed min-w-[500px] md:min-w-0">
+            <thead>
+              <tr className="bg-[#2C2C2C] text-white">
+                <th className="py-4 px-4 md:px-6 text-sm text-left font-bold uppercase">{nm}</th>
+                <th className="py-4 px-4 md:px-6 text-left font-bold uppercase"></th>
+                <th className="py-4 px-4 md:px-6 text-left font-bold uppercase"></th>
+                <th className="py-4 px-4 md:px-6 text-left font-bold uppercase"></th>
+              </tr>
+            </thead>
+            <tbody className="bg-[#191919]">
+              {
+                data.map((val, index) => {
+                  let difficulty;
+                  let platform = "Leetcode"
+                  if (val.link.includes("codeforces")) platform = "Codeforces"
+                  if (val.link.includes("leetcode")) platform = "Leetcode"
+                  if (val.link.includes("geeksforgeeks")) platform = "GfG"
+                  if (val.link.includes("codingninjas")) platform = "Coding Ninjas"
+                  if (val.link.includes("naukri")) platform = "Coding Ninjas"
+                  if (val.link.includes("codechef")) platform = "CodeChef"
+                  if (val.link.includes("hackerrank")) platform = "HackerRank"
+                  if (val.title.length % 2 == 0) difficulty = "easy"
+                  else if (val.title.length % 3 == 0) difficulty = "medium"
+                  else difficulty = "hard"
+                  return (
+                    <tr key={index} className='text-white'>
+                      <td className="py-2 px-4 md:px-6 border-b border-gray-700 break-words max-w-[150px] md:max-w-none">{val.title}</td>
+                      <td className="py-2 px-4 md:px-6 border-b border-gray-700 ">
+                        <span className='flex gap-2 md:gap-3 justify-center items-center'>
+                          <img src={logoMap[platform]} alt="logo" className="w-6 h-6 rounded-full" />
+                          <span className="hidden xs:inline">{platform}</span>
+                        </span>
+                      </td>
+                      <td className="py-2 px-4 md:px-6 border-b border-gray-700 truncate text-center">
+                        <span className={`${diffMap[difficulty]} text-white py-1 px-4 rounded-full text-xs`}>{difficulty}</span>
+                      </td>
+                      <td className="py-2 px-4 md:px-6 border-b border-gray-700">
+                        <Start url={val.link} />
+                      </td>
+                    </tr>
+                  )
+                })
+              }
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   )

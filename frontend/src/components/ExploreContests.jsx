@@ -119,10 +119,10 @@ export default function ExploreContests() {
 
   return (
     <div className='my-40'>
-      <div className='flex flex-col justify-center items-center py-10 px-60 text-center'>
-        <h1 className='text-6xl text-white font-extrabold leading-tight'>
+      <div className='flex flex-col justify-center items-center md:py-10 px-5 md:px-60 text-center'>
+        <h1 className='text-4xl md:text-6xl text-white font-extrabold leading-tight'>
           <span className='bg-[#5eead4] text-[#1b1a1a] px-1'>Discover</span> the perfect coding competition for you</h1>
-        <p className='text-[#5e5e5e] text-base font-bold mt-5 w-1/2'>Filter contests based on various criteria and view contest details such as remaining time, duration, and more.</p>
+        <p className='text-[#5e5e5e] text-base font-bold mt-5 md:w-1/2'>Filter contests based on various criteria and view contest details such as remaining time, duration, and more.</p>
         <button className='bg-[#5eead4] rounded-xl px-5 py-2 font-semibold text-lg my-5 hover:bg-[#58f6de] active:scale-95 transition-transform ease-in-out flex justify-center items-center gap-2' onClick={() => navigate("/contest")}><TbListSearch className="w-6 h-6" />Explore Contests </button>
 
       </div>
@@ -131,9 +131,9 @@ export default function ExploreContests() {
 
           const link='https://'+platform.name.toLowerCase()+'.com'
           return (
-            <div key={index} className='bg-[#131313] border border-[#3d3d3d] w-[500px] p-5 rounded-lg flex flex-col justify-center items-center mx-4'>
-              <div className='flex justify-center items-center'>
-                <div className='w-14 h-14 px-3 py-1 rounded-lg bg-[#242323] flex justify-center items-center mr-3'>
+            <div key={index} className='bg-[#131313] border border-[#3d3d3d] w-[350px] md:w-[500px] p-5 rounded-lg flex flex-col justify-center items-center mx-4'>
+              <div className='flex justify-center md:items-center'>
+                <div className='w-14 h-14 px-3 py-3 md:py-1 rounded-lg bg-[#242323] flex justify-center items-center mr-3'>
                   {platform.svg}
                 </div>
                 <div>
@@ -141,7 +141,7 @@ export default function ExploreContests() {
                   <p className='font-normal text-sm text-[#515151]'>{platform.description}</p>
                 </div>
               </div>
-              <Link to={link} target='blank' className='mt-4 bg-[#5eead4] px-4 py-2 rounded-lg font-medium active:scale-95 transition-transform ease-in-out' >
+              <Link to={link} target='blank' className='mt-4 bg-[#5eead4] px-10 md:px-4 py-2 rounded-lg font-medium active:scale-95 transition-transform ease-in-out' >
                 Check Out
               </Link>
             </div>
