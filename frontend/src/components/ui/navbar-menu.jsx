@@ -61,14 +61,14 @@ export const Menu = ({ setActive, children }) => {
 
 export const ProductItem = ({ title, description, href, src }) => {
   return (
-    <Link to={href} className="flex space-x-2">
+    <Link to={href} className="flex space-x-4">
       <img
         src={src}
         width={140}
         
         height={70}
         alt={title}
-        className="flex-shrink-0 rounded-md shadow-2xl"
+        className="flex-shrink-0 rounded-md shadow-2xl overflow-hidden object-cover h-30"
       />
       <div>
         <h4 className="text-xl font-bold mb-1 text-white">

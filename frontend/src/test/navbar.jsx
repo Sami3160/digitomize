@@ -24,7 +24,7 @@ export default function Navbar({ className }) {
         </HoveredLink>
 
         <MenuItem setActive={setActive} active={active} item="Top Companies">
-          <div className="text-sm grid grid-cols-1 md:grid-cols-2 place-items-center ml-20 md:ml-0 gap-10 p-4 w-[90vw] md:w-full">
+          <div className="text-sm grid grid-cols-1 md:grid-cols-2 place-items-center ml-40 md:ml-0 gap-10 p-4 w-[90vw] md:w-full">
             <ProductItem
               title="Google"
               href="/problems?company=google"
