@@ -8,6 +8,7 @@ import axios from "axios";
 import { ErrorMessage, SuccessMessages } from "../components/messages";
 import { Link, useNavigate } from "react-router-dom";
 import { useGoogleLogin } from "@react-oauth/google";
+  const apiBaseUrl = import.meta.env.VITE_API_BASE_URL; 
 export function SignupFormDemo() {
   useEffect(() => {
     document.title = "First time? Signup here";
@@ -41,7 +42,7 @@ export function SignupFormDemo() {
         console.log("got access token");
         // Send the access_token to your backend for authentication
         const response = await axios.post(
-          "http://localhost:5000/api/auth/google",
+          `${apiBaseUrl}/auth/google`,
           {
             access_token,
           }
@@ -81,7 +82,7 @@ export function SignupFormDemo() {
     }
     console.log(formData);
     axios
-      .post("http://localhost:5000/api/users/register", formData)
+      .post(`${apiBaseUrl}/users/register`, formData)
       .then((res) => {
         console.log(res);
         localStorage.setItem("token", res.data.token);

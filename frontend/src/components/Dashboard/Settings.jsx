@@ -5,6 +5,7 @@ import { AuthContext } from "../../context/AuthContext";
 import { FaWindowClose, FaEdit, FaRemoveFormat } from "react-icons/fa"
 import axios, { formToJSON } from "axios";
 import { useNavigate } from "react-router-dom";
+  const apiBaseUrl = import.meta.env.VITE_API_BASE_URL; 
 const SettingsModal = ({ isOpen, onRequestClose }) => {
     const { user, logout } = useContext(AuthContext)
     const [loading, setLoading] = useState(false);
@@ -58,7 +59,7 @@ const SettingsModal = ({ isOpen, onRequestClose }) => {
                 }
             }
 
-            await axios.post("http://localhost:5000/api/users/updateUser", userData, {
+            await axios.post(`${apiBaseUrl}/users/updateUser`, userData, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`
                 }
@@ -80,7 +81,7 @@ const SettingsModal = ({ isOpen, onRequestClose }) => {
         form.append("_id", localStorage.getItem("user").replaceAll('"', ''))
 
         try {
-            const result = await axios.post("http://localhost:5000/api/users/updateProfile", form, {
+            const result = await axios.post(`${apiBaseUrl}/users/updateProfile`, form, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                     Authorization: `Bearer ${localStorage.getItem("token")}`

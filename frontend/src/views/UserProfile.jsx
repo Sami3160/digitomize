@@ -2,7 +2,7 @@ import axios from "axios"
 import { useContext, useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { AuthContext } from "../context/AuthContext"
-
+  const apiBaseUrl = import.meta.env.VITE_API_BASE_URL; 
 function UserProfile() {
     const [userData, setUserData] = useState({})
     const { user_id } = useParams()
@@ -85,7 +85,7 @@ function UserProfile() {
     useEffect(() => {
         const getdata = async () => {
             try {
-                const res = await axios.get(`http://localhost:5000/api/users/getUser`, {
+                const res = await axios.get(`${apiBaseUrl}/users/getUser`, {
                     params: {
                         user_id
                     }
@@ -111,7 +111,7 @@ function UserProfile() {
         }
         const updateView = async () => {
             try {
-                const res = await axios.post(`http://localhost:5000/api/users/updateViews`, {
+                const res = await axios.post(`${apiBaseUrl}/users/updateViews`, {
                     _id:user?._id,
                     userId:user_id
                 })

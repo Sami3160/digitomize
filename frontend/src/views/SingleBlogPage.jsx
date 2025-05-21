@@ -4,7 +4,7 @@ import { FaComment, FaDumpster, FaHeart } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import { IoMdClose } from 'react-icons/io';
-
+  const apiBaseUrl = import.meta.env.VITE_API_BASE_URL; 
 function SingleBlogPage() {
     const { user } = useContext(AuthContext)
     const [liked, setLiked] = useState(false)
@@ -27,7 +27,7 @@ function SingleBlogPage() {
     };
     const handleLike = async () => {
         try {
-            const response = await axios.get('http://localhost:5000/api/blog/updateLike', {
+            const response = await axios.get(`${apiBaseUrl}/blog/updateLike`, {
                 params: {
                     user_id: user?._id,
                     blog_id: searchParams.get('id'),
@@ -46,7 +46,7 @@ function SingleBlogPage() {
     }
     const fetchBlogs = async () => {
         try {
-            const response = await axios.get('http://localhost:5000/api/blog/getOneBlog', {
+            const response = await axios.get(`${apiBaseUrl}/blog/getOneBlog`, {
                 params: {
                     _id: searchParams.get('id'),
                 }
@@ -196,7 +196,7 @@ const CommentsModal = ({ setShowComments, comments, fetch }) => {
         } else {
             try {
                 const main_content = content.current.value.trim()
-                await axios.post('http://localhost:5000/api/blog/addComment', {
+                await axios.post(`${apiBaseUrl}/blog/addComment`, {
                     blog_id: searchParams.get('id'),
                     user_id: user._id,
                     content: main_content
@@ -231,7 +231,7 @@ const CommentsModal = ({ setShowComments, comments, fetch }) => {
             //     }
             // }
             // )
-            await axios.post('http://localhost:5000/api/blog/deleteComment', {
+            await axios.post(`${apiBaseUrl}/blog/deleteComment`, {
                 blog_id: searchParams.get('id'),
                 comment_id: comment_id,
             }, {

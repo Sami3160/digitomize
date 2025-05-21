@@ -14,6 +14,7 @@ import {
   useGoogleLogin,
   useGoogleOneTapLogin,
 } from "@react-oauth/google";
+  const apiBaseUrl = import.meta.env.VITE_API_BASE_URL; 
 export function LoginFormDemo() {
   const navigate = useNavigate();
   const [isError, setError] = useState(false);
@@ -40,7 +41,7 @@ export function LoginFormDemo() {
       try {
         console.log(tokenResponse.access_token)
         const response = await axios.post(
-          "http://localhost:5000/api/auth/google",{ params: { access_token: tokenResponse.access_token } }
+          `${apiBaseUrl}/auth/google`,{ params: { access_token: tokenResponse.access_token } }
         );
         console.log(response);
         localStorage.setItem("token", response.data.token);
@@ -109,7 +110,7 @@ export function LoginFormDemo() {
     // }
     setLoading(true);
     axios
-      .post("http://localhost:5000/api/users/login", formData)
+      .post( `${apiBaseUrl}/users/login`, formData)
       .then((res) => {
         console.log(res);
         localStorage.setItem("token", res.data.token);

@@ -1,7 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import axios from "axios";
 export const AuthContext = createContext()
-
+  const apiBaseUrl = import.meta.env.VITE_API_BASE_URL; 
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [token1, setToken] = useState(localStorage.getItem('token'));
@@ -9,7 +9,7 @@ export const AuthProvider = ({ children }) => {
         const token = localStorage.getItem('token')
         if (token) {
             try {
-                const res = await axios.get('http://localhost:5000/api/users/profile', {
+                const res = await axios.get(`${apiBaseUrl}/users/profile`, {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }

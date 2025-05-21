@@ -2,6 +2,7 @@ import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { FaUnlink } from "react-icons/fa";
+const apiBaseUrl = import.meta.env.VITE_API_BASE_URL; 
 const LinkModal = ({ isOpen, onRequestClose }) => {
     const [platformLists, setPlatformLists]=useState({})
     const {user}=useContext(AuthContext)
@@ -9,7 +10,7 @@ const LinkModal = ({ isOpen, onRequestClose }) => {
         const update=async()=>{
             console.log(user?._id);
             
-            const res=await axios.get(`http://localhost:5000/api/portfolio/linkedaccounts?_id=${user?._id}`)
+            const res=await axios.get(`${apiBaseUrl}/portfolio/linkedaccounts?_id=${user?._id}`)
 
             console.log(res.data)
             setPlatformLists(res.data)
@@ -44,7 +45,7 @@ const LinkModal = ({ isOpen, onRequestClose }) => {
     try {
       // Make the DELETE request to unlink the account
       const response = await axios.delete(
-        `http://localhost:5000/api/users/unlinkAccount?_id=${user?._id}&platform=${currentPlatform}`
+        `${apiBaseUrl}/users/unlinkAccount?_id=${user?._id}&platform=${currentPlatform}`
       );
   
       // Log the success message
@@ -99,7 +100,7 @@ const LinkModal = ({ isOpen, onRequestClose }) => {
     try {
       // API call to link accounts
       await axios.post(
-        `http://localhost:5000/api/users/linkAccounts?_id=${userId}&platform=${platformName}`,
+        `${apiBaseUrl}/users/linkAccounts?_id=${userId}&platform=${platformName}`,
         {
           username: inputValue, // Send the username in the body
         }
@@ -241,7 +242,7 @@ const Add = ({_id, platform,onRequestClose ,handleAddClick}) => {
     
     const handleSubmit= async ()=>{
         try {
-            const result=await axios.post(`http://localhost:5000/api/portfolio/linkedaccounts?_id=${_id}&platform=${platform}`)
+            const result=await axios.post(`${apiBaseUrl}/portfolio/linkedaccounts?_id=${_id}&platform=${platform}`)
             alert('Account linked!')
             onRequestClose();
         } catch (error) {

@@ -3,6 +3,7 @@ import ContestCard, { BentoGrid } from "./ContestCard";
 import axios from "axios";
 import HackathonCard from "./HackathonCard";
 const Contests = () => {
+  const apiBaseUrl = import.meta.env.VITE_API_BASE_URL; 
   const [duration, setDuration] = useState(50);
   const [selectedPlatform, setSelectedPlatform] = useState("all");
   const [allContests, setAllContests] = useState([]);
@@ -24,7 +25,7 @@ const Contests = () => {
     // const res = await axios.get("https://api.digitomize.com/contests");
     const call = async () => {
       const res = await axios.get(
-        "http://localhost:5000/api/contests/allcontest"
+        `${apiBaseUrl}/contests/allcontest`
       );
       console.log("contests data new: ");
       const data = res.data.data;

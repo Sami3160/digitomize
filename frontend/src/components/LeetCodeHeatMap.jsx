@@ -7,9 +7,9 @@ import axios from 'axios';
 
 export default function LeetCodeHeatmap({ username }) {
     const [heatmapData, setHeatmapData] = useState([]);
-
+    const apiBaseUrl = import.meta.env.VITE_API_BASE_URL; 
     useEffect(() => {
-        axios.post(`http://localhost:5000/api/users/getHeatData`, {
+        axios.post(`${apiBaseUrl}/users/getHeatData`, {
             query: `
           query getUserProfile($username: String!) {
             matchedUser(username: $username) {

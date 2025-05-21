@@ -4,6 +4,7 @@ import { useContext, useEffect, useState } from "react"
 import DOMPurify from "dompurify"
 import axios from "axios"
 import { AuthContext } from "../context/AuthContext"
+  const apiBaseUrl = import.meta.env.VITE_API_BASE_URL; 
 function BlogsPage() {
     const { user } = useContext(AuthContext)
     const [pageSize] = useState(4)
@@ -26,7 +27,7 @@ function BlogsPage() {
     };
     const fetchBlogs = async () => {
         try {
-            const response = await axios.get('http://localhost:5000/api/blog/getBlogs', {
+            const response = await axios.get(`${apiBaseUrl}/blog/getBlogs`, {
                 params: {
                     page,
                     pageSize
@@ -64,7 +65,7 @@ function BlogsPage() {
                             const confirmDelete = confirm('Are you sure you want to delete this blog?')
                             try {
 
-                                confirmDelete &&await axios.post('http://localhost:5000/api/blog/delete', {
+                                confirmDelete &&await axios.post(`${apiBaseUrl}/blog/delete`, {
                                     blog_id: object._id,
                                     user_id: user._id
                                 }, {
@@ -140,7 +141,7 @@ function BlogsPage() {
                             }
                             setPage(page + 1)
                             try {
-                                const response = await axios.get('http://localhost:5000/api/blog/getBlogs', {
+                                const response = await axios.get(`${apiBaseUrl}/blog/getBlogs`, {
                                     params: {
                                         page,
                                         pageSize

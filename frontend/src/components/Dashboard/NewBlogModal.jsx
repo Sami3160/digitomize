@@ -8,6 +8,7 @@ import BlogContentInput from "./BlogContentInput";
 import { useNavigate } from "react-router-dom";
 import DOMPurify from 'dompurify';
 import { IoMdCloseCircle } from "react-icons/io";
+  const apiBaseUrl = import.meta.env.VITE_API_BASE_URL; 
 const NewBlogModal = ({ isOpen, onRequestClose }) => {
     const { user, logout } = useContext(AuthContext)
     const [loading, setLoading] = useState(false);
@@ -49,7 +50,7 @@ const NewBlogModal = ({ isOpen, onRequestClose }) => {
             setBlogData((bData) => { return { ...bData, _id: user._id } })
             console.log(blogData)
 
-            await axios.post("http://localhost:5000/api/blog/create", blogData, {
+            await axios.post(`${apiBaseUrl}/blog/create`, blogData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                     Authorization: `Bearer ${localStorage.getItem("token")}`

@@ -32,7 +32,7 @@ import {
   IconLogout,
 } from "@tabler/icons-react";
 import LeetCodeHeatmap from "../components/LeetCodeHeatMap";
-
+  const apiBaseUrl = import.meta.env.VITE_API_BASE_URL; 
 export default function Dashboard() {
   const { user, logout } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -50,7 +50,7 @@ export default function Dashboard() {
   useEffect(() => {
     const getHeatMapData = async () => {
       let userid = user?._id;
-      const response = await axios.get(`http://localhost:5000/api/blog/contributions/${userid}`)
+      const response = await axios.get(`${apiBaseUrl}/blog/contributions/${userid}`)
       setHeatMapData(response.data);
     }
     getHeatMapData();
@@ -285,7 +285,7 @@ export default function Dashboard() {
   useEffect(() => {
     const loadData = async () => {
       const response = await axios.put(
-        `http://localhost:5000/api/portfolio/getupdateportfolio?_id=${user?._id}`
+        `${apiBaseUrl}/portfolio/getupdateportfolio?_id=${user?._id}`
       );
       console.log(response?.data?.lcStats);
       console.log(response?.data?.cfStats);
